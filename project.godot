@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="Alicia"
+run/main_scene="res://scenes/scene_1 .tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
+[global_group]
+
+player="Represents player"
 
 [rendering]
 

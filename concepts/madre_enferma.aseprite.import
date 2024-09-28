@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://du5ctlt7la7vq"
+path="res://.godot/imported/madre_enferma.aseprite-8d33e6d5e2d2db3f682a06cf2c758d46.res"
+
+[deps]
+
+source_file="res://concepts/madre_enferma.aseprite"
+dest_files=["res://.godot/imported/madre_enferma.aseprite-8d33e6d5e2d2db3f682a06cf2c758d46.res"]
+
+[params]
+

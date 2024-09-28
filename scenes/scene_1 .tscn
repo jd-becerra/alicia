@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvp6rybw5rc0r"]
+
+[ext_resource type="Texture2D" uid="uid://brm4d0s46lhwe" path="res://assets/backgrounds/background_scene_1.png" id="1_eoima"]
+[ext_resource type="PackedScene" uid="uid://wvf46r8j6hqf" path="res://scenes/player.tscn" id="2_m6hbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hspma"]
+size = Vector2(3428, 399.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3umvd"]
+size = Vector2(510.25, 427.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m1ny"]
+size = Vector2(3428, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c658n"]
+size = Vector2(454, 1012.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyq2x"]
+size = Vector2(473.407, 990)
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="StaticBody2D" parent="."]
+
+[node name="BackgroundScene1" type="Sprite2D" parent="Background"]
+z_index = -15
+position = Vector2(1477, 355)
+texture = ExtResource("1_eoima")
+
+[node name="Top" type="CollisionShape2D" parent="Background"]
+position = Vector2(1501, 83.375)
+shape = SubResource("RectangleShape2D_hspma")
+
+[node name="Top-Stairs" type="CollisionShape2D" parent="Background"]
+z_index = -1
+position = Vector2(765.875, 91.8125)
+shape = SubResource("RectangleShape2D_3umvd")
+
+[node name="Bottom" type="CollisionShape2D" parent="Background"]
+position = Vector2(1476, 727)
+shape = SubResource("RectangleShape2D_2m1ny")
+
+[node name="Right" type="CollisionShape2D" parent="Background"]
+position = Vector2(3141, 343)
+shape = SubResource("RectangleShape2D_c658n")
+
+[node name="Left" type="CollisionShape2D" parent="Background"]
+position = Vector2(-50, 348)
+scale = Vector2(0.878736, 1)
+shape = SubResource("RectangleShape2D_cyq2x")
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_m6hbx")]
+position = Vector2(268, 476)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
+position = Vector2(-76, 44)

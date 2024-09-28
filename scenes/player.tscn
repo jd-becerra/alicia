@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://wvf46r8j6hqf"]
+
+[ext_resource type="Texture2D" uid="uid://lyyl655qml60" path="res://scenes/alicia_adulta.png" id="1_u5axd"]
+[ext_resource type="Script" path="res://src/player_movement.gd" id="1_w6ikk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2eoaa"]
+size = Vector2(106, 211)
+
+[sub_resource type="Animation" id="Animation_md7lm"]
+length = 6.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_fgvhw"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1k4de"]
+_data = {
+"None": SubResource("Animation_md7lm"),
+"Walk": SubResource("Animation_fgvhw")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_w6ikk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_u5axd")
+hframes = 3
+vframes = 2
+frame = 4
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/characters/alicia/alicia_adulta.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "6ff5fe8d673afc41022ae56b50e13fde"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -5.5)
+shape = SubResource("RectangleShape2D_2eoaa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1k4de")
+}
+
+[node name="Anchor" type="Node2D" parent="."]
+position = Vector2(0, 90)

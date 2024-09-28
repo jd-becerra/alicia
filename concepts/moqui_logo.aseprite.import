@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://da4kol5ov1hec"
+path="res://.godot/imported/moqui_logo.aseprite-c7213a9ab4b8ac073b1e04baf0dab91f.res"
+
+[deps]
+
+source_file="res://concepts/moqui_logo.aseprite"
+dest_files=["res://.godot/imported/moqui_logo.aseprite-c7213a9ab4b8ac073b1e04baf0dab91f.res"]
+
+[params]
+
