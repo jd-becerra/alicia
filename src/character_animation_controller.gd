@@ -1,10 +1,35 @@
 extends CharacterBody2D
-@export var player: AnimationPlayer
+
 @export var animation_name = ""
 
+var is_paused: bool = false
+var is_forward: bool = false
+
+@onready var main_scene: Node = get_tree().get_root().get_node("MainScene")
+@onready var playback_button: Button = main_scene.get_node("Menu").get_node("PlaybackButton")
+@onready var player: AnimationPlayer = self.get_node("AnimationPlayer")
+
 func _ready():
-	pass
+	if playback_button:
+		playback_button.connect("paused", Callable(self, "_on_paused"))
+	if main_scene:
+		main_scene.connect("animation_forward", Callable(self, "_on_change_animation_direction"))
 
 func _physics_process(_delta):
 	if player and animation_name and animation_name != player.current_animation and animation_name != "":
-		player.play(animation_name)
+		if is_forward:
+			player.play(animation_name)
+		else:
+			player.play_backwards(animation_name)
+
+func _on_paused(new_paused_state: bool):
+	self.is_paused = new_paused_state
+	if is_paused:
+		player.set_speed_scale(0)
+	else:
+		player.set_speed_scale(1)
+	#print("Paused: ", is_paused)
+
+func _on_change_animation_direction(state: bool):
+	self.is_forward = state
+	#print("Forward: ", is_forward)

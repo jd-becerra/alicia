@@ -82,7 +82,7 @@ size = Vector2(454, 1012.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyq2x"]
 size = Vector2(473.407, 990)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("animation")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_025xp")
 animation = NodePath("AnimationPlayer")
 animation_name = "Scene1-Beat1"
@@ -129,7 +129,7 @@ animation_name = "RESET"
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_m6hbx")]
 visible = false
-position = Vector2(-192, 472)
+position = Vector2(504, 464)
 double_speed_multiplier = 3.0
 
 [node name="Menu" parent="." instance=ExtResource("4_pquji")]

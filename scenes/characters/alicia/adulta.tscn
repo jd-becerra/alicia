@@ -6,8 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4a17"]
 size = Vector2(106, 211)
 
-[sub_resource type="Animation" id="Animation_fgvhw"]
-length = 0.8
+[sub_resource type="Animation" id="Animation_4wwtu"]
+length = 6.3
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -16,10 +16,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [2, 3, 4, 0]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_vjunv"]
@@ -38,8 +38,8 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_4wwtu"]
-length = 6.4
+[sub_resource type="Animation" id="Animation_fgvhw"]
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -48,10 +48,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 6, 6.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 0]
+"values": [2, 3, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1k4de"]
@@ -88,7 +88,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "slice_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "29cdf65fc71abafd9f7fcc758f4c1e7c"
+metadata/_aseprite_wizard_source_file_hash_ = "f3206b344a3280147a3ecf60e89e7c88"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, -5.5)

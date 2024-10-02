@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://blm75mpa5g0dt"]
+[gd_scene load_steps=3 format=3 uid="uid://blm75mpa5g0dt"]
+
+[ext_resource type="Texture2D" uid="uid://cbqwwvbbgpen8" path="res://assets/icons/playback.png" id="1_dk5oc"]
+[ext_resource type="Script" path="res://ui/playback_button.gd" id="2_qdrw6"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -16,10 +19,13 @@ offset_right = 1088.0
 offset_bottom = 576.0
 show_percentage = false
 
-[node name="MenuButton" type="MenuButton" parent="."]
+[node name="PlaybackButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 528.0
-offset_right = 128.0
+offset_left = 96.0
+offset_top = 536.0
+offset_right = 152.0
 offset_bottom = 592.0
-text = ">|"
+icon = ExtResource("1_dk5oc")
+script = ExtResource("2_qdrw6")
+
+[connection signal="pressed" from="PlaybackButton" to="PlaybackButton" method="_on_pressed"]
