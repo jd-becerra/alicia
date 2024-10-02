@@ -10,6 +10,7 @@ var is_dragging: bool = false
 var last_time = 0
 var is_paused: bool = false
 var tolerance: float = 0.01  # Tolerance for animation end comparison
+var animation_finished = false
 
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
@@ -35,32 +36,32 @@ func _process(delta):
 
 	# Check if animation reaches the end using tolerance for floating point precision
 	if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
+		animation_finished = true
 		playback_button.is_paused = true
 		playback_button.emit_signal("paused", true)
 
 func _input(event):
-	# Check if the mouse is pressed and dragging the progress bar
-	if event is InputEventMouseButton and event.pressed:
+	# Check if the mouse is pressed (for clicking) or if dragging the progress bar
+	var dragging = event is InputEventMouseMotion and is_dragging
+	var clicking = event is InputEventMouseButton and event.pressed
+	if dragging or clicking:
 		if progress_bar.get_global_rect().has_point(event.global_position):
 			is_dragging = true
-	
-	if event is InputEventMouseMotion and is_dragging:
-		# Convert the mouse position into a progress bar value
-		var mouse_pos = event.global_position.x - progress_bar.get_global_rect().position.x
-		var progress = clamp(mouse_pos / progress_bar.get_global_rect().size.x, 0, 1)
-		progress_bar.value = progress * 100
-		
-		# Update the animation's position based on progress
-		if not animation.is_playing():
-			animation.play(animation_name)
-		var new_time = progress * animation.get_current_animation_length()
-		animation.seek(new_time, true)
+			var mouse_pos = event.global_position.x - progress_bar.get_global_rect().position.x
+			var progress = clamp(mouse_pos / progress_bar.get_global_rect().size.x, 0, 1)
+			progress_bar.value = progress * 100 
+			
+			# Update the animation's position based on progress
+			if not animation.is_playing():
+				animation.play(animation_name)
+			var new_time = progress * animation.get_current_animation_length()
+			animation.seek(new_time, true)
 
-		# Detect if animation is being played backwards or forwards
-		emit_signal("animation_forward", new_time > last_time)
-		last_time = new_time
+			# Detect if animation is being played backwards or forwards
+			emit_signal("animation_forward", new_time > last_time)
+			last_time = new_time
 	
-	# Detect when the mouse is released, even outside the bounds of the progress bar
+	# Detect when the mouse button is released, stop dragging
 	if event is InputEventMouseButton and not event.pressed:
 		is_dragging = false
 
@@ -72,5 +73,9 @@ func _on_paused(state: bool):
 		# If the animation has reached the end, reset it before playing again
 		if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
 			animation.play(animation_name)
+		if animation_finished:
+			# If animation was finished, reset it before playing again if button is pressed in this state
+			animation_finished = false
+			animation.seek(0, true)
 		animation.set_speed_scale(1)
-	print("Paused: ", is_paused)
+	# print("Paused: ", is_paused)
