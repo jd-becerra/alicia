@@ -40,9 +40,12 @@ func _process(delta):
 
 	# Check if animation reaches the end using tolerance for floating point precision
 	if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
-		animation_finished = true
-		playback_button.is_paused = true
-		playback_button.emit_signal("paused", true)
+		if not animation_finished:
+			animation_finished = true
+			playback_button.is_paused = true
+			playback_button.emit_signal("paused", true)
+	else:
+		animation_finished = false
 
 func _input(event):
 	# Check if the mouse is pressed (for clicking) or if dragging the progress bar
@@ -75,11 +78,14 @@ func _on_paused(state: bool):
 		animation.set_speed_scale(0)
 		# Remove player_animation_character and add player_movement_character
 		# Don't remove player_animation_character, just hide it
-		player_animation_character.visible = false		
-		player_movement_character.visible = true
-		player_movement_character.initialize_position(player_animation_character.global_position)
-		player_movement_character.update_sprite_direction(player_animation_character.get_node("Sprite2D").flip_h)
-		player_movement_character._on_game_paused(true)
+		print("Player can move")
+	
+		var new_pos = player_animation_character.global_position
+		var new_dir = player_animation_character.get_node("Sprite2D").flip_h
+		player_movement_character.initialize(new_pos, new_dir)
+
+		player_animation_character.visible = false	
+
 	else:
 		# If the animation has reached the end, reset it before playing it again
 		if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
@@ -91,9 +97,7 @@ func _on_paused(state: bool):
 		animation.set_speed_scale(1)
 
 		# Remove player_movement_character and add player_animation_character
-		print("Player cannot move")
-		player_movement_character._on_game_paused(false)
-		player_movement_character.visible = false
+		player_movement_character.clear()
 		player_animation_character.visible = true
 
 	# print("Paused: ", is_paused)
