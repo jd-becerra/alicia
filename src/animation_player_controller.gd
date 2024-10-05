@@ -2,10 +2,14 @@ extends Node2D
 
 @export var animation: AnimationPlayer
 @export var animation_name: String = ""
+@export var player_animation_character: CharacterBody2D
+@export var player_movement_character: CharacterBody2D
 
+@onready var main_scene: Node2D = get_node("/root/MainScene")
 @onready var menu: Control = $Menu
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
+@onready var player_movement
 var is_dragging: bool = false
 var last_time = 0
 var is_paused: bool = false
@@ -69,8 +73,15 @@ func _on_paused(state: bool):
 	is_paused = state
 	if is_paused:
 		animation.set_speed_scale(0)
+		# Remove player_animation_character and add player_movement_character
+		# Don't remove player_animation_character, just hide it
+		player_animation_character.visible = false		
+		player_movement_character.visible = true
+		player_movement_character.initialize_position(player_animation_character.global_position)
+		player_movement_character.update_sprite_direction(player_animation_character.get_node("Sprite2D").flip_h)
+		player_movement_character._on_game_paused(true)
 	else:
-		# If the animation has reached the end, reset it before playing again
+		# If the animation has reached the end, reset it before playing it again
 		if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
 			animation.play(animation_name)
 		if animation_finished:
@@ -78,4 +89,11 @@ func _on_paused(state: bool):
 			animation_finished = false
 			animation.seek(0, true)
 		animation.set_speed_scale(1)
+
+		# Remove player_movement_character and add player_animation_character
+		print("Player cannot move")
+		player_movement_character._on_game_paused(false)
+		player_movement_character.visible = false
+		player_animation_character.visible = true
+
 	# print("Paused: ", is_paused)

@@ -63,6 +63,12 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_w6ikk")
+speed = null
+stop_distance = null
+move_threshold = null
+tolerance = null
+double_click_time = null
+double_speed_multiplier = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -100,3 +106,10 @@ libraries = {
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2(0, 90)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -61.0
+offset_top = -114.0
+offset_right = 56.0
+offset_bottom = 107.0
+color = Color(0.196616, 0.0981636, 0.106258, 0.192157)

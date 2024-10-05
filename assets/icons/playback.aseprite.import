@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ckvay6bxv7ecb"
+path="res://.godot/imported/playback.aseprite-9153c4ddb526a6cdf2feb5c78fec9509.res"
+
+[deps]
+
+source_file="res://assets/icons/playback.aseprite"
+dest_files=["res://.godot/imported/playback.aseprite-9153c4ddb526a6cdf2feb5c78fec9509.res"]
+
+[params]
+
