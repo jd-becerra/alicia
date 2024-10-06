@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var tolerance: float = 1.0  # Tolerance for small position changes
 @export var double_click_time: float = 0.5
 @export var double_speed_multiplier: float = 2.0
+@export var restricted: bool = false  # Unlike game_paused, this can be used by other scripts and AnimationPlayers
 
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -28,6 +29,11 @@ func _ready():
 
 func _input(event):
 	if not game_paused or not self.visible:
+		# If animation is paused
+		return
+
+	if restricted:
+		# If the player is restricted from moving in a certain part of the animation
 		return
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not click_inside_menu(event.global_position):
