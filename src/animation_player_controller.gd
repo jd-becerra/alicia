@@ -106,8 +106,7 @@ func _on_paused(state: bool):
 
 		# Remove player_movement_character and add player_animation_character
 		
-		if player_movement_character.restricted:
-			player_movement_character.hide_player()
+		player_movement_character.hide_player()
 		# player_animation_character.visible = true
 
 	# print("Paused: ", is_paused)
