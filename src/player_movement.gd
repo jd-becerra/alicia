@@ -34,6 +34,7 @@ func _input(event):
 
 	if restricted:
 		# If the player is restricted from moving in a certain part of the animation
+		print("Player is restricted from moving")
 		return
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not click_inside_menu(event.global_position):
@@ -124,7 +125,7 @@ func initialize(pos: Vector2, flip: bool):
 
 	print("Player initialized at:", global_position)
 
-func clear():
+func hide_player():
 	_on_game_paused(false)
 	target_position = Vector2.ZERO
 	last_position = Vector2.ZERO
