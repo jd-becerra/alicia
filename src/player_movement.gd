@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var playback_button: Button = $"/root/MainScene/CanvasLayer/Menu/PlaybackButton"
 @onready var progress_bar: ProgressBar = $"/root/MainScene/CanvasLayer/Menu/ProgressBar"
+@onready var inventory: PanelContainer = $"/root/MainScene/CanvasLayer/Menu/Inventory"
 
 
 var game_paused = false
@@ -116,8 +117,8 @@ func _on_game_paused(state: bool):
 	print("Game paused:", game_paused)
 
 func click_inside_menu(pos: Vector2) -> bool:
-	return progress_bar.get_global_rect().has_point(pos) or playback_button.get_global_rect().has_point(pos)
-
+	return progress_bar.get_global_rect().has_point(pos) or playback_button.get_global_rect().has_point(pos) or inventory.get_global_rect().has_point(pos)
+	
 func initialize(pos: Vector2, flip: bool):
 	_on_game_paused(true)
 	last_click_time = 0.0

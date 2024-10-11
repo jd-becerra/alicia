@@ -12,6 +12,7 @@ extends Node2D
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
 @onready var player_movement
+
 var is_dragging: bool = false
 var last_time = 0
 var is_paused: bool = false
@@ -31,7 +32,7 @@ func _ready():
 	playback_button.connect("paused", Callable(self, "_on_paused"))
 
 func _process(delta):
-	if not is_dragging and animation.is_playing():
+	if not is_dragging and animation.is_playing() and not is_paused:
 		animation.set_speed_scale(1)
 		progress_bar.value = animation.current_animation_position / animation.get_current_animation_length() * 100
 

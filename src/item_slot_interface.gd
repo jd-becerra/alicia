@@ -9,9 +9,8 @@ func set_data(item: Item):
     tooltip_text = "%s\n%s" % [item.name, item.description]
 
 func _process(_delta: float) -> void:
-    # Make texture bigger if mouse is over the item
+    # Make texture bigger if mouse is over the item by making the margin smaller
     if is_mouse_over():
-        # make margins of 4 pixels
         resize_margin(0)
     else:
         resize_margin(8)

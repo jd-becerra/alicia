@@ -72,10 +72,10 @@ tracks/0/path = NodePath("Characters/Alicia_Adulta:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.766667, 3.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.766667, 3.8, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-300, 472), Vector2(-300, 472), Vector2(300, 472)]
+"values": [Vector2(-300, 472), Vector2(-300, 472), Vector2(616, 472), Vector2(616, 472)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -84,7 +84,7 @@ tracks/1/path = NodePath("Characters/Alicia_Adulta:animation_name")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.33333, 3.66667, 3.8, 7),
+"times": PackedFloat32Array(0, 1.33333, 3.7, 3.83333, 7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": ["Idle", "Walk", "Walk", "Idle", "Idle"]
@@ -123,7 +123,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.933333, 2.46667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2192, 328), Vector2(2192, 328), Vector2(576, 328)]
+"values": [Vector2(2192, 328), Vector2(2192, 328), Vector2(616, 328)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -212,6 +212,7 @@ scale = Vector2(0.878736, 1)
 shape = SubResource("RectangleShape2D_cyq2x")
 
 [node name="Foreground" type="Sprite2D" parent="Background" groups=["grayscale"]]
+visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_yci8v")
 position = Vector2(54.5, 355)
@@ -237,10 +238,10 @@ animation_name = "Closed"
 [node name="Player" parent="." instance=ExtResource("2_m6hbx")]
 visible = false
 z_index = 5
-position = Vector2(-1184, 472)
+position = Vector2(-1040, 472)
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
-position = Vector2(272, -152)
+position = Vector2(0, -144)
 enabled = false
 zoom = Vector2(0.8, 0.8)
 
@@ -253,8 +254,9 @@ zoom = Vector2(0.8, 0.8)
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("4_pquji")]
 z_index = 100
 
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("10_7am61")]
-offset_left = 24.0
+[node name="Inventory" parent="CanvasLayer/Menu" instance=ExtResource("10_7am61")]
+layout_mode = 0
+offset_left = 80.0
 offset_top = 24.0
-offset_right = 64.0
+offset_right = 120.0
 offset_bottom = 64.0
