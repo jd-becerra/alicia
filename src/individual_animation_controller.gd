@@ -6,7 +6,7 @@ var is_paused: bool = false
 var is_forward: bool = false
 
 @onready var main_scene: Node = get_tree().get_root().get_node("MainScene")
-@onready var playback_button: Button = main_scene.get_node("Menu").get_node("PlaybackButton")
+@onready var playback_button: Button = main_scene.get_node("CanvasLayer/Menu/PlaybackButton")
 @onready var anim: AnimationPlayer = self.get_node("AnimationPlayer")
 
 func _ready():

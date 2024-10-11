@@ -4,9 +4,11 @@ extends Node2D
 @export var animation_name: String = ""
 @export var player_animation_character: CharacterBody2D
 @export var player_movement_character: CharacterBody2D
+@export var animation_camera: Camera2D
+@export var movement_camera: Camera2D
 
 @onready var main_scene: Node2D = get_node("/root/MainScene")
-@onready var menu: Control = $Menu
+@onready var menu: Control = $CanvasLayer/Menu
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
 @onready var player_movement
@@ -30,6 +32,7 @@ func _ready():
 
 func _process(delta):
 	if not is_dragging and animation.is_playing():
+		animation.set_speed_scale(1)
 		progress_bar.value = animation.current_animation_position / animation.get_current_animation_length() * 100
 
 	# Seek with arrow keys (optional)
@@ -54,6 +57,8 @@ func _input(event):
 	if dragging or (clicking and progress_bar.get_global_rect().has_point(event.global_position)):
 		print("Controlling animation with progress bar")
 		is_dragging = true
+		animation.set_speed_scale(0)
+
 		var mouse_pos = event.global_position.x - progress_bar.get_global_rect().position.x
 		var progress = clamp(mouse_pos / progress_bar.get_global_rect().size.x, 0, 1)
 		progress_bar.value = progress * 100
@@ -82,6 +87,10 @@ func _on_paused(state: bool):
 			node.material.set_shader_parameter("activate", true) 
 
 		animation.set_speed_scale(0)
+
+		# Activate movement_camera and deactivate animation_camera
+		animation_camera.enabled = false
+		movement_camera.enabled = true
 	
 		var new_pos = player_animation_character.global_position
 		var new_dir = player_animation_character.get_node("Sprite2D").flip_h
@@ -103,6 +112,10 @@ func _on_paused(state: bool):
 			animation_finished = false
 			animation.seek(0, true)
 		animation.set_speed_scale(1)
+
+		# Activate animation_camera and deactivate movement_camera
+		animation_camera.enabled = true
+		movement_camera.enabled = false
 
 		# Remove player_movement_character and add player_animation_character
 		

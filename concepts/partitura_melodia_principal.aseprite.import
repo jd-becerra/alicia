@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d2ghwcj8qd8u8"
+path="res://.godot/imported/partitura_melodia_principal.aseprite-ec0168545fa2ef5494575d0e619836e4.res"
+
+[deps]
+
+source_file="res://concepts/partitura_melodia_principal.aseprite"
+dest_files=["res://.godot/imported/partitura_melodia_principal.aseprite-ec0168545fa2ef5494575d0e619836e4.res"]
+
+[params]
+

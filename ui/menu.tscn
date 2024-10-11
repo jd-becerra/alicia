@@ -14,7 +14,7 @@ grow_vertical = 2
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 552.0
+offset_top = 560.0
 offset_right = 1088.0
 offset_bottom = 576.0
 show_percentage = false

@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=23 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_025xp"]
-[ext_resource type="Texture2D" uid="uid://brm4d0s46lhwe" path="res://assets/backgrounds/background_scene_1.png" id="1_eoima"]
+[ext_resource type="Texture2D" uid="uid://d15hx26j84xbp" path="res://assets/backgrounds/background_scene_1.png" id="1_eoima"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_4fv85"]
 [ext_resource type="PackedScene" uid="uid://wvf46r8j6hqf" path="res://scenes/player.tscn" id="2_m6hbx"]
 [ext_resource type="Texture2D" uid="uid://6i00iimpjyra" path="res://assets/objects/scene-1/wall-left.png" id="3_ak2bx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c2gg6xbyb7lch" path="res://scenes/characters/alicia/adulta.tscn" id="5_ar0po"]
 [ext_resource type="PackedScene" uid="uid://b4jni2b00pjm8" path="res://assets/objects/scene-1/door-left.tscn" id="5_w72rx"]
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="6_pcyqb"]
+[ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="10_7am61"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -47,6 +48,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Closed"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainCamera:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2192, 328)]
 }
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
@@ -100,6 +113,18 @@ tracks/3/keys = {
 "update": 1,
 "values": ["Closed", "Closed", "Open", "Open", "Closed", "Closed"]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainCamera:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.933333, 2.46667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2192, 328), Vector2(2192, 328), Vector2(576, 328)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
 _data = {
@@ -142,12 +167,14 @@ shader = ExtResource("2_4fv85")
 shader_parameter/weighted = true
 shader_parameter/activate = false
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("animation", "player_animation_character", "player_movement_character")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("animation", "player_animation_character", "player_movement_character", "animation_camera", "movement_camera")]
 script = ExtResource("1_025xp")
 animation = NodePath("AnimationPlayer")
 animation_name = "Scene1-Beat1"
 player_animation_character = NodePath("Characters/Alicia_Adulta")
 player_movement_character = NodePath("Player")
+animation_camera = NodePath("MainCamera")
+movement_camera = NodePath("Player/PlayerCamera")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -207,10 +234,27 @@ position = Vector2(159, 415)
 script = ExtResource("6_pcyqb")
 animation_name = "Closed"
 
-[node name="Menu" parent="." instance=ExtResource("4_pquji")]
-z_index = 100
-
 [node name="Player" parent="." instance=ExtResource("2_m6hbx")]
 visible = false
 z_index = 5
-position = Vector2(-440, 120)
+position = Vector2(-1184, 472)
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+position = Vector2(272, -152)
+enabled = false
+zoom = Vector2(0.8, 0.8)
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(2192, 328)
+zoom = Vector2(0.8, 0.8)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("4_pquji")]
+z_index = 100
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("10_7am61")]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 64.0

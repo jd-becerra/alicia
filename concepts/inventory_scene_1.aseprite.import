@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bmcuj07hf0r1o"
+path="res://.godot/imported/inventory_scene_1.aseprite-2ee62befa2c6f19b5d8cea41cba7e404.res"
+
+[deps]
+
+source_file="res://concepts/inventory_scene_1.aseprite"
+dest_files=["res://.godot/imported/inventory_scene_1.aseprite-2ee62befa2c6f19b5d8cea41cba7e404.res"]
+
+[params]
+
