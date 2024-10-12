@@ -4,6 +4,7 @@ extends Node2D
 
 var is_paused: bool = false
 var is_forward: bool = false
+var dialogue_triggered: bool = false
 
 @onready var main_scene: Node = get_tree().get_root().get_node("MainScene")
 @onready var playback_button: Button = main_scene.get_node("CanvasLayer/Menu/PlaybackButton")
@@ -16,11 +17,12 @@ func _ready():
 		main_scene.connect("animation_forward", Callable(self, "_on_change_animation_direction"))
 
 	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
-		node.connect("dialogue_triggered", Callable(self, "_on_paused"))
+		node.connect("dialogue_triggered", Callable(self, "_on_dialogue_triggered"))
 
 func _physics_process(_delta):
-	if anim and animation_name != anim.current_animation and animation_name != "":
-		anim.play(animation_name)
+	if not dialogue_triggered:
+		if anim and animation_name != anim.current_animation and animation_name != "":
+			anim.play(animation_name)
 
 func _on_paused(new_paused_state: bool):
 	self.is_paused = new_paused_state
@@ -30,6 +32,10 @@ func _on_paused(new_paused_state: bool):
 	else:
 		anim.set_speed_scale(1)
 	#print("Paused: ", is_paused)
+
+func _on_dialogue_triggered(state: bool):
+	self.dialogue_triggered = state
+	anim.stop()
 
 func _on_change_animation_direction(state: bool):
 	self.is_forward = state

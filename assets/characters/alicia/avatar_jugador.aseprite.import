@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c36h06r6fhipe"
+path="res://.godot/imported/avatar_jugador.aseprite-1bd466bc2116c3f4ccdcee642e116635.res"
+
+[deps]
+
+source_file="res://assets/characters/alicia/avatar_jugador.aseprite"
+dest_files=["res://.godot/imported/avatar_jugador.aseprite-1bd466bc2116c3f4ccdcee642e116635.res"]
+
+[params]
+

@@ -1,6 +1,5 @@
 ~ start
 do play_animation("Alicia_Adulta", "Sad_Sigh")
-[wait=10]
 Alicia: No creí que volvería a ver esta casa nunca más.
 Alicia: Hay demasiadas memorias que me llegan en estos momentos.
 Alicia: Las buenas, las malas...

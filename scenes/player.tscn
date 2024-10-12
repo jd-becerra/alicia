@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://wvf46r8j6hqf"]
 
-[ext_resource type="Texture2D" uid="uid://lyyl655qml60" path="res://scenes/alicia_adulta.png" id="1_u5axd"]
 [ext_resource type="Script" path="res://src/player_movement.gd" id="1_w6ikk"]
+[ext_resource type="Texture2D" uid="uid://wujyjtv7v6pl" path="res://scenes/avatar_jugador.png" id="2_u3d3k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2eoaa"]
 size = Vector2(106, 211)
@@ -66,7 +66,7 @@ script = ExtResource("1_w6ikk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_u5axd")
+texture = ExtResource("2_u3d3k")
 hframes = 3
 vframes = 2
 metadata/_aseprite_wizard_config_ = {
@@ -79,7 +79,7 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": true,
 "player": "AnimationPlayer",
 "slice": "",
-"source": "res://assets/characters/alicia/alicia_adulta.aseprite"
+"source": "res://assets/characters/alicia/avatar_jugador.aseprite"
 }
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
@@ -87,7 +87,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "slice_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "f3206b344a3280147a3ecf60e89e7c88"
+metadata/_aseprite_wizard_source_file_hash_ = "6f0c18b49eff9bac7cec79de6b5c96dd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, -5.5)

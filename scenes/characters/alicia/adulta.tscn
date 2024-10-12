@@ -1,28 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://c2gg6xbyb7lch"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_k4wck"]
-[ext_resource type="Texture2D" uid="uid://cusji0fy50ohl" path="res://scenes/characters/alicia/alicia_adulta.png" id="2_gtfd6"]
+[ext_resource type="Texture2D" uid="uid://cusji0fy50ohl" path="res://scenes/characters/alicia/alicia_adulta.png" id="2_c4ni3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_74mxp"]
 radius = 48.0
 
-[sub_resource type="Animation" id="Animation_4wwtu"]
-length = 6.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_vjunv"]
+[sub_resource type="Animation" id="Animation_b0tw8"]
 length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
@@ -38,8 +22,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_430sg"]
-length = 3.9
+[sub_resource type="Animation" id="Animation_tu3qs"]
+length = 6.3
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,13 +32,13 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 3.7),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [6, 7, 6]
+"values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_fgvhw"]
+[sub_resource type="Animation" id="Animation_uklgq"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -66,24 +51,42 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [3, 4, 5, 1]
+"values": [2, 3, 4, 5]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1k4de"]
+[sub_resource type="Animation" id="Animation_1hcq0"]
+length = 9.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 3.2, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w60ma"]
 _data = {
-"Idle": SubResource("Animation_4wwtu"),
-"RESET": SubResource("Animation_vjunv"),
-"Sad_Sigh": SubResource("Animation_430sg"),
-"Walk": SubResource("Animation_fgvhw")
+"Idle": SubResource("Animation_tu3qs"),
+"RESET": SubResource("Animation_b0tw8"),
+"Sad_Sigh": SubResource("Animation_1hcq0"),
+"Walk": SubResource("Animation_uklgq")
 }
 
 [node name="Alicia_Adulta" type="CharacterBody2D"]
 script = ExtResource("1_k4wck")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 0)
+shape = SubResource("CircleShape2D_74mxp")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-use_parent_material = true
-texture = ExtResource("2_gtfd6")
+texture = ExtResource("2_c4ni3")
 hframes = 3
 vframes = 3
 metadata/_aseprite_wizard_config_ = {
@@ -99,18 +102,11 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://assets/characters/alicia/alicia_adulta.aseprite"
 }
 metadata/_aseprite_wizard_interface_config_ = {
-"animation_section": true,
-"layer_section": true,
-"output_section": true,
-"slice_section": true
+"layer_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "2ffe5ad80dad70c8ea070e79047a8d14"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(24, 0)
-shape = SubResource("CircleShape2D_74mxp")
+metadata/_aseprite_wizard_source_file_hash_ = "5cd21defa2c7e53dfd6c1db4eb4c720d"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1k4de")
+"": SubResource("AnimationLibrary_w60ma")
 }
