@@ -18,6 +18,7 @@ var last_time = 0
 var is_paused: bool = false
 var tolerance: float = 0.01  # Tolerance for animation end comparison
 var animation_finished = false
+var is_dialogue_triggered = false
 
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
@@ -31,8 +32,12 @@ func _ready():
 	# Ensure signal is connected only once
 	playback_button.connect("paused", Callable(self, "_on_paused"))
 
+	# Connect to the dialogue trigger signal with all DialogueTrigger nodes
+	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
+		node.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
+
 func _process(delta):
-	if not is_dragging and animation.is_playing() and not is_paused:
+	if not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
 		animation.set_speed_scale(1)
 		progress_bar.value = animation.current_animation_position / animation.get_current_animation_length() * 100
 
@@ -78,6 +83,14 @@ func _input(event):
 	# Detect when the mouse button is released, stop dragging
 	if event is InputEventMouseButton and not event.pressed:
 		is_dragging = false
+
+func on_dialogue_triggered(is_active: bool):
+	print("Dialogue triggered: ", is_active)
+	is_dialogue_triggered = is_active
+
+	if is_active:
+		animation.set_speed_scale(0)
+
 
 func _on_paused(state: bool):
 	is_paused = state

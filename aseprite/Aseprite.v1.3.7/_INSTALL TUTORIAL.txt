@@ -1,0 +1,21 @@
+﻿=================***=================
+A: How to install/start the game?
+
+Q: Most of the time you will encounter 3 cases:
+
+- Case 1: the games are already installed => you just need to unzip and play.
+
+- Case 2: you get .iso files (or .mds, .cue,...) after unzip => you need to mount them, install from the .exe file inside, then crack them and enjoy. You can see the instructions here for this step by step with pictures, very easy: https://igg-games.com/how-to-install-a-pc-game-and-update.html
+
+- Case 3: you get the installation file after extracting => you simply install it and play.
+
+=================***=================
+A: My game/installer not working?
+
+Q: Could be one of the following reasons:
+
+- Your Windows is missing the necessary drivers to launch the game or the installer. You need to update to the latest version for all windows drivers, such as .NET Framework, C++ Redistributable,... You can find them on Microsoft site, or you can download our package here (includes basic drivers, taken directly from Microsoft): https://igg-games.com/how-to-install-a-pc-game-and-update.html#not-working
+
+- You have set the installation/game directory at too long path, like "C:\skdfldo\sdfwef\ggwq\long-path...", you should put them in a shorter path, like "C: \games".
+
+- Or it could be because you have Anti Virus turned on, they will often block the installer, or delete the cracked files, so you won't be able to complete the installation or launch the game => Temporarily disable Anti Virus, or exclude the game folder (The method used to crack games is similar to the method used to code malware! Anti-virus programs will detect the crack as a virus and delete it, even though it isn’t!)

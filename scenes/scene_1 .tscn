@@ -1,15 +1,16 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=25 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_025xp"]
 [ext_resource type="Texture2D" uid="uid://d15hx26j84xbp" path="res://assets/backgrounds/background_scene_1.png" id="1_eoima"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_4fv85"]
 [ext_resource type="PackedScene" uid="uid://wvf46r8j6hqf" path="res://scenes/player.tscn" id="2_m6hbx"]
 [ext_resource type="Texture2D" uid="uid://6i00iimpjyra" path="res://assets/objects/scene-1/wall-left.png" id="3_ak2bx"]
-[ext_resource type="PackedScene" uid="uid://blm75mpa5g0dt" path="res://ui/menu.tscn" id="4_pquji"]
+[ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="4_pquji"]
 [ext_resource type="PackedScene" uid="uid://c2gg6xbyb7lch" path="res://scenes/characters/alicia/adulta.tscn" id="5_ar0po"]
 [ext_resource type="PackedScene" uid="uid://b4jni2b00pjm8" path="res://assets/objects/scene-1/door-left.tscn" id="5_w72rx"]
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="6_pcyqb"]
 [ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="10_7am61"]
+[ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="11_ijrl5"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -167,6 +168,10 @@ shader = ExtResource("2_4fv85")
 shader_parameter/weighted = true
 shader_parameter/activate = false
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8677"]
+radius = 56.0
+height = 224.0
+
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animation", "player_animation_character", "player_movement_character", "animation_camera", "movement_camera")]
 script = ExtResource("1_025xp")
 animation = NodePath("AnimationPlayer")
@@ -212,7 +217,6 @@ scale = Vector2(0.878736, 1)
 shape = SubResource("RectangleShape2D_cyq2x")
 
 [node name="Foreground" type="Sprite2D" parent="Background" groups=["grayscale"]]
-visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_yci8v")
 position = Vector2(54.5, 355)
@@ -220,7 +224,7 @@ texture = ExtResource("3_ak2bx")
 
 [node name="Characters" type="Node" parent="."]
 
-[node name="Alicia_Adulta" parent="Characters" groups=["grayscale"] instance=ExtResource("5_ar0po")]
+[node name="Alicia_Adulta" parent="Characters" groups=["character", "dialogue_starter", "grayscale"] instance=ExtResource("5_ar0po")]
 material = SubResource("ShaderMaterial_8a5t2")
 position = Vector2(-300, 472)
 collision_layer = 2
@@ -235,7 +239,7 @@ position = Vector2(159, 415)
 script = ExtResource("6_pcyqb")
 animation_name = "Closed"
 
-[node name="Player" parent="." instance=ExtResource("2_m6hbx")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_m6hbx")]
 visible = false
 z_index = 5
 position = Vector2(-1040, 472)
@@ -260,3 +264,11 @@ offset_left = 80.0
 offset_top = 24.0
 offset_right = 120.0
 offset_bottom = 64.0
+
+[node name="DialogueTriggers" type="Node" parent="."]
+
+[node name="Dialogue1" parent="DialogueTriggers" groups=["dialogue_trigger_area"] instance=ExtResource("11_ijrl5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTriggers/Dialogue1"]
+position = Vector2(736, 440)
+shape = SubResource("CapsuleShape2D_g8677")

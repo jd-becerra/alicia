@@ -15,12 +15,16 @@ func _ready():
 	if main_scene:
 		main_scene.connect("animation_forward", Callable(self, "_on_change_animation_direction"))
 
+	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
+		node.connect("dialogue_triggered", Callable(self, "_on_paused"))
+
 func _physics_process(_delta):
 	if anim and animation_name != anim.current_animation and animation_name != "":
 		anim.play(animation_name)
 
 func _on_paused(new_paused_state: bool):
 	self.is_paused = new_paused_state
+	
 	if is_paused:
 		anim.set_speed_scale(0)
 	else:

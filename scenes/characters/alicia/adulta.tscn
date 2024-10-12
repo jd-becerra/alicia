@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2gg6xbyb7lch"]
+[gd_scene load_steps=9 format=3 uid="uid://c2gg6xbyb7lch"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_k4wck"]
 [ext_resource type="Texture2D" uid="uid://cusji0fy50ohl" path="res://scenes/characters/alicia/alicia_adulta.png" id="2_gtfd6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4a17"]
-size = Vector2(106, 211)
+[sub_resource type="CircleShape2D" id="CircleShape2D_74mxp"]
+radius = 48.0
 
 [sub_resource type="Animation" id="Animation_4wwtu"]
 length = 6.3
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_vjunv"]
@@ -38,6 +38,21 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_430sg"]
+length = 3.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 6]
+}
+
 [sub_resource type="Animation" id="Animation_fgvhw"]
 length = 0.8
 loop_mode = 1
@@ -51,13 +66,14 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [2, 3, 4, 5]
+"values": [3, 4, 5, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1k4de"]
 _data = {
 "Idle": SubResource("Animation_4wwtu"),
 "RESET": SubResource("Animation_vjunv"),
+"Sad_Sigh": SubResource("Animation_430sg"),
 "Walk": SubResource("Animation_fgvhw")
 }
 
@@ -69,7 +85,7 @@ texture_filter = 1
 use_parent_material = true
 texture = ExtResource("2_gtfd6")
 hframes = 3
-vframes = 2
+vframes = 3
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -88,11 +104,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "slice_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "f3206b344a3280147a3ecf60e89e7c88"
+metadata/_aseprite_wizard_source_file_hash_ = "2ffe5ad80dad70c8ea070e79047a8d14"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, -5.5)
-shape = SubResource("RectangleShape2D_b4a17")
+position = Vector2(24, 0)
+shape = SubResource("CircleShape2D_74mxp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
