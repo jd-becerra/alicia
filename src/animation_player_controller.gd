@@ -105,6 +105,9 @@ func _on_paused(state: bool):
 
 		animation.set_speed_scale(0)
 
+		# Activate movement_camera and deactivate animation_camera
+		movement_camera.global_position = animation_camera.global_position
+
 		var new_pos = Vector2.ZERO
 		# If the player_animation_character position is on screen, set the new_pos to it, else set new_pos to the center of the screen
 		if player_animation_character.global_position.x > 0 and player_animation_character.global_position.y > 0:
@@ -112,10 +115,8 @@ func _on_paused(state: bool):
 			new_pos = player_animation_character.global_position
 		else:
 			print("Set to center of screen")
-			new_pos = Vector2(animation_camera.get_viewport().size.x / 2, player_animation_character.global_position.y)
-
-		# Activate movement_camera and deactivate animation_camera
-		movement_camera.global_position = animation_camera.global_position
+			new_pos = Vector2(animation_camera.position.x, player_animation_character.global_position.y)
+			print("New pos: ", new_pos)
 
 		animation_camera.enabled = false
 		movement_camera.enabled = true

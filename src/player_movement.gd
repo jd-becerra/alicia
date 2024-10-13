@@ -134,12 +134,9 @@ func initialize(pos: Vector2, flip: bool):
 	target_position = global_position
 	last_position = Vector2.ZERO
 
-
 	update_sprite_direction(flip)
 	
 	self.visible = true
-
-	print("Player initialized at:", global_position)
 
 func hide_player():
 	_on_game_paused(false)
