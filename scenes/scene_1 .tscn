@@ -203,7 +203,7 @@ animation_name = "Scene1-Beat1"
 player_animation_character = NodePath("Characters/Alicia_Adulta")
 player_movement_character = NodePath("Player")
 animation_camera = NodePath("MainCamera")
-movement_camera = NodePath("Player/PlayerCamera")
+movement_camera = NodePath("PlayerCamera")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -263,18 +263,19 @@ position = Vector2(159, 415)
 script = ExtResource("6_pcyqb")
 animation_name = "Closed"
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2_m6hbx")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") groups=["player"] instance=ExtResource("2_m6hbx")]
 visible = false
 z_index = 5
 position = Vector2(-1040, 472)
-
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
-position = Vector2(0, -144)
-enabled = false
-zoom = Vector2(0.8, 0.8)
+camera = NodePath("../PlayerCamera")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(2192, 328)
+zoom = Vector2(0.8, 0.8)
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2(-1072, 328)
+enabled = false
 zoom = Vector2(0.8, 0.8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -283,6 +284,7 @@ zoom = Vector2(0.8, 0.8)
 z_index = 100
 
 [node name="Inventory" parent="CanvasLayer/Menu" instance=ExtResource("10_7am61")]
+visible = false
 layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0

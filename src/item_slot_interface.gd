@@ -6,7 +6,7 @@ extends PanelContainer
 
 func set_data(item: Item):
     texture_rect.texture = item.texture
-    tooltip_text = "%s\n%s" % [item.name, item.description]
+    tooltip_text = "%s" % item.description
 
 func _process(_delta: float) -> void:
     # Make texture bigger if mouse is over the item by making the margin smaller

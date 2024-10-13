@@ -11,7 +11,7 @@ extends Node2D
 @onready var menu: Control = $CanvasLayer/Menu
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
-@onready var player_movement
+@onready var inventory: PanelContainer = menu.get_node("Inventory")
 
 var is_dragging: bool = false
 var last_time = 0
@@ -95,6 +95,9 @@ func on_dialogue_triggered(is_active: bool):
 func _on_paused(state: bool):
 	is_paused = state
 	if is_paused:
+		# Show inventory
+		inventory.visible = true
+
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
 			# WARNING: the node has to have the shader material "gray_filter" attached to it
@@ -102,17 +105,30 @@ func _on_paused(state: bool):
 
 		animation.set_speed_scale(0)
 
+		var new_pos = Vector2.ZERO
+		# If the player_animation_character position is on screen, set the new_pos to it, else set new_pos to the center of the screen
+		if player_animation_character.global_position.x > 0 and player_animation_character.global_position.y > 0:
+			print("Set to player_animation_character position")
+			new_pos = player_animation_character.global_position
+		else:
+			print("Set to center of screen")
+			new_pos = Vector2(animation_camera.get_viewport().size.x / 2, player_animation_character.global_position.y)
+
 		# Activate movement_camera and deactivate animation_camera
+		movement_camera.global_position = animation_camera.global_position
+
 		animation_camera.enabled = false
 		movement_camera.enabled = true
-	
-		var new_pos = player_animation_character.global_position
+
 		var new_dir = player_animation_character.get_node("Sprite2D").flip_h
 		player_movement_character.initialize(new_pos, new_dir)
 
 		# player_animation_character.visible = false	
 
 	else:
+		# Hide inventory
+		inventory.visible = false
+
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
 			# WARNING: the node has to have the shader material "gray_filter" attached to it

@@ -7,6 +7,9 @@ extends CharacterBody2D
 @export var double_click_time: float = 0.5
 @export var double_speed_multiplier: float = 2.0
 @export var double_click_distance_threshold: float = 100.0
+@export var camera: Camera2D
+@export var camera_bounds: Vector2  = Vector2(100, 100)   # Only define left and right bounds
+@export var camera_speed: float = 50.0
 
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -88,6 +91,8 @@ func _physics_process(delta):
 		update_sprite_direction(direction.x < 0)
 		animation.play("Walk")
 
+		update_camera_position(delta)
+
 		# Check if the player is stuck
 		if abs(global_position.x - last_position.x) < tolerance:
 			is_moving = false
@@ -145,3 +150,28 @@ func hide_player():
 	velocity = Vector2.ZERO
 	update_sprite_direction(false)
 	self.visible = false
+
+func update_camera_position(delta):
+	var screen_size = get_viewport_rect().size
+	var camera_pos = camera.global_position
+	var player_pos = global_position
+
+	var left_camera_margin = camera_bounds.x
+	var right_camera_margin = camera_bounds.y
+
+	# Calculate the target camera position based on the player's position near the edges
+	var target_camera_pos = camera_pos
+
+	if player_pos.x < camera_pos.x - (screen_size.x / 2) + left_camera_margin:
+		# Adjusting calculation for smoother left edge movement
+		target_camera_pos.x = player_pos.x + (screen_size.x / 2) - left_camera_margin
+	# Move the camera right when the player is near the right margin
+	elif player_pos.x > camera_pos.x + (screen_size.x / 2) - right_camera_margin:
+		target_camera_pos.x = player_pos.x - (screen_size.x / 2) + right_camera_margin
+
+	# Smoothly move the camera towards the target position using linear interpolation (lerp)
+	camera.position.x = lerp(camera.position.x, target_camera_pos.x, camera_speed * delta)
+
+	# Update target click position based on camera movement for the player
+	if clicked or is_dragging:
+		update_target_position(get_global_mouse_position())
