@@ -13,9 +13,9 @@ extends CharacterBody2D
 
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
-@onready var playback_button: Button = $"/root/MainScene/CanvasLayer/Menu/PlaybackButton"
-@onready var progress_bar: ProgressBar = $"/root/MainScene/CanvasLayer/Menu/ProgressBar"
-@onready var inventory: PanelContainer = $"/root/MainScene/CanvasLayer/Menu/Inventory"
+@onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
+@onready var progress_bar: ProgressBar = $"/root/MainScene/UI/Menu/ProgressBar"
+@onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/Inventory"
 
 
 var game_paused = false

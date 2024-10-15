@@ -4,9 +4,10 @@
 extends Area2D
 
 @export var dialog: DialogueResource
-@export var enable_dialogue: bool = false
+@export var enable_dialogue: bool = true
 
-@onready var playback_button: Button = $"/root/MainScene/CanvasLayer/Menu/PlaybackButton"
+@onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
+@onready var controller: Node = $"/root/MainScene"
 
 var is_paused: bool = false
 var dialogue_was_triggered: bool = false
@@ -17,6 +18,7 @@ signal dialogue_triggered(is_active: bool)
 
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	controller.connect("enable_dialogue", Callable(self, "_on_enable_dialogue"))
 	playback_button.connect("paused", Callable(self, "_on_game_paused"))
 
 func _process(_delta: float) -> void:
@@ -30,6 +32,9 @@ func _on_body_entered(body: Node) -> void:
 		in_dialogue_area = true
 
 func start_dialogue():
+	if is_paused or not enable_dialogue:
+		return
+
 	DialogueManager.show_example_dialogue_balloon(dialog, "start")
 	# Stop the animation player by sending a signal to set_speed_scale(0)
 	emit_signal("dialogue_triggered", true)
@@ -41,3 +46,6 @@ func _on_game_paused(paused: bool) -> void:
 
 func _on_dialogue_finished(_resource: DialogueResource) -> void:
 	emit_signal("dialogue_triggered", false)
+
+func _on_enable_dialogue(is_active: bool) -> void:
+	enable_dialogue = is_active

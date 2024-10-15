@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/item_slot_interface.gd" id="1_xwtfo"]
 
 [node name="Slot" type="PanelContainer"]
-custom_minimum_size = Vector2(124, 124)
+custom_minimum_size = Vector2(96, 96)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_xwtfo")

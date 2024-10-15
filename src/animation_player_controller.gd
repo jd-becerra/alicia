@@ -8,7 +8,7 @@ extends Node2D
 @export var movement_camera: Camera2D
 
 @onready var main_scene: Node2D = get_node("/root/MainScene")
-@onready var menu: Control = $CanvasLayer/Menu
+@onready var menu: Control = $UI/Menu
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
 @onready var inventory: PanelContainer = menu.get_node("Inventory")
@@ -23,6 +23,8 @@ var is_dialogue_triggered = false
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
 signal animation_forward(is_forward: bool)
+@warning_ignore("unused_signal")
+signal enable_dialogue(is_active: bool)
 
 func _ready():
 	# Make animation_name the current animation
@@ -31,6 +33,9 @@ func _ready():
 
 	# Ensure signal is connected only once
 	playback_button.connect("paused", Callable(self, "_on_paused"))
+
+	# Connect to the enable_dialogue signal with all DialogueTrigger nodes
+	connect("enable_dialogue", Callable(self, "_on_enable_dialogue"))
 
 	# Connect to the dialogue trigger signal with all DialogueTrigger nodes
 	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
@@ -61,6 +66,9 @@ func _input(event):
 	var dragging = event is InputEventMouseMotion and is_dragging
 	var clicking = event is InputEventMouseButton and event.pressed
 	if dragging or (clicking and progress_bar.get_global_rect().has_point(event.global_position)):
+		# Disable the dialogue trigger when dragging the progress bar
+		emit_signal("enable_dialogue", false)
+
 		print("Controlling animation with progress bar")
 		is_dragging = true
 		animation.set_speed_scale(0)
@@ -82,6 +90,9 @@ func _input(event):
 
 	# Detect when the mouse button is released, stop dragging
 	if event is InputEventMouseButton and not event.pressed:
+		if is_dragging and last_time >=	animation.get_current_animation_length():
+			emit_signal("enable_dialogue", true)
+
 		is_dragging = false
 
 func on_dialogue_triggered(is_active: bool):
@@ -109,14 +120,12 @@ func _on_paused(state: bool):
 		movement_camera.global_position = animation_camera.global_position
 
 		var new_pos = Vector2.ZERO
-		# If the player_animation_character position is on screen, set the new_pos to it, else set new_pos to the center of the screen
-		if player_animation_character.global_position.x > 0 and player_animation_character.global_position.y > 0:
-			print("Set to player_animation_character position")
+		# The spawnable property of player_animation_character is set in the AnimationPlayer
+		# This allows us to know if player_animation_character position is valid in the animation scene
+		if player_animation_character.is_spawnable():
 			new_pos = player_animation_character.global_position
 		else:
-			print("Set to center of screen")
 			new_pos = Vector2(animation_camera.position.x, player_animation_character.global_position.y)
-			print("New pos: ", new_pos)
 
 		animation_camera.enabled = false
 		movement_camera.enabled = true
@@ -152,5 +161,3 @@ func _on_paused(state: bool):
 		
 		player_movement_character.hide_player()
 		# player_animation_character.visible = true
-
-	# print("Paused: ", is_paused)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=27 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_025xp"]
 [ext_resource type="Texture2D" uid="uid://d15hx26j84xbp" path="res://assets/backgrounds/background_scene_1.png" id="1_eoima"]
@@ -8,9 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="4_pquji"]
 [ext_resource type="PackedScene" uid="uid://c2gg6xbyb7lch" path="res://scenes/characters/alicia/adulta.tscn" id="5_ar0po"]
 [ext_resource type="PackedScene" uid="uid://b4jni2b00pjm8" path="res://assets/objects/scene-1/door-left.tscn" id="5_w72rx"]
+[ext_resource type="Script" path="res://src/player_animation.gd" id="6_3ofwc"]
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="6_pcyqb"]
 [ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="10_7am61"]
 [ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="11_ijrl5"]
+[ext_resource type="PackedScene" uid="uid://bva32pwklon34" path="res://ui/menu_pausa.tscn" id="12_tx2cx"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -69,6 +71,18 @@ tracks/4/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Characters/Alicia_Adulta:spawnable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -150,6 +164,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Characters/Alicia_Adulta:spawnable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.73333, 2.76667, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
 _data = {
@@ -175,7 +201,7 @@ size = Vector2(3428, 232)
 size = Vector2(640, 1012.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyq2x"]
-size = Vector2(473.407, 990)
+size = Vector2(512.099, 990)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yci8v"]
 shader = ExtResource("2_4fv85")
@@ -236,7 +262,7 @@ position = Vector2(3048, 343)
 shape = SubResource("RectangleShape2D_c658n")
 
 [node name="Left" type="CollisionShape2D" parent="Background"]
-position = Vector2(-50, 348)
+position = Vector2(-32.9999, 348)
 scale = Vector2(0.878736, 1)
 shape = SubResource("RectangleShape2D_cyq2x")
 
@@ -253,6 +279,8 @@ material = SubResource("ShaderMaterial_8a5t2")
 position = Vector2(-300, 472)
 collision_layer = 2
 collision_mask = 2
+script = ExtResource("6_3ofwc")
+spawnable = false
 animation_name = "RESET"
 
 [node name="Objects" type="Node" parent="."]
@@ -278,13 +306,16 @@ position = Vector2(-1072, 328)
 enabled = false
 zoom = Vector2(0.8, 0.8)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Menu" parent="CanvasLayer" instance=ExtResource("4_pquji")]
+[node name="PauseMenu" parent="UI" instance=ExtResource("12_tx2cx")]
+visible = false
+z_index = 120
+
+[node name="Menu" parent="UI" instance=ExtResource("4_pquji")]
 z_index = 100
 
-[node name="Inventory" parent="CanvasLayer/Menu" instance=ExtResource("10_7am61")]
-visible = false
+[node name="Inventory" parent="UI/Menu" instance=ExtResource("10_7am61")]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0
@@ -294,6 +325,7 @@ offset_bottom = 64.0
 [node name="DialogueTriggers" type="Node" parent="."]
 
 [node name="Dialogue1" parent="DialogueTriggers" groups=["dialogue_trigger_area"] instance=ExtResource("11_ijrl5")]
+enable_dialogue = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTriggers/Dialogue1"]
 position = Vector2(736, 440)
