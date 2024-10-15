@@ -309,6 +309,7 @@ zoom = Vector2(0.8, 0.8)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("12_tx2cx")]
+process_mode = 3
 visible = false
 z_index = 120
 

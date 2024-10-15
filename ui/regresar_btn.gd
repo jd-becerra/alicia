@@ -5,8 +5,7 @@ extends Button
 @onready var game_ui: Control = $/root/MainScene/UI/Menu
 
 func _on_pressed() -> void:
-	print("Pause button pressed")
+	print("Return button pressed")
 	pause_menu.hide()
 	game_ui.show()
-	self.disabled = true
 	get_tree().paused = false
