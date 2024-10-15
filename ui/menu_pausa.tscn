@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://bva32pwklon34"]
 
 [ext_resource type="Texture2D" uid="uid://bl83ptppm6nwo" path="res://ui/button_medium.png" id="1_5st6h"]
+[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_f2ups"]
 [ext_resource type="Texture2D" uid="uid://cv3uextp24kxo" path="res://ui/button_small.png" id="2_ecory"]
-[ext_resource type="Script" path="res://ui/regresar_btn.gd" id="3_7g08r"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbd68"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2wbgv"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slyyj"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cxgmb"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wyd8u"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bovtw"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -17,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f2ups")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
@@ -50,9 +51,9 @@ mouse_filter = 1
 theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 56
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cbd68")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_slyyj")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_wyd8u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2wbgv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cxgmb")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_bovtw")
 text = "GUARDAR PARTIDA"
 editable = false
 context_menu_enabled = false
@@ -81,17 +82,17 @@ texture = ExtResource("1_5st6h")
 
 [node name="TextEdit" type="TextEdit" parent="ColorRect/ConfigBtn"]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 24.0
-offset_right = 542.0
-offset_bottom = 112.0
+offset_left = 91.0
+offset_top = 32.0
+offset_right = 531.0
+offset_bottom = 120.0
 mouse_filter = 1
 theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 56
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cbd68")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_slyyj")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_wyd8u")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2wbgv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cxgmb")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_bovtw")
 text = "CONFIGURACIÓN"
 editable = false
 context_menu_enabled = false
@@ -121,17 +122,17 @@ texture = ExtResource("2_ecory")
 [node name="TextEdit" type="TextEdit" parent="ColorRect/SalirBtn"]
 layout_mode = 0
 offset_left = 72.0
-offset_top = 11.0
-offset_right = 208.0
-offset_bottom = 83.0
+offset_top = 13.0
+offset_right = 184.0
+offset_bottom = 77.0
 mouse_filter = 1
 theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 44
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cbd68")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_slyyj")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_wyd8u")
-text = "MENÚ"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2wbgv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cxgmb")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_bovtw")
+text = "SALIR"
 editable = false
 context_menu_enabled = false
 shortcut_keys_enabled = false
@@ -150,7 +151,6 @@ offset_right = 880.0
 offset_bottom = 550.0
 icon = ExtResource("2_ecory")
 flat = true
-script = ExtResource("3_7g08r")
 
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect/RegresarBtn"]
 modulate = Color(0, 0, 0, 0.215686)
@@ -168,9 +168,9 @@ mouse_filter = 1
 theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 33
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cbd68")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_slyyj")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_wyd8u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2wbgv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cxgmb")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_bovtw")
 text = "CONTINUAR"
 editable = false
 context_menu_enabled = false
@@ -181,5 +181,3 @@ drag_and_drop_selection_enabled = false
 virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 use_default_word_separators = false
-
-[connection signal="pressed" from="ColorRect/RegresarBtn" to="ColorRect/RegresarBtn" method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=28 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_025xp"]
 [ext_resource type="Texture2D" uid="uid://d15hx26j84xbp" path="res://assets/backgrounds/background_scene_1.png" id="1_eoima"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://src/player_animation.gd" id="6_3ofwc"]
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="6_pcyqb"]
 [ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="10_7am61"]
+[ext_resource type="PackedScene" uid="uid://bwpse4ub1mcet" path="res://ui/settings_menu.tscn" id="11_1lbbc"]
 [ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="11_ijrl5"]
 [ext_resource type="PackedScene" uid="uid://bva32pwklon34" path="res://ui/menu_pausa.tscn" id="12_tx2cx"]
 
@@ -309,6 +310,11 @@ zoom = Vector2(0.8, 0.8)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("12_tx2cx")]
+process_mode = 3
+visible = false
+z_index = 120
+
+[node name="SettingsMenu" parent="UI" instance=ExtResource("11_1lbbc")]
 process_mode = 3
 visible = false
 z_index = 120

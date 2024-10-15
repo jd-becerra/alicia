@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cbqwwvbbgpen8" path="res://assets/icons/playback.png" id="1_dk5oc"]
 [ext_resource type="Script" path="res://ui/playback_button.gd" id="2_qdrw6"]
 [ext_resource type="Texture2D" uid="uid://xp0hhv0fy7c" path="res://ui/settings_icon.png" id="3_04nhj"]
-[ext_resource type="Script" path="res://ui/settings_menu.gd" id="4_6nc7h"]
+[ext_resource type="Script" path="res://ui/settings_btn.gd" id="4_q0kt5"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -32,6 +32,7 @@ flat = true
 script = ExtResource("2_qdrw6")
 
 [node name="Settings" type="Button" parent="."]
+z_index = 200
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 1
 anchors_preset = 1
@@ -45,7 +46,7 @@ scale = Vector2(0.55, 0.55)
 theme_override_colors/icon_pressed_color = Color(0.791999, 0.791999, 0.791999, 1)
 icon = ExtResource("3_04nhj")
 flat = true
-script = ExtResource("4_6nc7h")
+script = ExtResource("4_q0kt5")
 
 [connection signal="pressed" from="PlaybackButton" to="PlaybackButton" method="_on_pressed"]
 [connection signal="pressed" from="Settings" to="Settings" method="_on_pressed"]
