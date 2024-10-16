@@ -1,0 +1,33 @@
+extends Control
+
+@onready var continuar_btn: Button = get_node("Main/Background/CargarPartidaBtn")
+@onready var nueva_partida_btn: Button = get_node("Main/Background/NuevaPartidaBtn")
+@onready var configuracion_btn: Button = get_node("Main/Background/ConfigBtn")
+@onready var salir_btn: Button = get_node("Main/Background/SalirBtn")
+@onready var settings_menu: Control = get_node("SettingsMenu")
+
+@onready var level_1 = preload("res://scenes/scene_1.tscn")
+
+func _ready() -> void:
+	print(self.name)
+
+	continuar_btn.connect("pressed", Callable(self, "_on_continuar_pressed"))
+	nueva_partida_btn.connect("pressed", Callable(self, "_on_nueva_partida_pressed"))
+	configuracion_btn.connect("pressed", Callable(self, "_on_configuracion_pressed"))
+	salir_btn.connect("pressed", Callable(self, "_on_salir_pressed"))
+
+# FOR NOW
+# Continuar and Nueva Partida buttons will redirect to the game scene
+func _on_continuar_pressed() -> void:
+	# Remove current scene and load the game scene
+	get_tree().change_scene_to_file("res://scenes/scene_1.tscn")
+func _on_nueva_partida_pressed() -> void:
+	# Remove current scene and load the game scene
+	get_tree().change_scene_to_file("res://scenes/scene_1.tscn")
+
+func _on_configuracion_pressed() -> void:
+	settings_menu.show()
+
+# Salir button will close the game
+func _on_salir_pressed() -> void:
+	get_tree().quit()

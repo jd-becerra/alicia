@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxctf0gioohef"]
+
+[ext_resource type="Texture2D" uid="uid://cmdjoqvas6dqk" path="res://assets/objects/scene-1/partitura_wide.png" id="1_3arce"]
+[ext_resource type="Script" path="res://src/document_wide.gd" id="1_5x5yk"]
+[ext_resource type="Texture2D" uid="uid://n1pugvhonp4d" path="res://ui/return_icon.png" id="2_0excg"]
+
+[node name="DocumentWide" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5x5yk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.372549)
+
+[node name="DocumentSprite" type="Sprite2D" parent="."]
+position = Vector2(600, 356)
+scale = Vector2(0.811111, 0.766667)
+texture = ExtResource("1_3arce")
+
+[node name="ReturnBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 728.0
+offset_bottom = 710.0
+scale = Vector2(0.194251, 0.154733)
+icon = ExtResource("2_0excg")

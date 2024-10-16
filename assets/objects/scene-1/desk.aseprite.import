@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c4xarlatrmiu1"
+path="res://.godot/imported/desk.aseprite-04ca030470caa2ac22b7805ee58dc73b.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/desk.aseprite"
+dest_files=["res://.godot/imported/desk.aseprite-04ca030470caa2ac22b7805ee58dc73b.res"]
+
+[params]
+

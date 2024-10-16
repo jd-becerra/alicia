@@ -69,7 +69,6 @@ func _input(event):
 		# Disable the dialogue trigger when dragging the progress bar
 		emit_signal("enable_dialogue", false)
 
-		print("Controlling animation with progress bar")
 		is_dragging = true
 		animation.set_speed_scale(0)
 

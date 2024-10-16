@@ -4,7 +4,7 @@ extends Control
 @onready var guardar_cambios_btn: Button = get_node("ColorRect/GuardarBtn")
 @onready var cancelar_btn: Button = get_node("ColorRect/CancelarBtn")
 
-@onready var game_ui: Control = $/root/MainScene/UI/Menu
+@export var main_ui: Control
 
 func _ready() -> void:
 	print(self.name)
@@ -19,6 +19,5 @@ func _on_cancelar_pressed() -> void:
 	redirect_main_menu()
 
 func redirect_main_menu():
-	game_ui.show()
 	self.hide()
-	get_tree().paused = false
+	main_ui.show()

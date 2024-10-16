@@ -1,4 +1,23 @@
-[gd_scene format=3 uid="uid://cbpp2hvrspykn"]
+[gd_scene load_steps=13 format=3 uid="uid://dxt8sattd7yki"]
+
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_7phrt"]
+[ext_resource type="Texture2D" uid="uid://cryeiau8hlw2v" path="res://ui/menu_inicio.png" id="1_o7txf"]
+[ext_resource type="Texture2D" uid="uid://bl83ptppm6nwo" path="res://ui/button_medium.png" id="2_vce3m"]
+[ext_resource type="Texture2D" uid="uid://cv3uextp24kxo" path="res://ui/button_small.png" id="3_noqjj"]
+[ext_resource type="Texture2D" uid="uid://b8iqajvgwyt1n" path="res://ui/logo_letters.png" id="4_8dj78"]
+[ext_resource type="PackedScene" uid="uid://bwpse4ub1mcet" path="res://ui/settings_menu.tscn" id="6_037la"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wc3b5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pglgh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cnlfx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r22qu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3i7gr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p2qly"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +26,177 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7phrt")
+
+[node name="Main" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="Main"]
+position = Vector2(576, 324)
+scale = Vector2(0.642857, 0.632813)
+texture = ExtResource("1_o7txf")
+
+[node name="CargarPartidaBtn" type="Button" parent="Main/Background"]
+offset_left = -709.333
+offset_top = -335.012
+offset_right = -103.333
+offset_bottom = -191.012
+icon = ExtResource("2_vce3m")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/Background/CargarPartidaBtn"]
+modulate = Color(0, 0, 0, 0.215686)
+z_index = -1
+position = Vector2(304, 80)
+texture = ExtResource("2_vce3m")
+
+[node name="TextEdit" type="TextEdit" parent="Main/Background/CargarPartidaBtn"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 32.0
+offset_right = 531.0
+offset_bottom = 120.0
+mouse_filter = 1
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wc3b5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pglgh")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_cnlfx")
+text = "CARGAR PARTIDA"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+use_default_word_separators = false
+
+[node name="NuevaPartidaBtn" type="Button" parent="Main/Background"]
+offset_left = -704.667
+offset_top = -169.086
+offset_right = -98.6667
+offset_bottom = -25.0864
+icon = ExtResource("2_vce3m")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/Background/NuevaPartidaBtn"]
+modulate = Color(0, 0, 0, 0.215686)
+z_index = -1
+position = Vector2(304, 80)
+texture = ExtResource("2_vce3m")
+
+[node name="TextEdit" type="TextEdit" parent="Main/Background/NuevaPartidaBtn"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 32.0
+offset_right = 531.0
+offset_bottom = 120.0
+mouse_filter = 1
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wc3b5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pglgh")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_cnlfx")
+text = "NUEVA PARTIDA"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+use_default_word_separators = false
+
+[node name="ConfigBtn" type="Button" parent="Main/Background"]
+offset_left = -700.0
+offset_top = -6.32092
+offset_right = -94.0
+offset_bottom = 137.679
+icon = ExtResource("2_vce3m")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/Background/ConfigBtn"]
+modulate = Color(0, 0, 0, 0.215686)
+z_index = -1
+position = Vector2(304, 80)
+texture = ExtResource("2_vce3m")
+
+[node name="TextEdit" type="TextEdit" parent="Main/Background/ConfigBtn"]
+layout_mode = 0
+offset_left = 80.8889
+offset_top = 31.6049
+offset_right = 520.889
+offset_bottom = 119.605
+mouse_filter = 1
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wc3b5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pglgh")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_cnlfx")
+text = "CONFIGURACIÓN"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+use_default_word_separators = false
+
+[node name="SalirBtn" type="Button" parent="Main/Background"]
+offset_left = -522.667
+offset_top = 170.667
+offset_right = -264.667
+offset_bottom = 269.667
+icon = ExtResource("3_noqjj")
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Main/Background/SalirBtn"]
+modulate = Color(0, 0, 0, 0.215686)
+z_index = -1
+position = Vector2(128, 59)
+texture = ExtResource("3_noqjj")
+
+[node name="TextEdit" type="TextEdit" parent="Main/Background/SalirBtn"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 13.0
+offset_right = 184.0
+offset_bottom = 77.0
+mouse_filter = 1
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r22qu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3i7gr")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_p2qly")
+text = "SALIR"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+use_default_word_separators = false
+
+[node name="LogoLetters" type="Sprite2D" parent="Main/Background"]
+position = Vector2(385.778, -158.025)
+scale = Vector2(1.55556, 1.58025)
+texture = ExtResource("4_8dj78")
+
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("main_ui") instance=ExtResource("6_037la")]
+visible = false
+z_index = 3
+layout_mode = 1
+main_ui = NodePath("../Main")

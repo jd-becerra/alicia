@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cgd7ywgdl3hmh"
+path="res://.godot/imported/partitura_small.aseprite-827abceaf8b45eef8e86de7866966c03.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/partitura_small.aseprite"
+dest_files=["res://.godot/imported/partitura_small.aseprite-827abceaf8b45eef8e86de7866966c03.res"]
+
+[params]
+
