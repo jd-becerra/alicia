@@ -6,6 +6,7 @@ extends Area2D
 @export var dialog: DialogueResource
 @export var enable_dialogue: bool = true
 
+@onready var is_dragging: bool = false
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var controller: Node = $"/root/MainScene"
 
@@ -19,12 +20,17 @@ signal dialogue_triggered(is_active: bool)
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	controller.connect("enable_dialogue", Callable(self, "_on_enable_dialogue"))
+	controller.connect("dragging_enabled", Callable(self, "_on_dragging"))
 	playback_button.connect("paused", Callable(self, "_on_game_paused"))
 
 func _process(_delta: float) -> void:
-	if in_dialogue_area and enable_dialogue and not dialogue_was_triggered:
+	if in_dialogue_area and enable_dialogue and not dialogue_was_triggered and not is_dragging:
 		start_dialogue()
 		dialogue_was_triggered = true
+
+	if not is_dragging and not enable_dialogue:
+		dialogue_was_triggered = false
+
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("dialogue_starter") and not is_paused:
@@ -32,7 +38,8 @@ func _on_body_entered(body: Node) -> void:
 		in_dialogue_area = true
 
 func start_dialogue():
-	if is_paused or not enable_dialogue:
+	if is_paused or not enable_dialogue or is_dragging:
+		print("Game is paused or dialogue is disabled")
 		return
 
 	DialogueManager.show_example_dialogue_balloon(dialog, "start")
@@ -49,3 +56,14 @@ func _on_dialogue_finished(_resource: DialogueResource) -> void:
 
 func _on_enable_dialogue(is_active: bool) -> void:
 	enable_dialogue = is_active
+
+func _on_dragging(dragging_state: bool) -> void:
+	is_dragging = dragging_state
+	if is_dragging:
+		print("Dialogue disabled due to dragging")
+	else:
+		print("Dragging stopped")
+		if enable_dialogue:
+			print("Dialogue enabled after dragging stopped")
+		else:
+			print("Dialogue remains disabled after dragging stopped")

@@ -191,7 +191,7 @@ middle_mouse_paste_enabled = false
 use_default_word_separators = false
 
 [node name="LogoLetters" type="Sprite2D" parent="Main/Background"]
-position = Vector2(385.778, -158.025)
+position = Vector2(410.667, -246.518)
 scale = Vector2(1.55556, 1.58025)
 texture = ExtResource("4_8dj78")
 

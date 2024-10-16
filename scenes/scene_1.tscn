@@ -472,6 +472,7 @@ z_index = 100
 mouse_filter = 1
 
 [node name="Inventory" parent="UI/Menu" instance=ExtResource("13_m2fdu")]
+visible = false
 layout_mode = 0
 offset_left = 80.0
 offset_top = 24.0

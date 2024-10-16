@@ -19,12 +19,15 @@ var is_paused: bool = false
 var tolerance: float = 0.01  # Tolerance for animation end comparison
 var animation_finished = false
 var is_dialogue_triggered = false
+var animation_played_first_time = true
 
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
 signal animation_forward(is_forward: bool)
 @warning_ignore("unused_signal")
 signal enable_dialogue(is_active: bool)
+@warning_ignore("unused_signal")
+signal dragging_enabled(dragging_state: bool)
 
 func _ready():
 	# Make animation_name the current animation
@@ -36,12 +39,20 @@ func _ready():
 
 	# Connect to the enable_dialogue signal with all DialogueTrigger nodes
 	connect("enable_dialogue", Callable(self, "_on_enable_dialogue"))
+	connect("dragging_enabled", Callable(self, "_on_dragging"))
 
 	# Connect to the dialogue trigger signal with all DialogueTrigger nodes
 	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
 		node.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
 func _process(delta):
+	# THIS FEATURE WILL BE IMPLEMENTED IN THE FINAL BUILD
+	# Enable progress bar only after animation was played for the first time
+	# if animation_played_first_time and animation_finished:
+		# playback_button.visible = true
+		# progress_bar.visible = true
+		# animation_played_first_time = false
+
 	if not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
 		animation.set_speed_scale(1)
 		progress_bar.value = animation.current_animation_position / animation.get_current_animation_length() * 100
@@ -67,9 +78,10 @@ func _input(event):
 	var clicking = event is InputEventMouseButton and event.pressed
 	if dragging or (clicking and progress_bar.get_global_rect().has_point(event.global_position)):
 		# Disable the dialogue trigger when dragging the progress bar
-		emit_signal("enable_dialogue", false)
+		if not is_dragging:
+			is_dragging = true
+			emit_signal("dragging_enabled", true)
 
-		is_dragging = true
 		animation.set_speed_scale(0)
 
 		var mouse_pos = event.global_position.x - progress_bar.get_global_rect().position.x
@@ -88,11 +100,10 @@ func _input(event):
 			last_time = new_time
 
 	# Detect when the mouse button is released, stop dragging
-	if event is InputEventMouseButton and not event.pressed:
-		if is_dragging and last_time >=	animation.get_current_animation_length():
-			emit_signal("enable_dialogue", true)
-
+	if event is InputEventMouseButton and not event.pressed and is_dragging:
 		is_dragging = false
+		emit_signal("dragging_enabled", false)
+		emit_signal("enable_dialogue", false)
 
 func on_dialogue_triggered(is_active: bool):
 	print("Dialogue triggered: ", is_active)
