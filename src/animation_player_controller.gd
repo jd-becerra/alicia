@@ -6,12 +6,15 @@ extends Node2D
 @export var player_movement_character: CharacterBody2D
 @export var animation_camera: Camera2D
 @export var movement_camera: Camera2D
+@export var dialogue_indicator_times: Array[float]
 
 @onready var main_scene: Node2D = get_node("/root/MainScene")
 @onready var menu: Control = $UI/Menu
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
 @onready var inventory: PanelContainer = menu.get_node("Inventory")
+
+@onready var dialogue_indicator: PackedScene = preload("res://ui/dialogue_indicator.tscn")
 
 var is_dragging: bool = false
 var last_time = 0
@@ -40,6 +43,8 @@ func _ready():
 	# Connect to the enable_dialogue signal with all DialogueTrigger nodes
 	connect("enable_dialogue", Callable(self, "_on_enable_dialogue"))
 	connect("dragging_enabled", Callable(self, "_on_dragging"))
+
+	# add_dialogue_indicators()  # FEATURE TO BE DECIDED
 
 	# Connect to the dialogue trigger signal with all DialogueTrigger nodes
 	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
@@ -76,7 +81,7 @@ func _input(event):
 	# Check if the mouse is pressed (for clicking) or if dragging the progress bar
 	var dragging = event is InputEventMouseMotion and is_dragging
 	var clicking = event is InputEventMouseButton and event.pressed
-	if dragging or (clicking and progress_bar.get_global_rect().has_point(event.global_position)):
+	if dragging or (clicking and progress_bar.get_global_rect().has_point(event.global_position)) and not is_dialogue_triggered:
 		# Disable the dialogue trigger when dragging the progress bar
 		if not is_dragging:
 			is_dragging = true
@@ -171,3 +176,27 @@ func _on_paused(state: bool):
 		
 		player_movement_character.hide_player()
 		# player_animation_character.visible = true
+
+func add_dialogue_indicators():
+	# Convert the time of each item to a percentage of the animation length
+	var animation_length = animation.get_current_animation_length()
+
+	for time in dialogue_indicator_times:
+		var indicator = dialogue_indicator.instantiate()
+		
+		# Calculate the percentage of the animation
+		var time_percentage = time / animation_length
+		
+		# Calculate the position relative to the progress bar
+		var indicator_x = progress_bar.size.x * time_percentage
+		
+		# Create a container for proper positioning
+		var container = Control.new()
+		container.set_anchors_preset(Control.PRESET_FULL_RECT)
+		
+		# Set the indicator's position relative to the progress bar
+		indicator.position = Vector2(indicator_x, 0)
+		
+		# Add the indicator to the progress bar directly
+		progress_bar.add_child(container)
+		container.add_child(indicator)

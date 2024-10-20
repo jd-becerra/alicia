@@ -358,6 +358,7 @@ player_animation_character = NodePath("Characters/Alicia_Adulta")
 player_movement_character = NodePath("Player")
 animation_camera = NodePath("MainCamera")
 movement_camera = NodePath("PlayerCamera")
+dialogue_indicator_times = Array[float]([5.067])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

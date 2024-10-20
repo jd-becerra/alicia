@@ -9,10 +9,13 @@ extends Area2D
 @onready var is_dragging: bool = false
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var controller: Node = $"/root/MainScene"
+@onready var game_gui: Control = $"/root/MainScene/UI/Menu"
+@onready var dialogue_balloon_path = "res://dialogue/balloon.tscn"
 
 var is_paused: bool = false
 var dialogue_was_triggered: bool = false
 var in_dialogue_area: bool = false
+
 
 @warning_ignore("unused_signal")
 signal dialogue_triggered(is_active: bool)
@@ -42,7 +45,9 @@ func start_dialogue():
 		print("Game is paused or dialogue is disabled")
 		return
 
-	DialogueManager.show_example_dialogue_balloon(dialog, "start")
+	game_gui.hide()
+
+	show_dialogue()	
 	# Stop the animation player by sending a signal to set_speed_scale(0)
 	emit_signal("dialogue_triggered", true)
 	if not DialogueManager.dialogue_ended.is_connected(Callable(self, "_on_dialogue_finished")):
@@ -53,17 +58,22 @@ func _on_game_paused(paused: bool) -> void:
 
 func _on_dialogue_finished(_resource: DialogueResource) -> void:
 	emit_signal("dialogue_triggered", false)
+	game_gui.show()
 
 func _on_enable_dialogue(is_active: bool) -> void:
 	enable_dialogue = is_active
 
 func _on_dragging(dragging_state: bool) -> void:
 	is_dragging = dragging_state
-	if is_dragging:
-		print("Dialogue disabled due to dragging")
-	else:
-		print("Dragging stopped")
-		if enable_dialogue:
-			print("Dialogue enabled after dragging stopped")
-		else:
-			print("Dialogue remains disabled after dragging stopped")
+
+func show_dialogue():
+	var balloon = load(dialogue_balloon_path).instantiate()
+	get_current_scene().add_child(balloon)
+	balloon.start(dialog, "start", [])
+	return balloon
+
+func get_current_scene() -> Node:
+	var current_scene: Node = get_tree().current_scene
+	if current_scene == null:
+		current_scene = get_tree().root.get_child(get_tree().root.get_child_count() - 1)
+	return current_scene
