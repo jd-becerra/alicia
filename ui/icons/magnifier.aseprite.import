@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://h7ojwaqkh387"
+path="res://.godot/imported/magnifier.aseprite-a916a7cbf89d5f744d25cf3dd86038b8.res"
+
+[deps]
+
+source_file="res://ui/icons/magnifier.aseprite"
+dest_files=["res://.godot/imported/magnifier.aseprite-a916a7cbf89d5f744d25cf3dd86038b8.res"]
+
+[params]
+

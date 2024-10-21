@@ -1,9 +1,9 @@
 extends Control
 
-@onready var guardar_partida_btn: Button = self.find_child("GuardarBtn")
-@onready var configuracion_btn: Button = self.find_child("ConfigBtn")
-@onready var salir_btn: Button = self.find_child("SalirBtn")
-@onready var regresar_btn: Button = self.find_child("RegresarBtn")
+@onready var guardar_partida_btn: Button = %GuardarBtn
+@onready var configuracion_btn: Button = %ConfigBtn
+@onready var salir_btn: Button = %SalirBtn
+@onready var regresar_btn: Button = %RegresarBtn
 
 @onready var game_ui: Control = $/root/MainScene/UI/Menu
 @onready var settings_menu: Control = $/root/MainScene/UI/SettingsMenu

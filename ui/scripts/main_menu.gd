@@ -1,10 +1,10 @@
 extends Control
 
-@onready var continuar_btn: Button = get_node("Main/Background/CargarPartidaBtn")
-@onready var nueva_partida_btn: Button = get_node("Main/Background/NuevaPartidaBtn")
-@onready var configuracion_btn: Button = get_node("Main/Background/ConfigBtn")
-@onready var salir_btn: Button = get_node("Main/Background/SalirBtn")
-@onready var settings_menu: Control = get_node("SettingsMenu")
+@onready var continuar_btn: Button = %CargarPartidaBtn
+@onready var nueva_partida_btn: Button = %NuevaPartidaBtn
+@onready var configuracion_btn: Button = %ConfigBtn
+@onready var salir_btn: Button = %SalirBtn
+@onready var settings_menu: Control = %SettingsMenu
 
 @onready var level_1 = preload("res://scenes/scene_1.tscn")
 

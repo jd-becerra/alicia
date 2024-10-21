@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ce6e52x7jk66v"]
+
+[ext_resource type="Texture2D" uid="uid://bl83ptppm6nwo" path="res://ui/button_medium.png" id="1_k4hb8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8mmmu"]
+texture = ExtResource("1_k4hb8")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nm5o3"]
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4aa4"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 56
+Button/styles/focus = SubResource("StyleBoxTexture_8mmmu")
+Button/styles/hover = SubResource("StyleBoxTexture_8mmmu")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_8mmmu")
+Button/styles/normal = SubResource("StyleBoxTexture_8mmmu")
+Button/styles/pressed = SubResource("StyleBoxTexture_8mmmu")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_nm5o3")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_d4aa4")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_nm5o3")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_d4aa4")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_nm5o3")

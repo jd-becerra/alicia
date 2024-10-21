@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cddj0nemptmr1"]
+[gd_scene load_steps=11 format=3 uid="uid://cddj0nemptmr1"]
 
-[ext_resource type="Texture2D" uid="uid://cbqwwvbbgpen8" path="res://assets/icons/playback.png" id="1_dk5oc"]
-[ext_resource type="Script" path="res://ui/playback_button.gd" id="2_qdrw6"]
+[ext_resource type="Texture2D" uid="uid://bk5kxsq3gh2u8" path="res://ui/icons/pause.png" id="1_rn5c8"]
+[ext_resource type="Script" path="res://ui/scripts/playback_button.gd" id="2_qdrw6"]
 [ext_resource type="Texture2D" uid="uid://xp0hhv0fy7c" path="res://ui/settings_icon.png" id="3_04nhj"]
-[ext_resource type="Script" path="res://ui/settings_btn.gd" id="4_q0kt5"]
+[ext_resource type="Script" path="res://ui/scripts/settings_btn.gd" id="4_q0kt5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jhqc0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wt0nc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jdmv7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqhiv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3b6b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oeqm6"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,13 +24,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 560.0
+offset_top = 544.0
 offset_right = 1088.0
-offset_bottom = 576.0
+offset_bottom = 560.0
+scale = Vector2(1, 2.4)
 show_percentage = false
 
 [node name="PlaybackButton" type="Button" parent="."]
@@ -27,7 +41,8 @@ offset_left = 96.0
 offset_top = 536.0
 offset_right = 152.0
 offset_bottom = 592.0
-icon = ExtResource("1_dk5oc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jhqc0")
+icon = ExtResource("1_rn5c8")
 flat = true
 script = ExtResource("2_qdrw6")
 
@@ -44,6 +59,11 @@ offset_bottom = 192.0
 grow_horizontal = 0
 scale = Vector2(0.55, 0.55)
 theme_override_colors/icon_pressed_color = Color(0.791999, 0.791999, 0.791999, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wt0nc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jdmv7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iqhiv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f3b6b")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oeqm6")
 icon = ExtResource("3_04nhj")
 flat = true
 script = ExtResource("4_q0kt5")

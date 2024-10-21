@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://sgq4e3efrpg2"
+path="res://.godot/imported/use_cog.aseprite-89c2e7f7dad41ecc2f3eb3e15f86b190.res"
+
+[deps]
+
+source_file="res://ui/icons/use_cog.aseprite"
+dest_files=["res://.godot/imported/use_cog.aseprite-89c2e7f7dad41ecc2f3eb3e15f86b190.res"]
+
+[params]
+

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxctf0gioohef"]
+[gd_scene load_steps=5 format=3 uid="uid://cxctf0gioohef"]
 
 [ext_resource type="Texture2D" uid="uid://cmdjoqvas6dqk" path="res://assets/objects/scene-1/partitura_wide.png" id="1_3arce"]
 [ext_resource type="Script" path="res://src/document_wide.gd" id="1_5x5yk"]
 [ext_resource type="Texture2D" uid="uid://n1pugvhonp4d" path="res://ui/return_icon.png" id="2_0excg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wvanv"]
 
 [node name="DocumentWide" type="Control"]
 process_mode = 3
@@ -35,4 +37,5 @@ offset_top = 32.0
 offset_right = 728.0
 offset_bottom = 710.0
 scale = Vector2(0.194251, 0.154733)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wvanv")
 icon = ExtResource("2_0excg")
