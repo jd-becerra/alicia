@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://c2ajhel3g7e7m"
+path="res://.godot/imported/piano.dialogue-a3a0037bb3f9a556cfb187e237a7fc09.tres"
+
+[deps]
+
+source_file="res://dialogue/scene_1/piano.dialogue"
+dest_files=["res://.godot/imported/piano.dialogue-a3a0037bb3f9a556cfb187e237a7fc09.tres"]
+
+[params]
+
+defaults=true

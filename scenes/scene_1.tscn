@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=40 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -17,8 +17,9 @@
 [ext_resource type="Script" path="res://src/trigger_document_wide.gd" id="11_vatic"]
 [ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="12_v6hkt"]
 [ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="13_m2fdu"]
-[ext_resource type="Resource" uid="uid://c7vlxv2ehljic" path="res://dialogue/scene_1/scene_1.dialogue" id="14_bv4g0"]
+[ext_resource type="Resource" uid="uid://c2ajhel3g7e7m" path="res://dialogue/scene_1/piano.dialogue" id="14_qmdee"]
 [ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="14_wopbl"]
+[ext_resource type="Resource" uid="uid://cmswhoo1df3ve" path="res://dialogue/scene_1/escritorio.dialogue" id="15_aga7y"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
 
@@ -479,6 +480,7 @@ offset_top = 371.392
 offset_right = 1092.77
 offset_bottom = 371.567
 choices = 13
+inspect_dialogue = ExtResource("14_qmdee")
 
 [node name="Choices-Desk" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
 visible = false
@@ -491,7 +493,7 @@ offset_top = 395.392
 offset_right = 1788.77
 offset_bottom = 395.567
 choices = 13
-inspect_dialogue = ExtResource("14_bv4g0")
+inspect_dialogue = ExtResource("15_aga7y")
 
 [node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
 visible = false

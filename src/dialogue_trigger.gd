@@ -17,7 +17,6 @@ var is_paused: bool = false  # If game is in paused state
 var dialogue_was_triggered: bool = false  # If dialogue started
 var in_dialogue_area: bool = false  # If character is in the dialogue area (doesn't activate dialogue necessarily)
 
-
 @warning_ignore("unused_signal")
 signal dialogue_triggered(is_active: bool)
 
@@ -44,12 +43,10 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("dialogue_starter") and not is_paused:
-		print("Entered dialogue area")
 		in_dialogue_area = true
 
 func start_dialogue():
 	if is_paused or not enable_dialogue or is_dragging:
-		print("Game is paused or dialogue is disabled")
 		return
 
 	game_gui.hide()

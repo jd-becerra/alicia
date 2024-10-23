@@ -49,6 +49,10 @@ func _ready():
 	# Connect to the dialogue trigger signal with all DialogueTrigger nodes
 	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
 		node.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
+	# Also connect all DialogueController Nodes from interaction menus
+	for node in main_scene.get_tree().get_nodes_in_group("interaction_menu"):
+		var dialogue_controller = node.get_node("DialogueController")
+		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
 func _process(delta):
 	# THIS FEATURE WILL BE IMPLEMENTED IN THE FINAL BUILD

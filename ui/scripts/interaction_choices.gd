@@ -25,6 +25,10 @@ extends Control
 @onready var dot_outline_icon_path: String = "res://ui/icons/dot_open.png"
 
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
+@onready var main_scene: Node2D = $"/root/MainScene"
+
+@warning_ignore("unused_signal")
+signal dialogue_active(is_active: bool)
 
 var wheel_open = false
 var mouse_inside_area = false

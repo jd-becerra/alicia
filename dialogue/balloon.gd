@@ -10,6 +10,7 @@ extends CanvasLayer
 @export var skip_action: StringName = &"ui_cancel"
 
 @onready var skip_button: Button = $Balloon/Panel/SkipButton
+@onready var panel: Panel = $Balloon/Panel
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -24,6 +25,22 @@ var is_waiting_for_input: bool = false
 var will_hide_balloon: bool = false
 
 var _locale: String = TranslationServer.get_locale()
+
+# Dictionary of characters with their corresponding colors for the dialogue
+var characters = {
+	# sky blue
+	"Alicia" : convert_rgb_to_color(7, 118, 136),
+	# Brown
+	"Osito" : convert_rgb_to_color(99, 84, 0),
+	# Black
+	"Padre" : Color(0.0, 0.0, 0.0),
+	# Gray
+	"Doctor" : convert_rgb_to_color(128, 128, 128),
+	# Dark orange
+	"Hermano" : convert_rgb_to_color(202, 110, 0),
+	# Gray blue
+	"Madre" : convert_rgb_to_color(111, 155, 162),
+}
 
 ## The current line
 var dialogue_line: DialogueLine:
@@ -45,6 +62,12 @@ var dialogue_line: DialogueLine:
 
 		character_label.visible = not dialogue_line.character.is_empty()
 		character_label.text = tr(dialogue_line.character, "dialogue")
+
+		# Change background color of the character label
+		if characters.has(dialogue_line.character):
+			var new_stylebox = panel.get_theme_stylebox("panel")
+			new_stylebox.bg_color = characters[dialogue_line.character]
+			panel.add_theme_stylebox_override("panel", new_stylebox)
 
 		dialogue_label.hide()
 		dialogue_label.dialogue_line = dialogue_line
@@ -173,5 +196,8 @@ func on_skip_button_pressed() -> void:
 		await get_tree().create_timer(time).timeout
 		next(dialogue_line.next_id)
 		
+
+func convert_rgb_to_color(r: float, g: float, b: float) -> Color:
+	return Color(r / 255, g / 255, b / 255)
 
 #endregion

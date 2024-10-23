@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var progress_bar: ProgressBar = $"/root/MainScene/UI/Menu/ProgressBar"
 @onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/Inventory"
+@onready var main_scene: Node2D = $"/root/MainScene"
 
 @onready var interaction_menus = get_tree().get_nodes_in_group("interaction_menu")
 
@@ -29,11 +30,17 @@ var last_click_position = Vector2.ZERO
 var clicked = false
 var is_dragging = false
 var first_click = false  # To detect double-click
+var is_dialogue_active = false
 
 func _ready():
 	# target_position = global_position
 	# last_position = global_position
 	playback_button.connect("paused", Callable(self, "_on_game_paused"))
+	
+	# Make sure the player is not moving when there is a dialogue triggered
+	for node in main_scene.get_tree().get_nodes_in_group("interaction_menu"):
+		var dialogue_controller = node.get_node("DialogueController")
+		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
 func _input(event):
 	if not game_paused or not self.visible or click_inside_menus():
@@ -72,7 +79,7 @@ func update_target_position(new_position: Vector2):
 
 func _physics_process(delta):
 	# Player can only move when the game is paused
-	if not game_paused or not self.visible:
+	if not game_paused or not self.visible or is_dialogue_active:
 		return
 
 	if not is_moving:
@@ -176,3 +183,6 @@ func click_inside_menus() -> bool:
 		if menu.click_inside_menu():
 			return true
 	return false
+
+func on_dialogue_triggered(is_active: bool):
+	is_dialogue_active = is_active

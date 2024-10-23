@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://cmswhoo1df3ve"
+path="res://.godot/imported/escritorio.dialogue-e65082a56ab9b4c6ec9a70fc4605b67c.tres"
+
+[deps]
+
+source_file="res://dialogue/scene_1/escritorio.dialogue"
+dest_files=["res://.godot/imported/escritorio.dialogue-e65082a56ab9b4c6ec9a70fc4605b67c.tres"]
+
+[params]
+
+defaults=true
