@@ -4,17 +4,18 @@
 extends Area2D
 
 @export var dialog: DialogueResource
-@export var enable_dialogue: bool = true
 
-@onready var is_dragging: bool = false
+@export var enable_dialogue: bool = true  
+
+@onready var is_dragging: bool = false  # If the player is dragging the progress bar
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var controller: Node = $"/root/MainScene"
 @onready var game_gui: Control = $"/root/MainScene/UI/Menu"
 @onready var dialogue_balloon_path = "res://dialogue/balloon.tscn"
 
-var is_paused: bool = false
-var dialogue_was_triggered: bool = false
-var in_dialogue_area: bool = false
+var is_paused: bool = false  # If game is in paused state
+var dialogue_was_triggered: bool = false  # If dialogue started
+var in_dialogue_area: bool = false  # If character is in the dialogue area (doesn't activate dialogue necessarily)
 
 
 @warning_ignore("unused_signal")
@@ -27,6 +28,12 @@ func _ready() -> void:
 	playback_button.connect("paused", Callable(self, "_on_game_paused"))
 
 func _process(_delta: float) -> void:
+	# If enable_dialogue, dialogue CAN be triggered, if: 
+	# - the player is in the area
+	# - the game is not paused 
+	# - the dialogue was not triggered yet
+	# - the player is not dragging the progress bar
+
 	if in_dialogue_area and enable_dialogue and not dialogue_was_triggered and not is_dragging:
 		start_dialogue()
 		dialogue_was_triggered = true

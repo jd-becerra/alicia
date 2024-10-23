@@ -17,6 +17,7 @@ extends CharacterBody2D
 @onready var progress_bar: ProgressBar = $"/root/MainScene/UI/Menu/ProgressBar"
 @onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/Inventory"
 
+@onready var interaction_menus = get_tree().get_nodes_in_group("interaction_menu")
 
 var game_paused = false
 var is_moving = false
@@ -35,7 +36,7 @@ func _ready():
 	playback_button.connect("paused", Callable(self, "_on_game_paused"))
 
 func _input(event):
-	if not game_paused or not self.visible:
+	if not game_paused or not self.visible or click_inside_menus():
 		return
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -56,7 +57,6 @@ func handle_click(click_position: Vector2):
 	
 	if click_position.distance_to(last_click_position) < double_click_distance_threshold:
 		is_double_speed = true
-		print("Double speed activated")
 	else:
 		is_double_speed = false
 	
@@ -119,8 +119,6 @@ func _on_game_paused(state: bool):
 		is_moving = false
 		velocity = Vector2.ZERO
 
-	print("Game paused:", game_paused)
-
 func click_inside_menu(pos: Vector2) -> bool:
 	return progress_bar.get_global_rect().has_point(pos) or playback_button.get_global_rect().has_point(pos) or inventory.get_global_rect().has_point(pos)
 	
@@ -172,3 +170,9 @@ func update_camera_position(delta):
 	# Update target click position based on camera movement for the player
 	if clicked or is_dragging:
 		update_target_position(get_global_mouse_position())
+
+func click_inside_menus() -> bool:
+	for menu in interaction_menus:
+		if menu.click_inside_menu():
+			return true
+	return false

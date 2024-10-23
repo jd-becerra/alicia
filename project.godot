@@ -36,10 +36,11 @@ grayscale="If game is paused, the grayscale shader material will be activated "
 dialogue_starter="When this object enters a DialogueTrigger area, the dialogue set will be started if game is NOT paused"
 dialogue_trigger_area="This area wiil trigger a dialogue if game is not paused (animation player will be paused, however)"
 character="Represents a character in-game"
+interaction_menu=""
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/scene_1.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/scene_1/scene_1.dialogue")
 
 [layer_names]
 

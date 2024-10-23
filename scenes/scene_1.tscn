@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=39 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://src/trigger_document_wide.gd" id="11_vatic"]
 [ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="12_v6hkt"]
 [ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="13_m2fdu"]
+[ext_resource type="Resource" uid="uid://c7vlxv2ehljic" path="res://dialogue/scene_1/scene_1.dialogue" id="14_bv4g0"]
 [ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="14_wopbl"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
@@ -142,6 +143,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Objects/InteractionMenus/Choices-Partitura:enable_on_scene")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
@@ -278,6 +291,18 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Objects/InteractionMenus/Choices-Partitura:enable_on_scene")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.166667, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -425,17 +450,6 @@ animation_name = "Closed"
 position = Vector2(1384, 424)
 texture = ExtResource("9_hyqx2")
 
-[node name="InteractionChoices" parent="Objects/Piano" instance=ExtResource("19_qww40")]
-anchor_left = 0.107
-anchor_top = -0.104
-anchor_right = 0.92
-anchor_bottom = 1.033
-offset_left = -152.635
-offset_top = -112.6
-offset_right = -152.6
-offset_bottom = -112.425
-mouse_filter = 0
-
 [node name="Desk" type="Sprite2D" parent="Objects"]
 position = Vector2(2192, 451)
 texture = ExtResource("10_dbg4j")
@@ -452,10 +466,51 @@ texture = ExtResource("11_mjsc6")
 position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_apwet")
 
+[node name="InteractionMenus" type="Node" parent="Objects"]
+
+[node name="Choices-Piano" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+visible = false
+anchor_left = 0.107
+anchor_top = -0.104
+anchor_right = 0.92
+anchor_bottom = 1.033
+offset_left = 1092.74
+offset_top = 371.392
+offset_right = 1092.77
+offset_bottom = 371.567
+choices = 13
+
+[node name="Choices-Desk" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+visible = false
+anchor_left = 0.107
+anchor_top = -0.104
+anchor_right = 0.92
+anchor_bottom = 1.033
+offset_left = 1788.74
+offset_top = 395.392
+offset_right = 1788.77
+offset_bottom = 395.567
+choices = 13
+inspect_dialogue = ExtResource("14_bv4g0")
+
+[node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+visible = false
+anchor_left = 0.107
+anchor_top = -0.104
+anchor_right = 0.92
+anchor_bottom = 1.033
+offset_left = 2004.74
+offset_top = 339.392
+offset_right = 2004.77
+offset_bottom = 339.567
+choices = 15
+enable_on_scene = false
+
 [node name="Player" parent="." node_paths=PackedStringArray("camera") groups=["player"] instance=ExtResource("9_f76i4")]
 visible = false
 z_index = 5
 position = Vector2(-1040, 472)
+speed = 10000.0
 camera = NodePath("../PlayerCamera")
 
 [node name="MainCamera" type="Camera2D" parent="."]

@@ -65,11 +65,13 @@ MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 
 [node name="ExampleBalloon" type="CanvasLayer"]
+process_mode = 3
 layer = 100
 script = ExtResource("1_36de5")
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
