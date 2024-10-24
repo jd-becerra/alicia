@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=41 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://cmswhoo1df3ve" path="res://dialogue/scene_1/escritorio.dialogue" id="15_aga7y"]
 [ext_resource type="Resource" uid="uid://bv5iirju1e3qx" path="res://dialogue/scene_1/partitura.dialogue" id="15_obtgh"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
+[ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="17_at6ln"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
@@ -518,6 +519,7 @@ z_index = 5
 position = Vector2(-1040, 472)
 speed = 10000.0
 camera = NodePath("../PlayerCamera")
+inventory_data = ExtResource("17_at6ln")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(2192, 328)

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export_category("Movement")
 @export var speed: float = 5000.0
 @export var stop_distance: float = 5.0
 @export var move_threshold: float = 10.0
@@ -11,11 +12,15 @@ extends CharacterBody2D
 @export var camera_bounds: Vector2  = Vector2(100, 100)   # Only define left and right bounds
 @export var camera_speed: float = 50.0
 
+@export_category("Inventory")
+@export var inventory_data: Inventory
+
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var progress_bar: ProgressBar = $"/root/MainScene/UI/Menu/ProgressBar"
-@onready var gui_bottom: Panel = $"/root/MainScene/UI/Menu/Boundaries"
+@onready var gui_bottom: Panel = $"/root/MainScene/UI/Menu/Bottom"
+@onready var gui_top: Panel = $"/root/MainScene/UI/Menu/Top"
 @onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/Inventory"
 @onready var main_scene: Node2D = $"/root/MainScene"
 
@@ -129,6 +134,7 @@ func _on_game_paused(state: bool):
 
 func click_inside_menu(pos: Vector2) -> bool:
 	return gui_bottom.get_global_rect().has_point(pos) or \
+		gui_top.get_global_rect().has_point(pos) or \
 		inventory.get_global_rect().has_point(pos)
 	
 func initialize(pos: Vector2, flip: bool):

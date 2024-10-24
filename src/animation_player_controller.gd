@@ -125,9 +125,7 @@ func on_dialogue_triggered(is_active: bool):
 func _on_paused(state: bool):
 	is_paused = state
 	if is_paused:
-		# Show inventory
-		inventory.visible = true
-
+		menu.can_show_inventory = true
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
 			# WARNING: the node has to have the shader material "gray_filter" attached to it
@@ -155,8 +153,7 @@ func _on_paused(state: bool):
 		# player_animation_character.visible = false	
 
 	else:
-		# Hide inventory
-		inventory.visible = false
+		menu.can_show_inventory = false
 
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
