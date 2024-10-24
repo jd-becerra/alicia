@@ -26,6 +26,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.372549)
 
 [node name="DocumentSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(600, 356)
 scale = Vector2(0.811111, 0.766667)
 texture = ExtResource("1_3arce")
@@ -39,3 +40,4 @@ offset_bottom = 710.0
 scale = Vector2(0.194251, 0.154733)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wvanv")
 icon = ExtResource("2_0excg")
+flat = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dcscjng8hcgxo"]
+[gd_scene load_steps=18 format=3 uid="uid://dcscjng8hcgxo"]
 
 [ext_resource type="Theme" uid="uid://whfu147gfrua" path="res://ui/interaction_choice_buttons.tres" id="1_3m5up"]
 [ext_resource type="Script" path="res://ui/scripts/interaction_choices.gd" id="1_en0qx"]
@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://ddqnxxmtjidr8" path="res://ui/icons/use_cog.png" id="5_7xea1"]
 [ext_resource type="Script" path="res://ui/scripts/inspect_action.gd" id="5_jsbq6"]
 [ext_resource type="Script" path="res://dialogue/dialogue.gd" id="9_ilhgn"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6vxno"]
-radius = 13.8099
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w51lq"]
 
@@ -61,13 +58,11 @@ _data = {
 }
 
 [node name="InteractionChoices" type="Control" groups=["interaction_menu"]]
+layout_direction = 1
 layout_mode = 3
-anchor_left = 0.028
-anchor_right = 0.306
-anchor_bottom = 0.42
-offset_left = -0.256001
-offset_right = -0.512024
-offset_bottom = 7.84
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -81,10 +76,10 @@ collision_layer = 4
 collision_mask = 4
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetect"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="AreaDetect"]
 position = Vector2(152, 128)
 scale = Vector2(11.0066, 10.2697)
-shape = SubResource("CircleShape2D_6vxno")
+polygon = PackedVector2Array(-2.90734, -3.89495, -2.90734, -13.2428, 3.63418, -13.2428, 3.63418, -3.89495, 13.0831, -3.89495, 13.0831, 3.11596, 3.63418, 3.11596, 3.63418, 13.2428, -2.90734, 13.2428, -2.90734, 3.11596, -13.0831, 3.11596, -13.0831, -3.89495)
 
 [node name="UseBtn" type="Button" parent="."]
 unique_name_in_owner = true
@@ -131,9 +126,9 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 offset_left = 16.0
-offset_top = 96.0
+offset_top = 88.0
 offset_right = 88.0
-offset_bottom = 168.0
+offset_bottom = 160.0
 pivot_offset = Vector2(36, 36)
 mouse_default_cursor_shape = 2
 icon = ExtResource("4_uucll")

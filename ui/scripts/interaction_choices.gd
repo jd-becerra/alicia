@@ -11,6 +11,10 @@ extends Control
 @export_category("Inspect")
 @export var inspect_dialogue: DialogueResource
 
+@export_category("Zoom")
+@export var zoom_dialogue: DialogueResource
+@export var zoom_object_path: String   # Receives a path to a texture
+
 # The dot that scales up when clicked
 @onready var dot: Button = %OpenWheelBtn
 # The interaction choice buttons
@@ -39,7 +43,8 @@ func _ready() -> void:
 	dot.connect("pressed", Callable(self, "_on_dot_pressed"))
 	connect("gui_input", Callable(self, "_on_gui_input"))
 
-	area.connect("mouse_entered", Callable(self, "_on_enter_area"))
+	area.mouse_entered.connect(_on_enter_area.bind(true))
+	area.mouse_exited.connect(_on_enter_area.bind(false))
 
 	if playback_button:
 		playback_button.connect("paused", Callable(self, "on_game_paused"))
@@ -54,13 +59,13 @@ func _ready() -> void:
 		inspect_button.mouse_entered.connect(_on_button_hover.bind(inspect_button))
 		inspect_button.mouse_exited.connect(_on_button_exit.bind(inspect_button))
 	if choices & 0x02:
+		zoom_button.pressed.connect(on_zoom)
 		zoom_button.mouse_entered.connect(_on_button_hover.bind(zoom_button))
 		zoom_button.mouse_exited.connect(_on_button_exit.bind(zoom_button))
 	if choices & 0x04:
 		pick_up_button.mouse_entered.connect(_on_button_hover.bind(pick_up_button))
 		pick_up_button.mouse_exited.connect(_on_button_exit.bind(pick_up_button))
 	if choices & 0x08:
-		use_button.pressed.connect(test)
 		use_button.mouse_entered.connect(_on_button_hover.bind(use_button))
 		use_button.mouse_exited.connect(_on_button_exit.bind(use_button))
 
@@ -72,6 +77,7 @@ func _process(_delta: float) -> void:
 
 func _on_dot_pressed() -> void:
 	if not wheel_open:
+		InteractionManager.set_active_menu(self) # Set this menu as the active one
 		show_choices()
 	else:
 		hide_choices()
@@ -79,6 +85,8 @@ func _on_dot_pressed() -> void:
 func show_choices() -> void:
 	dot.icon = load(dot_outline_icon_path)
 	animation_player.play("open_wheel")
+
+	area.set_pickable(true)
 
 	wheel_open = true
 
@@ -94,10 +102,16 @@ func hide_choices() -> void:
 	pick_up_button.hide()
 	use_button.hide()
 
+	# Disable area 
+	area.set_pickable(false)
+
 	dot.icon = load(dot_icon_path)
 	dot.scale = Vector2(1, 1)
 
 	wheel_open = false
+
+	if InteractionManager.active_menu == self:
+		InteractionManager.active_menu = null  # Reset the active menu to empty
 
 func show_buttons(anim_name: String) -> void:
 	if anim_name == "open_wheel":
@@ -123,10 +137,10 @@ func _on_button_exit(btn: Button) -> void:
 	if wheel_open or (not wheel_open and btn == dot):
 		btn.scale = Vector2(1, 1)
 
-func _on_gui_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if not click_in_buttons(event.position):
+			if not mouse_inside_area:
 				hide_choices()
 
 func on_game_paused(state: bool) -> void:
@@ -137,14 +151,24 @@ func on_game_paused(state: bool) -> void:
 		self.hide()
 
 func click_inside_menu() -> bool:
+	print("Mouse inside area: ", mouse_inside_area)
 	return mouse_inside_area
 
 func click_in_buttons(pos: Vector2) -> bool:
-	var check = inspect_button.get_rect().has_point(pos) or zoom_button.get_rect().has_point(pos) or pick_up_button.get_rect().has_point(pos) or use_button.get_rect().has_point(pos)
+	var check = inspect_button.get_global_rect().has_point(pos) or \
+	zoom_button.get_global_rect().has_point(pos) or \
+	pick_up_button.get_global_rect().has_point(pos) or \
+	use_button.get_global_rect().has_point(pos)
+	print("Check: ", check)
 	return check
 
-func _on_enter_area() -> void:
-	mouse_inside_area = wheel_open
+func _on_enter_area(mouse_inside: bool) -> void:
+	if wheel_open and mouse_inside:
+		mouse_inside_area = true
+	else:
+		mouse_inside_area = false
+
+	print("Mouse inside area: ", mouse_inside_area)
 
 func update_choices(new_choices: int) -> void:
 	# Allows to change the choices from the outside
@@ -154,5 +178,8 @@ func on_inspect() -> void:
 	hide_choices()
 	inspect_button.show_interaction_dialogue(inspect_dialogue)
 
-func test() -> void:
-	print("Use button pressed")
+func on_zoom() -> void:
+	# For now, only show the object texture
+	hide_choices()
+	var document_wide = get_node("/root/MainScene/UI/DocumentWide")
+	document_wide.show_object(zoom_object_path)

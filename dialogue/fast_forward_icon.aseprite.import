@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c2sxhckgwqnjn"
+path="res://.godot/imported/fast_forward_icon.aseprite-57981ca1e0fa559c216a771077fac17a.res"
+
+[deps]
+
+source_file="res://dialogue/fast_forward_icon.aseprite"
+dest_files=["res://.godot/imported/fast_forward_icon.aseprite-57981ca1e0fa559c216a771077fac17a.res"]
+
+[params]
+

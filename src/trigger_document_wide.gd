@@ -10,7 +10,6 @@ func _ready() -> void:
 
 func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
 	if event is InputEventMouseButton:
-		print("DocumentWide trigger clicked", event)
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("DocumentWide trigger clicked")
 			var document_wide = get_node("/root/MainScene/UI/DocumentWide")

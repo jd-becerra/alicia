@@ -1,9 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cddj0nemptmr1"]
+[gd_scene load_steps=12 format=3 uid="uid://cddj0nemptmr1"]
 
 [ext_resource type="Texture2D" uid="uid://bk5kxsq3gh2u8" path="res://ui/icons/pause.png" id="1_rn5c8"]
 [ext_resource type="Script" path="res://ui/scripts/playback_button.gd" id="2_qdrw6"]
 [ext_resource type="Texture2D" uid="uid://xp0hhv0fy7c" path="res://ui/settings_icon.png" id="3_04nhj"]
 [ext_resource type="Script" path="res://ui/scripts/settings_btn.gd" id="4_q0kt5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_incan"]
+bg_color = Color(0.389287, 0.389287, 0.389286, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jhqc0"]
 
@@ -26,24 +33,34 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
+[node name="Boundaries" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_top = 552.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 192.0
-offset_top = 544.0
-offset_right = 1088.0
-offset_bottom = 560.0
+offset_left = 96.0
+offset_top = 576.0
+offset_right = 1120.0
+offset_bottom = 592.0
 scale = Vector2(1, 2.4)
+theme_override_styles/background = SubResource("StyleBoxFlat_incan")
 show_percentage = false
 
 [node name="PlaybackButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 536.0
-offset_right = 152.0
-offset_bottom = 592.0
+offset_left = 24.0
+offset_top = 568.0
+offset_right = 128.0
+offset_bottom = 675.0
+scale = Vector2(0.5, 0.5)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jhqc0")
 icon = ExtResource("1_rn5c8")
 flat = true
+icon_alignment = 1
 script = ExtResource("2_qdrw6")
 
 [node name="Settings" type="Button" parent="."]
@@ -53,8 +70,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -160.0
+offset_left = -136.0
 offset_top = 24.0
+offset_right = 24.0
 offset_bottom = 192.0
 grow_horizontal = 0
 scale = Vector2(0.55, 0.55)
@@ -67,6 +85,15 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_oeqm6")
 icon = ExtResource("3_04nhj")
 flat = true
 script = ExtResource("4_q0kt5")
+
+[node name="HideInventoryBtn" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 112.0
+offset_right = 50.0
+offset_bottom = 143.0
+text = "X"
 
 [connection signal="pressed" from="PlaybackButton" to="PlaybackButton" method="_on_pressed"]
 [connection signal="pressed" from="Settings" to="Settings" method="_on_pressed"]

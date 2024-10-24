@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://bv5iirju1e3qx"
+path="res://.godot/imported/partitura.dialogue-da105f216e3efecda56659494fc12e59.tres"
+
+[deps]
+
+source_file="res://dialogue/scene_1/partitura.dialogue"
+dest_files=["res://.godot/imported/partitura.dialogue-da105f216e3efecda56659494fc12e59.tres"]
+
+[params]
+
+defaults=true

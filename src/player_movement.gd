@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var progress_bar: ProgressBar = $"/root/MainScene/UI/Menu/ProgressBar"
+@onready var gui_bottom: Panel = $"/root/MainScene/UI/Menu/Boundaries"
 @onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/Inventory"
 @onready var main_scene: Node2D = $"/root/MainScene"
 
@@ -43,7 +44,7 @@ func _ready():
 		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
 func _input(event):
-	if not game_paused or not self.visible or click_inside_menus():
+	if not game_paused or not self.visible or click_interactive_menus() or is_dialogue_active:
 		return
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -127,7 +128,8 @@ func _on_game_paused(state: bool):
 		velocity = Vector2.ZERO
 
 func click_inside_menu(pos: Vector2) -> bool:
-	return progress_bar.get_global_rect().has_point(pos) or playback_button.get_global_rect().has_point(pos) or inventory.get_global_rect().has_point(pos)
+	return gui_bottom.get_global_rect().has_point(pos) or \
+		inventory.get_global_rect().has_point(pos)
 	
 func initialize(pos: Vector2, flip: bool):
 	_on_game_paused(true)
@@ -178,9 +180,9 @@ func update_camera_position(delta):
 	if clicked or is_dragging:
 		update_target_position(get_global_mouse_position())
 
-func click_inside_menus() -> bool:
+func click_interactive_menus() -> bool:
 	for menu in interaction_menus:
-		if menu.click_inside_menu():
+		if menu.mouse_inside_area:
 			return true
 	return false
 
