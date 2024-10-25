@@ -7,15 +7,20 @@ extends PanelContainer
 var item_data: Item
 
 @warning_ignore("unused_signal")
-signal item_slot_selected(item: Item, index: int)
+signal slot_selected(item: Item, index: int, button: int)
 
 func _ready() -> void:
 	gui_input.connect(_on_gui_input)
 
 func set_data(item: Item) -> void:
-	item_data = item
-	texture_rect.texture = item.texture
-	tooltip_text = "%s" % item.description
+	if item:
+		item_data = item
+		texture_rect.texture = item.texture
+		tooltip_text = "%s" % item.description
+	else:
+		item_data = null
+		texture_rect.texture = null
+		tooltip_text = ""
 
 func _process(_delta: float) -> void:
 	# Make texture bigger if mouse is over the item by making the margin smaller
@@ -35,5 +40,7 @@ func resize_margin(margin: int) -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			emit_signal("item_slot_selected", item_data, get_index())
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			# sent action if button is pressed or released 
+			print("Event pressed: %s" % event.pressed)
+			slot_selected.emit(item_data, get_index(), event.pressed)

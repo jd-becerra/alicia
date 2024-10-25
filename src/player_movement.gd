@@ -20,8 +20,9 @@ extends CharacterBody2D
 @onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var progress_bar: ProgressBar = $"/root/MainScene/UI/Menu/ProgressBar"
 @onready var gui_bottom: Panel = $"/root/MainScene/UI/Menu/Bottom"
-@onready var gui_top: Panel = $"/root/MainScene/UI/Menu/Top"
-@onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/Inventory"
+@onready var gui_top: Panel = $"/root/MainScene/UI/Menu/InventoryUI/Top"
+@onready var toggle_inventory_btn: Button = $"/root/MainScene/UI/Menu/InventoryUI/ToggleInventoryBtn"
+@onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/InventoryUI/Inventory"
 @onready var main_scene: Node2D = $"/root/MainScene"
 
 @onready var interaction_menus = get_tree().get_nodes_in_group("interaction_menu")
@@ -135,7 +136,8 @@ func _on_game_paused(state: bool):
 func click_inside_menu(pos: Vector2) -> bool:
 	return gui_bottom.get_global_rect().has_point(pos) or \
 		gui_top.get_global_rect().has_point(pos) or \
-		inventory.get_global_rect().has_point(pos)
+		inventory.get_global_rect().has_point(pos) or \
+		toggle_inventory_btn.get_global_rect().has_point(pos)
 	
 func initialize(pos: Vector2, flip: bool):
 	_on_game_paused(true)

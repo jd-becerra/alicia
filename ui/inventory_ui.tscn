@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8u4jxcpiirnb"]
+
+[ext_resource type="Script" path="res://ui/scripts/inventory_ui.gd" id="1_1o13a"]
+[ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="1_bfw3q"]
+[ext_resource type="PackedScene" uid="uid://bgobnalq5bhdg" path="res://ui/inventory/item_slot.tscn" id="2_gxyli"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qa8ir"]
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.827
+offset_bottom = 8.104
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1o13a")
+
+[node name="Top" type="Panel" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+mouse_filter = 1
+
+[node name="Inventory" parent="." instance=ExtResource("1_bfw3q")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 56.0
+mouse_filter = 1
+
+[node name="GrabbedSlot" parent="." instance=ExtResource("2_gxyli")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.945098)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 304.0
+offset_right = 400.0
+offset_bottom = 400.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qa8ir")
+
+[node name="ToggleInventoryBtn" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1096.0
+offset_top = 24.0
+offset_right = 1146.0
+offset_bottom = 64.0
+text = "Inv"

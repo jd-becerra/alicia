@@ -10,9 +10,10 @@ extends Node2D
 
 @onready var main_scene: Node2D = get_node("/root/MainScene")
 @onready var menu: Control = $UI/Menu
+@onready var inventory_ui: Control = $UI/Menu/InventoryUI
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
-@onready var inventory: PanelContainer = menu.get_node("Inventory")
+@onready var inventory: PanelContainer = menu.get_node("InventoryUI/Inventory")
 
 @onready var dialogue_indicator: PackedScene = preload("res://ui/dialogue_indicator.tscn")
 
@@ -125,7 +126,7 @@ func on_dialogue_triggered(is_active: bool):
 func _on_paused(state: bool):
 	is_paused = state
 	if is_paused:
-		menu.can_show_inventory = true
+		inventory_ui.can_show_inventory = true
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
 			# WARNING: the node has to have the shader material "gray_filter" attached to it
@@ -153,7 +154,7 @@ func _on_paused(state: bool):
 		# player_animation_character.visible = false	
 
 	else:
-		menu.can_show_inventory = false
+		inventory_ui.can_show_inventory = false
 
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):

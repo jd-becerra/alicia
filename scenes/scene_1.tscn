@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bwpse4ub1mcet" path="res://ui/settings_menu.tscn" id="11_j6iu6"]
 [ext_resource type="Texture2D" uid="uid://ptte0tn6tb1f" path="res://assets/objects/scene-1/partitura_small.png" id="11_mjsc6"]
 [ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="12_v6hkt"]
-[ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="13_m2fdu"]
 [ext_resource type="Resource" uid="uid://c2ajhel3g7e7m" path="res://dialogue/scene_1/piano.dialogue" id="14_qmdee"]
 [ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="14_wopbl"]
 [ext_resource type="Resource" uid="uid://cmswhoo1df3ve" path="res://dialogue/scene_1/escritorio.dialogue" id="15_aga7y"]
@@ -23,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="17_at6ln"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
+[ext_resource type="PackedScene" uid="uid://b8u4jxcpiirnb" path="res://ui/inventory_ui.tscn" id="21_bv2yi"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -547,14 +547,8 @@ main_ui = NodePath("../PauseMenu")
 z_index = 100
 mouse_filter = 2
 
-[node name="Inventory" parent="UI/Menu" instance=ExtResource("13_m2fdu")]
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 64.0
-offset_bottom = 56.0
-mouse_filter = 1
+[node name="InventoryUI" parent="UI/Menu" instance=ExtResource("21_bv2yi")]
+layout_mode = 1
 
 [node name="DocumentWide" parent="UI" instance=ExtResource("17_1cnvc")]
 visible = false

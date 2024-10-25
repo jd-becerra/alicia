@@ -21,10 +21,14 @@ func fill_grid(items: Array):
 		var item_slot = item_grid.get_child(slot_pos)
 		item_slot.set_data(items[slot_pos])
 
-		item_slot.item_slot_selected.connect(player_inventory_data.on_slot_selected)
+		# connect slot if not connected
+		if not item_slot.is_connected("slot_selected", Callable(player_inventory_data, "on_slot_selected")):
+			item_slot.slot_selected.connect(player_inventory_data.on_slot_selected)
 
 func set_inventory_data(inventory: Inventory):
 	player_inventory_data = inventory
+
+	player_inventory_data.inventory_changed.connect(fill_grid)
 
 	if not player_inventory_data or player_inventory_data.items.size() == 0:
 		return
