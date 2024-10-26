@@ -8,9 +8,9 @@ extends Area2D
 @export var enable_dialogue: bool = true  
 
 @onready var is_dragging: bool = false  # If the player is dragging the progress bar
-@onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
 @onready var controller: Node = $"/root/MainScene"
-@onready var game_gui: Control = $"/root/MainScene/UI/Menu"
+@onready var game_gui: Control = %GameUI
+@onready var playback_button: Button = game_gui.get_node("PlaybackButton")
 @onready var dialogue_balloon_path = "res://dialogue/balloon.tscn"
 
 var is_paused: bool = false  # If game is in paused state

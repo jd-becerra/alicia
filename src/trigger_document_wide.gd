@@ -2,7 +2,7 @@ extends Area2D
 
 # If clicked, the node /root/MainScene/UI/DocumentWide will be shown and the game will be paused
 
-@onready var game_ui = get_node("/root/MainScene/UI/Menu")
+@onready var game_ui = %GameUI
 
 func _ready() -> void:
 	set_pickable(true)

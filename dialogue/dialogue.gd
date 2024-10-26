@@ -3,7 +3,7 @@ class_name DialogueController
 # Handles only the dialogue part of the interaction choices
 
 @onready var dialogue_balloon_path = "res://dialogue/balloon.tscn"
-@onready var game_gui: Control = $"/root/MainScene/UI/Menu"
+@onready var game_gui: Control = get_tree().get_root().get_node("MainScene").get_node("%GameUI")
 
 var dialogue: DialogueResource
 var enable_dialogue: bool = true

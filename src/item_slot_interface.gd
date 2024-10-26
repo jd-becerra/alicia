@@ -41,6 +41,5 @@ func resize_margin(margin: int) -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			# sent action if button is pressed or released 
-			print("Event pressed: %s" % event.pressed)
+			print("Slot selected")
 			slot_selected.emit(item_data, get_index(), event.pressed)

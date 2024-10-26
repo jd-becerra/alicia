@@ -5,6 +5,7 @@
 [node name="Inventory" type="PanelContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 script = ExtResource("1_3yxgf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cddj0nemptmr1"]
+[gd_scene load_steps=16 format=3 uid="uid://cddj0nemptmr1"]
 
+[ext_resource type="Script" path="res://ui/scripts/game_ui.gd" id="1_keumy"]
 [ext_resource type="Texture2D" uid="uid://bk5kxsq3gh2u8" path="res://ui/icons/pause.png" id="1_rn5c8"]
 [ext_resource type="Script" path="res://ui/scripts/playback_button.gd" id="2_qdrw6"]
 [ext_resource type="Texture2D" uid="uid://xp0hhv0fy7c" path="res://ui/settings_icon.png" id="3_04nhj"]
 [ext_resource type="Script" path="res://ui/scripts/settings_btn.gd" id="4_q0kt5"]
+[ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="5_6xwmn"]
+[ext_resource type="PackedScene" uid="uid://bgobnalq5bhdg" path="res://ui/inventory/item_slot.tscn" id="6_jly75"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_incan"]
 bg_color = Color(0.389287, 0.389287, 0.389286, 1)
@@ -24,6 +27,8 @@ corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oeqm6"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wkfti"]
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -32,6 +37,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("1_keumy")
+
+[node name="Top" type="Panel" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.686275)
+z_index = -100
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+mouse_filter = 2
 
 [node name="Bottom" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -40,6 +55,7 @@ layout_mode = 0
 offset_top = 552.0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
@@ -58,6 +74,8 @@ offset_top = 568.0
 offset_right = 128.0
 offset_bottom = 675.0
 scale = Vector2(0.5, 0.5)
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jhqc0")
 icon = ExtResource("1_rn5c8")
 flat = true
@@ -79,6 +97,7 @@ offset_right = 56.0
 offset_bottom = 184.0
 grow_horizontal = 0
 scale = Vector2(0.55, 0.55)
+mouse_filter = 1
 theme_override_colors/icon_pressed_color = Color(0.791999, 0.791999, 0.791999, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wt0nc")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jdmv7")
@@ -88,6 +107,35 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_oeqm6")
 icon = ExtResource("3_04nhj")
 flat = true
 script = ExtResource("4_q0kt5")
+
+[node name="Inventory" parent="." instance=ExtResource("5_6xwmn")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 56.0
+
+[node name="GrabbedSlot" parent="." instance=ExtResource("6_jly75")]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.945098)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 304.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wkfti")
+
+[node name="ToggleInventoryBtn" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1128.0
+offset_top = 24.0
+offset_right = 1146.0
+offset_bottom = 55.0
+text = "V"
 
 [connection signal="pressed" from="PlaybackButton" to="PlaybackButton" method="_on_pressed"]
 [connection signal="pressed" from="Settings" to="Settings" method="_on_pressed"]

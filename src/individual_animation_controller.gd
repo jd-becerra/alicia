@@ -8,7 +8,7 @@ var is_forward: bool = false
 var dialogue_triggered: bool = false
 
 @onready var main_scene: Node = get_tree().get_root().get_node("MainScene")
-@onready var playback_button: Button = main_scene.get_node("UI/Menu/PlaybackButton")
+@onready var playback_button: Button = %GameUI/PlaybackButton
 @onready var anim: AnimationPlayer = self.get_node("AnimationPlayer")
 
 # Virtual functions that can be overridden in child scripts

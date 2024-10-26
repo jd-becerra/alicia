@@ -1,7 +1,7 @@
 extends Control
 
 @onready var return_btn: Button = get_node("ReturnBtn")
-@onready var game_ui: Control = $/root/MainScene/UI/Menu
+@onready var game_ui: Control = %GameUI
 @onready var document_sprite: Sprite2D = $DocumentSprite
 @onready var texture_object: Texture = null
 

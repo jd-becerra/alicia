@@ -28,7 +28,7 @@ extends Control
 @onready var dot_icon_path: String = "res://ui/icons/dot.png"
 @onready var dot_outline_icon_path: String = "res://ui/icons/dot_open.png"
 
-@onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
+@onready var playback_button: Button = %GameUI/PlaybackButton
 @onready var main_scene: Node2D = $"/root/MainScene"
 
 @warning_ignore("unused_signal")

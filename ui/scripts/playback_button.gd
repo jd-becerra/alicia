@@ -12,7 +12,9 @@ func _on_pressed() -> void:
 	is_paused = !is_paused
 	emit_signal("paused", is_paused)
 
+
+func _process(_delta: float) -> void:
 	if is_paused:
-		icon = load(play_icon_path)
+		self.icon = load(play_icon_path)
 	else:
-		icon = load(pause_icon_paht)
+		self.icon = load(pause_icon_paht)

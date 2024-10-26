@@ -17,12 +17,13 @@ extends CharacterBody2D
 
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
-@onready var playback_button: Button = $"/root/MainScene/UI/Menu/PlaybackButton"
-@onready var progress_bar: ProgressBar = $"/root/MainScene/UI/Menu/ProgressBar"
-@onready var gui_bottom: Panel = $"/root/MainScene/UI/Menu/Bottom"
-@onready var gui_top: Panel = $"/root/MainScene/UI/Menu/InventoryUI/Top"
-@onready var toggle_inventory_btn: Button = $"/root/MainScene/UI/Menu/InventoryUI/ToggleInventoryBtn"
-@onready var inventory: PanelContainer = $"/root/MainScene/UI/Menu/InventoryUI/Inventory"
+@onready var game_ui: Control = %GameUI
+@onready var playback_button: Button = game_ui.get_node("PlaybackButton")
+@onready var progress_bar: ProgressBar = game_ui.get_node("ProgressBar")
+@onready var gui_bottom: Panel = game_ui.get_node("Bottom")
+@onready var gui_top: Panel = game_ui.get_node("Top")
+@onready var toggle_inventory_btn: Button = game_ui.get_node("ToggleInventoryBtn")
+@onready var inventory: PanelContainer = game_ui.get_node("Inventory")
 @onready var main_scene: Node2D = $"/root/MainScene"
 
 @onready var interaction_menus = get_tree().get_nodes_in_group("interaction_menu")

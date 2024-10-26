@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=40 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -22,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="17_at6ln"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
-[ext_resource type="PackedScene" uid="uid://b8u4jxcpiirnb" path="res://ui/inventory_ui.tscn" id="21_bv2yi"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -531,6 +530,7 @@ enabled = false
 zoom = Vector2(0.8, 0.8)
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("10_2h2bc")]
 process_mode = 3
@@ -543,12 +543,10 @@ visible = false
 z_index = 120
 main_ui = NodePath("../PauseMenu")
 
-[node name="Menu" parent="UI" instance=ExtResource("12_v6hkt")]
+[node name="GameUI" parent="UI" instance=ExtResource("12_v6hkt")]
+unique_name_in_owner = true
 z_index = 100
 mouse_filter = 2
-
-[node name="InventoryUI" parent="UI/Menu" instance=ExtResource("21_bv2yi")]
-layout_mode = 1
 
 [node name="DocumentWide" parent="UI" instance=ExtResource("17_1cnvc")]
 visible = false

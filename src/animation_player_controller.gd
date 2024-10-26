@@ -9,11 +9,10 @@ extends Node2D
 @export var dialogue_indicator_times: Array[float]
 
 @onready var main_scene: Node2D = get_node("/root/MainScene")
-@onready var menu: Control = $UI/Menu
-@onready var inventory_ui: Control = $UI/Menu/InventoryUI
+@onready var menu: Control = %GameUI
 @onready var playback_button: Button = menu.get_node("PlaybackButton")
 @onready var progress_bar: ProgressBar = menu.get_node("ProgressBar")
-@onready var inventory: PanelContainer = menu.get_node("InventoryUI/Inventory")
+@onready var inventory: PanelContainer = menu.get_node("Inventory")
 
 @onready var dialogue_indicator: PackedScene = preload("res://ui/dialogue_indicator.tscn")
 
@@ -24,6 +23,9 @@ var tolerance: float = 0.01  # Tolerance for animation end comparison
 var animation_finished = false
 var is_dialogue_triggered = false
 var animation_played_first_time = true
+var time_keys_enabled = false
+var time_keys_step: float = 0.1
+var time_keys_speed: float = 5.0
 
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
@@ -55,7 +57,7 @@ func _ready():
 		var dialogue_controller = node.get_node("DialogueController")
 		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
-func _process(delta):
+func _process(_delta):
 	# THIS FEATURE WILL BE IMPLEMENTED IN THE FINAL BUILD
 	# Enable progress bar only after animation was played for the first time
 	# if animation_played_first_time and animation_finished:
@@ -63,30 +65,76 @@ func _process(delta):
 		# progress_bar.visible = true
 		# animation_played_first_time = false
 
-	if not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
+	if not time_keys_enabled and not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
 		animation.set_speed_scale(1)
-		progress_bar.value = animation.current_animation_position / animation.get_current_animation_length() * 100
-
-	# Seek with arrow keys (optional)
-	if Input.is_action_pressed("ui_left"):
-		animation.seek(animation.current_animation_position - delta, true)
-	elif Input.is_action_pressed("ui_right"):
-		animation.seek(animation.current_animation_position + delta, true)
+		update_progress_bar()
+	elif time_keys_enabled:
+		# Ensure animation doesn't play while using time keys
+		animation.set_speed_scale(0)
 
 	# Check if animation reaches the end using tolerance for floating point precision
 	if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
 		if not animation_finished:
 			animation_finished = true
-			playback_button.is_paused = true
-			playback_button.emit_signal("paused", true)
+			update_playback_button(true)
 	else:
 		animation_finished = false
 
+func update_progress_bar():
+	progress_bar.value = animation.current_animation_position / animation.get_current_animation_length() * 100
+
+func update_playback_button(state: bool):
+	playback_button.is_paused = state
+	playback_button.emit_signal("paused", state)
+	if not state: # If game is not paused, make sure to set animation speed to 1
+		animation.set_speed_scale(1)
+		
+
+func handle_time_keys():
+	var delta = get_process_delta_time()
+	var change = time_keys_speed * delta
+	var current_pos = animation.current_animation_position
+	var new_pos = current_pos
+
+	if Input.is_action_pressed("ui_left"):
+		new_pos = max(0, current_pos - change)
+	elif Input.is_action_pressed("ui_right"):
+		new_pos = min(animation.get_current_animation_length(), current_pos + change)
+	
+	if new_pos != current_pos:
+		animation.seek(new_pos, true)
+		update_progress_bar()
+		emit_signal("animation_forward", new_pos > last_time)
+		last_time = new_pos
+
 func _input(event):
-	# Check if the mouse is pressed (for clicking) or if dragging the progress bar
+	if Input.is_action_just_pressed("ui_playback"):
+		update_playback_button(!playback_button.is_paused)
+		return
+
 	var dragging = event is InputEventMouseMotion and is_dragging
 	var clicking = event is InputEventMouseButton and event.pressed
-	if dragging or (clicking and progress_bar.get_global_rect().has_point(event.global_position)) and not is_dialogue_triggered:
+
+	# Seek with arrow keys (optional)
+	var time_keys_pressed = Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right")
+	if time_keys_pressed and \
+		not is_dialogue_triggered:
+		if not time_keys_enabled:
+			time_keys_enabled = true
+			animation.set_speed_scale(0)
+		handle_time_keys()
+		return
+	elif time_keys_enabled and not time_keys_pressed:
+		time_keys_enabled = false
+		if not is_paused and not is_dialogue_triggered:
+			animation.set_speed_scale(1)
+		return	
+
+	# Check if the mouse is pressed (for clicking) or if dragging the progress bar
+	if dragging or \
+		(clicking and progress_bar.get_global_rect().has_point(event.global_position)) and \
+			not is_dialogue_triggered \
+			and not time_keys_enabled:
 		# Disable the dialogue trigger when dragging the progress bar
 		if not is_dragging:
 			is_dragging = true
@@ -126,7 +174,7 @@ func on_dialogue_triggered(is_active: bool):
 func _on_paused(state: bool):
 	is_paused = state
 	if is_paused:
-		inventory_ui.can_show_inventory = true
+		menu.can_show_inventory = true
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
 			# WARNING: the node has to have the shader material "gray_filter" attached to it
@@ -154,7 +202,7 @@ func _on_paused(state: bool):
 		# player_animation_character.visible = false	
 
 	else:
-		inventory_ui.can_show_inventory = false
+		menu.can_show_inventory = false
 
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
