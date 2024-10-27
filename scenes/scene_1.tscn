@@ -480,9 +480,10 @@ offset_top = -7.68802
 offset_right = 0.235962
 offset_bottom = 6.17596
 choices = 13
+object_name = "Piano"
 inspect_dialogue = ExtResource("14_qmdee")
 
-[node name="Choices-Desk" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+[node name="Choices-Escritorio" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
 visible = false
 anchors_preset = -1
 anchor_left = 0.107
@@ -494,6 +495,7 @@ offset_top = 395.392
 offset_right = 1156.16
 offset_bottom = -66.384
 choices = 13
+object_name = "Escritorio"
 inspect_dialogue = ExtResource("15_aga7y")
 
 [node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -509,6 +511,7 @@ offset_right = 1372.16
 offset_bottom = -125.384
 choices = 15
 enable_on_scene = false
+object_name = "Partitura"
 inspect_dialogue = ExtResource("15_obtgh")
 zoom_object_path = "res://assets/objects/scene-1/partitura_wide.png"
 
@@ -530,6 +533,7 @@ enabled = false
 zoom = Vector2(0.8, 0.8)
 
 [node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 2
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("10_2h2bc")]
@@ -550,6 +554,7 @@ mouse_filter = 2
 
 [node name="DocumentWide" parent="UI" instance=ExtResource("17_1cnvc")]
 visible = false
+mouse_filter = 2
 
 [node name="DialogueTriggers" type="Node" parent="."]
 

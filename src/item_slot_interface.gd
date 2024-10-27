@@ -3,6 +3,7 @@ extends PanelContainer
 
 @onready var margin_container = $MarginContainer
 @onready var texture_rect = margin_container.get_node("TextureRect")
+@onready var inventory = get_tree().get_root().get_node("MainScene").get_node("%GameUI/Inventory")
 
 var item_data: Item
 
@@ -29,8 +30,11 @@ func _process(_delta: float) -> void:
 	else:
 		resize_margin(8)
 
-func is_mouse_over() -> bool:
-	return texture_rect.get_global_rect().has_point(get_viewport().get_mouse_position())
+func is_mouse_over(node: Node = null) -> bool:
+	if node:
+		return node.get_global_rect().has_point(get_global_mouse_position())
+	else:
+		return texture_rect.get_global_rect().has_point(get_viewport().get_mouse_position())
 
 func resize_margin(margin: int) -> void:
 	margin_container.add_theme_constant_override("margin_left", margin)
@@ -40,6 +44,16 @@ func resize_margin(margin: int) -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("Slot selected")
-			slot_selected.emit(item_data, get_index(), event.pressed)
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			slot_selected.emit(self.item_data, get_index(), true)
+		else:
+			slot_selected.emit(get_item_under_mouse(), get_index(), false)
+
+func get_item_under_mouse() -> Item:
+	# First search for items in the inventory slots
+	for slot in inventory.item_grid.get_children():
+		if slot is PanelContainer:
+			if slot.is_mouse_over():
+				return slot.item_data
+
+	return null

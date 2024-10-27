@@ -17,7 +17,7 @@ var toggle_btn_offset = 5
 
 var grabbed_item: Item = null
 var inventory_data: Inventory = null
-var slot_mouse_offset: Vector2 = Vector2(0, 0)
+var slot_mouse_offset: Vector2 = Vector2(-48, -48)
 
 # Called when the node enters the scene tree for the first time.
 # func _ready() -> void:
@@ -79,13 +79,13 @@ func set_inventory_data() -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	inventory.set_inventory_data(inventory_data)
 
-func on_inventory_interact(inv: Inventory, _item: Item, index: int, button_action: int) -> void:
+func on_inventory_interact(inv: Inventory, item: Item, index: int, button_action: int) -> void:
 	if button_action: # true for pressed, false for released
 		# Grab item if clicked (check that the new item is not null)
 		if inv.items[index]:
 			grabbed_item = inv.grab_item(index)
 	else: # Release item if released
-		inv.release_item(grabbed_item, index)
+		inv.release_item(grabbed_item, item, index, grabbed_slot)
 		grabbed_item = null
 	update_grab_slot()
 

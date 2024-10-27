@@ -46,9 +46,12 @@ func _ready():
 	playback_button.connect("paused", Callable(self, "_on_game_paused"))
 	
 	# Make sure the player is not moving when there is a dialogue triggered
-	for node in main_scene.get_tree().get_nodes_in_group("interaction_menu"):
-		var dialogue_controller = node.get_node("DialogueController")
+	for interaction_menu in main_scene.get_tree().get_nodes_in_group("interaction_menu"):
+		var dialogue_controller = interaction_menu.get_node("DialogueController")
 		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
+
+		# Since the interaction menus take unhandled_input, we need to connect to the signal to receive it as well
+		interaction_menu.connect("unhandled_left_click_release", Callable(self, "on_unhandled_left_click_release"))
 
 func _input(event):
 	if not game_paused or not self.visible or click_interactive_menus() or is_dialogue_active:
@@ -87,10 +90,10 @@ func update_target_position(new_position: Vector2):
 
 func _physics_process(delta):
 	# Player can only move when the game is paused
-	if not game_paused or not self.visible or is_dialogue_active:
+	if not game_paused or not self.visible:
 		return
 
-	if not is_moving:
+	if not is_moving or is_dialogue_active:
 		handle_idle_state()
 		return
 
@@ -197,3 +200,20 @@ func click_interactive_menus() -> bool:
 
 func on_dialogue_triggered(is_active: bool):
 	is_dialogue_active = is_active
+
+func on_unhandled_left_click_release(event: InputEvent, _item: Item) -> void:
+	# Some nodes can take over the release click event
+	# Make sure every time the mouse is released, the player stops moving
+	# IMPORTANT: keep the double-click detection, though
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if not event.pressed:
+			# Only reset movement if it wasn't a double-click
+			var current_time = Time.get_ticks_msec() / 1000.0
+			if current_time - last_click_time >= double_click_time:
+				is_moving = false
+				velocity = Vector2.ZERO
+				is_double_speed = false
+			
+			clicked = false
+			is_dragging = false
