@@ -1,5 +1,5 @@
 ~ start
-do play_animation("Alicia_Adulta", "Sad_Sigh")
+do play_dialogue_animation("Alicia_Adulta", "Sad_Sigh")
 Alicia: No creí que volvería a ver esta casa nunca más.
 Alicia: Hay demasiadas memorias que llegan a mí en estos momentos.
 Alicia: Las buenas, las malas...

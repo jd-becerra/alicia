@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=43 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -19,9 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="14_wopbl"]
 [ext_resource type="Resource" uid="uid://cmswhoo1df3ve" path="res://dialogue/scene_1/escritorio.dialogue" id="15_aga7y"]
 [ext_resource type="Resource" uid="uid://bv5iirju1e3qx" path="res://dialogue/scene_1/partitura.dialogue" id="15_obtgh"]
+[ext_resource type="Resource" uid="uid://csmjw1oymgd5u" path="res://ui/inventory/items/batuta.tres" id="15_psqa6"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
-[ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="17_at6ln"]
+[ext_resource type="Resource" uid="uid://3s6bb82rc5op" path="res://ui/inventory/items/partitura.tres" id="17_ygw7t"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
+[ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
+[ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -476,11 +479,11 @@ anchor_top = 0.481
 anchor_right = 1.334
 anchor_bottom = 0.938
 offset_left = -8.57202
-offset_top = -7.68802
+offset_top = -8.68802
 offset_right = 0.235962
-offset_bottom = 6.17596
+offset_bottom = 5.17596
 choices = 13
-object_name = "Piano"
+object_name = "Piano_Interaction"
 inspect_dialogue = ExtResource("14_qmdee")
 
 [node name="Choices-Escritorio" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -491,12 +494,13 @@ anchor_top = -0.104
 anchor_right = 0.92
 anchor_bottom = 1.033
 offset_left = 1788.74
-offset_top = 395.392
+offset_top = 394.392
 offset_right = 1156.16
-offset_bottom = -66.384
+offset_bottom = -67.384
 choices = 13
-object_name = "Escritorio"
+object_name = "Escritorio_Interaction"
 inspect_dialogue = ExtResource("15_aga7y")
+item_to_pick_up = ExtResource("15_psqa6")
 
 [node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
 visible = false
@@ -505,23 +509,24 @@ anchor_left = 0.107
 anchor_top = -0.104
 anchor_right = 0.92
 anchor_bottom = 1.033
-offset_left = 1988.74
-offset_top = 339.392
-offset_right = 1372.16
-offset_bottom = -125.384
+offset_left = 2012.74
+offset_top = 355.392
+offset_right = 1396.16
+offset_bottom = -109.384
 choices = 15
 enable_on_scene = false
-object_name = "Partitura"
+object_name = "Partitura_Interaction"
 inspect_dialogue = ExtResource("15_obtgh")
 zoom_object_path = "res://assets/objects/scene-1/partitura_wide.png"
+item_to_pick_up = ExtResource("17_ygw7t")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") groups=["player"] instance=ExtResource("9_f76i4")]
+unique_name_in_owner = true
 visible = false
 z_index = 5
 position = Vector2(-1040, 472)
 speed = 10000.0
 camera = NodePath("../PlayerCamera")
-inventory_data = ExtResource("17_at6ln")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(2192, 328)
@@ -564,3 +569,8 @@ enable_dialogue = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTriggers/Dialogue1"]
 position = Vector2(736, 440)
 shape = SubResource("CapsuleShape2D_g8677")
+
+[node name="InteractionManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("23_jdu5f")
+full_inventory = ExtResource("23_ki66i")

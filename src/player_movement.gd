@@ -12,8 +12,8 @@ extends CharacterBody2D
 @export var camera_bounds: Vector2  = Vector2(100, 100)   # Only define left and right bounds
 @export var camera_speed: float = 50.0
 
-@export_category("Inventory")
-@export var inventory_data: Inventory
+#@export_category("Inventory")
+@onready var inventory_data: Inventory = Inventory.new()
 
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D

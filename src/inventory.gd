@@ -4,7 +4,7 @@ class_name Inventory
 signal inventory_interact(inventory_data: Inventory, item: Item, index: int, button: int)
 signal inventory_changed(inventory_data: Inventory)
 
-@export var items: Array = [Item]
+@export var items: Array[Item] = []
 
 func on_slot_selected(item: Item, index: int, button_action: int) -> void:
 	inventory_interact.emit(self, item, index, button_action)
@@ -18,6 +18,23 @@ func grab_item(index: int) -> Item:
 		return item
 	else:
 		return null
+
+func add_item(index: int, new_item: Item) -> void:
+	# Add item to its corresponding index (if there is already an item, move every item to the right and add the new item)
+	if items.size() > index:
+		print("Adding %s to index %s" % [new_item.name, index])
+
+		items.append(items[-1]) # Add a new item to the end of the list
+		for i in range(index, items.size() - 1):
+			items[i + 1] = items[i]
+		items[index] = new_item
+	else:
+		items.append(new_item)
+
+	for it in items:
+		print(it.name)
+
+	inventory_changed.emit(items)
 
 func release_item(grabbed_item: Item, target_item: Item, index: int, grabbed_slot: PanelContainer) -> void:
 	if target_item:

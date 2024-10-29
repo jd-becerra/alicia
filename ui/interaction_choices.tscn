@@ -78,7 +78,7 @@ collision_mask = 4
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="AreaDetect"]
-position = Vector2(152, 128)
+position = Vector2(152, 152)
 scale = Vector2(11.0066, 10.2697)
 polygon = PackedVector2Array(-2.90734, -3.89495, -2.90734, -13.2428, 3.63418, -13.2428, 3.63418, -3.89495, 13.0831, -3.89495, 13.0831, 3.11596, 3.63418, 3.11596, 3.63418, 13.2428, -2.90734, 13.2428, -2.90734, 3.11596, -13.0831, 3.11596, -13.0831, -3.89495)
 

@@ -14,3 +14,5 @@ script = ExtResource("1_u7yhb")
 name = "Partitura"
 description = "Es una partitura con la canción que mi madre escribió de joven. Solía cantarla todas las noches antes de dormir."
 texture = SubResource("AtlasTexture_urdx6")
+pairs_with = "Piano"
+incompatible_dialogue = {}

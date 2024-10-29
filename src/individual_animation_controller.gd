@@ -10,6 +10,7 @@ var dialogue_triggered: bool = false
 @onready var main_scene: Node = get_tree().get_root().get_node("MainScene")
 @onready var playback_button: Button = %GameUI/PlaybackButton
 @onready var anim: AnimationPlayer = self.get_node("AnimationPlayer")
+@onready var interaction_manager: Node = get_node("/root/MainScene/InteractionManager")
 
 # Virtual functions that can be overridden in child scripts
 func _ready():
@@ -24,9 +25,12 @@ func _ready():
 
 # Child classes can override _physics_process if they want to modify animation logic
 func _physics_process(_delta):
-	if not dialogue_triggered:
+	if not dialogue_triggered and not interaction_manager.current_animation_player:
 		if anim and animation_name != anim.current_animation and animation_name != "":
 			anim.play(animation_name)
+	
+	if interaction_manager.current_animation_player:
+		print(interaction_manager.current_animation_player.current_animation)
 
 # Functions that can be reused or overridden
 func _on_paused(new_paused_state: bool):
@@ -39,7 +43,7 @@ func _on_paused(new_paused_state: bool):
 
 func _on_dialogue_triggered(state: bool):
 	self.dialogue_triggered = state
-	anim.stop()
+	# anim.stop()
 
 func _on_change_animation_direction(state: bool):
 	self.is_forward = state

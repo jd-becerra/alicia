@@ -11,10 +11,16 @@ extends Control
 
 @export_category("Inspect")
 @export var inspect_dialogue: DialogueResource
+@export var inspect_animations: AnimationPlayer
 
 @export_category("Zoom")
 @export var zoom_dialogue: DialogueResource
 @export var zoom_object_path: String   # Receives a path to a texture
+
+@export_category("Pick Up")
+@export var pick_up_dialogue: DialogueResource
+@export var pick_up_animations: AnimationPlayer
+@export var item_to_pick_up: Item
 
 # The dot that scales up when clicked
 @onready var dot: Button = %OpenWheelBtn
@@ -31,6 +37,8 @@ extends Control
 
 @onready var playback_button: Button = %GameUI/PlaybackButton
 @onready var main_scene: Node2D = $"/root/MainScene"
+
+@onready var interaction_manager = get_tree().get_root().get_node("MainScene").get_node("%InteractionManager")
 
 @warning_ignore("unused_signal")
 signal dialogue_active(is_active: bool)
@@ -65,6 +73,7 @@ func _ready() -> void:
 		zoom_button.mouse_entered.connect(_on_button_hover.bind(zoom_button))
 		zoom_button.mouse_exited.connect(_on_button_exit.bind(zoom_button))
 	if choices & 0x04:
+		pick_up_button.pressed.connect(on_pick_up)
 		pick_up_button.mouse_entered.connect(_on_button_hover.bind(pick_up_button))
 		pick_up_button.mouse_exited.connect(_on_button_exit.bind(pick_up_button))
 	if choices & 0x08:
@@ -184,3 +193,50 @@ func on_zoom() -> void:
 	hide_choices()
 	var document_wide = get_node("/root/MainScene/UI/DocumentWide")
 	document_wide.show_object(zoom_object_path)
+
+func on_pick_up() -> void:
+	hide_choices()
+
+	if not item_to_pick_up:
+		print("No item to pick up")
+		return
+
+	disable_action("Pick Up")
+	# For now, just add the item to the player's inventory
+	interaction_manager.add_item_to_inventory(item_to_pick_up)
+
+func disable_action(action_name: String) -> void:
+	match action_name:
+		"Inspect":
+			inspect_button.hide()
+			choices &= ~0x01
+		"Zoom":
+			zoom_button.hide()
+			choices &= ~0x02
+		"Pick Up":
+			pick_up_button.hide()
+			choices &= ~0x04
+		"Use":
+			use_button.hide()
+			choices &= ~0x08
+		_:
+			print("Invalid action name")
+			pass
+
+func enable_action(action_name: String) -> void:
+	match action_name:
+		"Inspect":
+			inspect_button.show()
+			choices |= 0x01
+		"Zoom":
+			zoom_button.show()
+			choices |= 0x02
+		"Pick Up":
+			pick_up_button.show()
+			choices |= 0x04
+		"Use":
+			use_button.show()
+			choices |= 0x08
+		_:
+			print("Invalid action name")
+			pass

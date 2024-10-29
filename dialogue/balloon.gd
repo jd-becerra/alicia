@@ -11,6 +11,7 @@ extends CanvasLayer
 
 @onready var skip_button: Button = $Balloon/Panel/SkipButton
 @onready var panel: Panel = $Balloon/Panel
+@onready var interaction_manager: Node = get_node("/root/MainScene/InteractionManager")
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -45,6 +46,10 @@ var characters = {
 ## The current line
 var dialogue_line: DialogueLine:
 	set(next_dialogue_line):
+		if interaction_manager.current_animation_player:
+			print("Waiting for animation to finish: ", interaction_manager.current_animation_player.current_animation)
+			await(interaction_manager.current_animation_player.animation_finished)
+
 		is_waiting_for_input = false
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
@@ -123,7 +128,6 @@ func _ready() -> void:
 	# Connect skip button to be able to skip the whole dialogue (go to the last line)
 	skip_button.connect("pressed", Callable(self, "on_skip_button_pressed"))
 
-
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
 	get_viewport().set_input_as_handled()
@@ -151,6 +155,9 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 func next(next_id: String) -> void:
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
 
+
+func convert_rgb_to_color(r: float, g: float, b: float) -> Color:
+	return Color(r / 255, g / 255, b / 255)
 
 #region Signals
 
@@ -195,9 +202,5 @@ func on_skip_button_pressed() -> void:
 		var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
 		await get_tree().create_timer(time).timeout
 		next(dialogue_line.next_id)
-		
-
-func convert_rgb_to_color(r: float, g: float, b: float) -> Color:
-	return Color(r / 255, g / 255, b / 255)
-
+	
 #endregion

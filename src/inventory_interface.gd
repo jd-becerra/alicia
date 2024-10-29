@@ -17,6 +17,9 @@ func initialize_inventory():
 		item_grid.add_child(item_slot)
 
 func fill_grid(items: Array):
+	if items.size() == 0:
+		return
+
 	for slot_pos in range(0, items.size()):
 		var item_slot = item_grid.get_child(slot_pos)
 		item_slot.set_data(items[slot_pos])

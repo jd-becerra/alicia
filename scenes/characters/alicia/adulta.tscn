@@ -39,7 +39,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_1hcq0"]
-length = 9.9
+length = 3.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,7 +47,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 3.2, 3.9),
+"times": PackedFloat32Array(0, 2, 2.2, 2.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [6, 7, 8, 0]
@@ -78,6 +78,7 @@ _data = {
 }
 
 [node name="Alicia_Adulta" type="CharacterBody2D"]
+process_mode = 3
 script = ExtResource("1_k4wck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -105,7 +106,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "5cd21defa2c7e53dfd6c1db4eb4c720d"
+metadata/_aseprite_wizard_source_file_hash_ = "d3dfae9a7f46a517d7f645e48e7c54fd"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
