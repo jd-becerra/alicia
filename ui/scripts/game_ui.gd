@@ -77,6 +77,14 @@ func close_ui() -> void:
 func set_inventory_data() -> void:
 	inventory_data = player.inventory_data
 	inventory_data.inventory_interact.connect(on_inventory_interact)
+
+	var full_inventory = get_node("/root/MainScene").get_node("%InteractionManager").full_inventory
+	full_inventory.initialize_indices()
+
+	for f_item in full_inventory.items:
+		if f_item.default:
+			inventory_data.add_item(f_item.index, f_item)
+
 	inventory.set_inventory_data(inventory_data)
 
 func on_inventory_interact(inv: Inventory, item: Item, index: int, button_action: int) -> void:

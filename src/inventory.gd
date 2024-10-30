@@ -6,6 +6,13 @@ signal inventory_changed(inventory_data: Inventory)
 
 @export var items: Array[Item] = []
 
+func initialize_indices() -> void:
+	if items.size() == 0:
+		return
+
+	for i in range(items.size()):
+		items[i].index = i
+
 func on_slot_selected(item: Item, index: int, button_action: int) -> void:
 	inventory_interact.emit(self, item, index, button_action)
 
@@ -20,17 +27,28 @@ func grab_item(index: int) -> Item:
 		return null
 
 func add_item(index: int, new_item: Item) -> void:
-	# Add item to its corresponding index (if there is already an item, move every item to the right and add the new item)
-	if items.size() > index:
-		print("Adding %s to index %s" % [new_item.name, index])
+	print("Adding item to inventory with index %s" % index)
 
-		items.append(items[-1]) # Add a new item to the end of the list
-		for i in range(index, items.size() - 1):
-			items[i + 1] = items[i]
-		items[index] = new_item
-	else:
+	# Mantain the inventory sorted by index
+
+	var insert_pos = 0
+	# Find the correct position to insert the new item
+	while insert_pos < items.size() and items[insert_pos].index < index:
+		insert_pos += 1
+	print("Inserting at position %s" % insert_pos)
+
+	# Insert the item at the correct position
+	if insert_pos == items.size():
+		# If we reached the end, simply append
 		items.append(new_item)
+	else:
+		# Insert at position, shifting everything to the right
+		items.append(items[-1])  # Add space at the end
+		for i in range(items.size() - 2, insert_pos - 1, -1):
+			items[i + 1] = items[i]
+		items[insert_pos] = new_item
 
+	# Print the result
 	for it in items:
 		print(it.name)
 

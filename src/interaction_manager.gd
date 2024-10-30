@@ -30,8 +30,9 @@ func play_dialogue_animation(character: String, animation_name: String, play_ove
 func get_item_index(item_name: String) -> int:
 	for i in range(full_inventory.items.size()):
 		print("Item: ", full_inventory.items[i].name)
-		if full_inventory.items[i].name == item_name:
-			return i
+		var f_item = full_inventory.items[i]
+		if f_item.name == item_name:
+			return f_item.index
 	return -1
 
 func add_item_to_inventory(item: Item) -> void:

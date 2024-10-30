@@ -14,5 +14,6 @@ script = ExtResource("1_pf3h2")
 name = "Batuta"
 description = "Es la batuta de mi madre. Ella era la mejor directora de orquesta del estado. "
 texture = SubResource("AtlasTexture_bpmjf")
+default = false
 pairs_with = "Piano"
 incompatible_dialogue = {}

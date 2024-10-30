@@ -5,8 +5,13 @@ class_name Item
 @export_multiline var description: String = ""
 @export var texture: AtlasTexture = null
 
+## If the item is a default item and is present on the inventory at the start of the game
+@export var default: bool = false
+
 ## The object that this item pairs with (could be Item or InteractionObject)
 @export var pairs_with: String = ""
 
-# Dictionary to store dialogue for incompatible items (key: item name, value: dialogue start name). Key: String, Value: String
+## Dictionary to store dialogue for incompatible items (key: item name, value: dialogue start name). Key: String, Value: String
 @export var incompatible_dialogue: Dictionary = {}
+
+var index: int = -1
