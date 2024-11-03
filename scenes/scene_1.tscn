@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=44 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="Resource" uid="uid://3s6bb82rc5op" path="res://ui/inventory/items/partitura.tres" id="17_ygw7t"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
+[ext_resource type="PackedScene" uid="uid://bj3cboqxul38a" path="res://scenes/piano_keyboard.tscn" id="23_g4shp"]
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
 
@@ -471,7 +472,7 @@ shape = SubResource("RectangleShape2D_apwet")
 
 [node name="InteractionMenus" type="Node" parent="Objects"]
 
-[node name="Choices-Piano" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+[node name="Choices-Piano" parent="Objects/InteractionMenus" node_paths=PackedStringArray("use_node") instance=ExtResource("19_qww40")]
 visible = false
 anchors_preset = -1
 anchor_left = 1.063
@@ -484,7 +485,8 @@ offset_right = 0.235962
 offset_bottom = 5.17596
 choices = 13
 object_name = "Piano_Interaction"
-inspect_dialogue = ExtResource("14_qmdee")
+dialogue = ExtResource("14_qmdee")
+use_node = NodePath("../../../UI/PianoUI")
 
 [node name="Choices-Escritorio" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
 visible = false
@@ -499,7 +501,7 @@ offset_right = 1156.16
 offset_bottom = -67.384
 choices = 13
 object_name = "Escritorio_Interaction"
-inspect_dialogue = ExtResource("15_aga7y")
+dialogue = ExtResource("15_aga7y")
 item_to_pick_up = ExtResource("15_psqa6")
 
 [node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -516,7 +518,7 @@ offset_bottom = -109.384
 choices = 15
 enable_on_scene = false
 object_name = "Partitura_Interaction"
-inspect_dialogue = ExtResource("15_obtgh")
+dialogue = ExtResource("15_obtgh")
 zoom_object_path = "res://assets/objects/scene-1/partitura_wide.png"
 item_to_pick_up = ExtResource("17_ygw7t")
 
@@ -558,6 +560,10 @@ z_index = 100
 mouse_filter = 2
 
 [node name="DocumentWide" parent="UI" instance=ExtResource("17_1cnvc")]
+visible = false
+mouse_filter = 2
+
+[node name="PianoUI" parent="UI" instance=ExtResource("23_g4shp")]
 visible = false
 mouse_filter = 2
 

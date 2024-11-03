@@ -1,0 +1,314 @@
+[gd_scene load_steps=16 format=3 uid="uid://bj3cboqxul38a"]
+
+[ext_resource type="Script" path="res://src/piano.gd" id="1_y52l4"]
+[ext_resource type="Texture2D" uid="uid://n1pugvhonp4d" path="res://ui/return_icon.png" id="2_kal2l"]
+[ext_resource type="Texture2D" uid="uid://df21sdw3hn1ne" path="res://assets/objects/scene-1/piano-pentagram.png" id="2_qtc6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wvanv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in55c"]
+bg_color = Color(0.534361, 0.534361, 0.534361, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1o6m"]
+bg_color = Color(0.753524, 0, 0.142688, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uto53"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uinv"]
+bg_color = Color(5.29438e-07, 0.507359, 0.582996, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sib3l"]
+bg_color = Color(0.927754, 0.282332, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shaug"]
+bg_color = Color(0.586551, 0.825977, 0.473457, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_raobb"]
+bg_color = Color(0.952181, 0.241682, 0.23637, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rs01"]
+bg_color = Color(0.204063, 0.263465, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mei8w"]
+bg_color = Color(0.987308, 0.734655, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hao0q"]
+bg_color = Color(0.296142, 0.000431348, 0.405972, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ay68"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+
+[node name="PianoUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y52l4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 40.0
+offset_right = -8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.356863)
+
+[node name="Stand" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="ColorRect2" type="ColorRect" parent="Stand"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 330.0
+color = Color(0.496995, 0.326246, 0.16254, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Stand"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 280.0
+offset_right = 832.0
+offset_bottom = 304.0
+color = Color(0.253291, 0.144287, 0.0590723, 1)
+
+[node name="Pentagram" type="Sprite2D" parent="Stand"]
+unique_name_in_owner = true
+position = Vector2(356, 48)
+scale = Vector2(0.55125, 0.5775)
+texture = ExtResource("2_qtc6u")
+offset = Vector2(400.907, 200)
+
+[node name="ReturnBtn" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 704.0
+offset_bottom = 694.0
+scale = Vector2(0.194251, 0.154733)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wvanv")
+icon = ExtResource("2_kal2l")
+flat = true
+
+[node name="RedoBtn" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 967.0
+offset_top = 24.0
+offset_right = 1615.0
+offset_bottom = 702.0
+scale = Vector2(0.194251, 0.154733)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wvanv")
+icon = ExtResource("2_kal2l")
+flat = true
+
+[node name="WhiteKeys" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -176.0
+offset_top = 56.0
+offset_right = -176.0
+offset_bottom = 56.0
+scale = Vector2(1.387, 0.935)
+pivot_offset = Vector2(175.7, 273.9)
+
+[node name="G4" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 272.0
+offset_right = 280.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h1o6m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="A4" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 272.0
+offset_right = 384.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0uinv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="B4" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 272.0
+offset_right = 488.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sib3l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="C5" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 272.0
+offset_right = 592.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_shaug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="D5" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 272.0
+offset_right = 696.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_raobb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="E5" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 272.0
+offset_right = 800.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3rs01")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="F5" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 272.0
+offset_right = 904.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mei8w")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="G5" type="Button" parent="WhiteKeys"]
+layout_mode = 0
+offset_left = 904.0
+offset_top = 272.0
+offset_right = 1008.0
+offset_bottom = 612.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_in55c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hao0q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uto53")
+
+[node name="BlackKeys" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -128.0
+offset_top = 56.0
+offset_right = -128.0
+offset_bottom = 56.0
+scale = Vector2(0.76, 1)
+pivot_offset = Vector2(239.474, 272)
+
+[node name="G#4" type="Button" parent="BlackKeys"]
+layout_mode = 0
+offset_left = 230.789
+offset_top = 272.0
+offset_right = 338.789
+offset_bottom = 443.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ay68")
+
+[node name="A#4" type="Button" parent="BlackKeys"]
+layout_mode = 0
+offset_left = 419.114
+offset_top = 272.0
+offset_right = 527.114
+offset_bottom = 443.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ay68")
+
+[node name="C#5" type="Button" parent="BlackKeys"]
+layout_mode = 0
+offset_left = 798.061
+offset_top = 272.0
+offset_right = 906.061
+offset_bottom = 443.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ay68")
+
+[node name="D#5" type="Button" parent="BlackKeys"]
+layout_mode = 0
+offset_left = 986.219
+offset_top = 272.0
+offset_right = 1094.22
+offset_bottom = 443.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ay68")
+
+[node name="F#5" type="Button" parent="BlackKeys"]
+layout_mode = 0
+offset_left = 1365.17
+offset_top = 272.0
+offset_right = 1473.17
+offset_bottom = 443.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6ay68")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ay68")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

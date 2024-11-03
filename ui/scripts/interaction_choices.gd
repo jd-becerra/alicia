@@ -9,18 +9,18 @@ extends Control
 @export var enable_on_scene: bool = true
 @export var object_name: String = ""
 
-@export_category("Inspect")
-@export var inspect_dialogue: DialogueResource
-@export var inspect_animations: AnimationPlayer
+# Dialogue and animations for all the interactions
+@export var dialogue: DialogueResource
+@export var animations: AnimationPlayer
 
 @export_category("Zoom")
-@export var zoom_dialogue: DialogueResource
 @export var zoom_object_path: String   # Receives a path to a texture
 
 @export_category("Pick Up")
-@export var pick_up_dialogue: DialogueResource
-@export var pick_up_animations: AnimationPlayer
 @export var item_to_pick_up: Item
+
+@export_category("Pick Up")
+@export var use_node: Node  # Can be a Control node, a Sprite, etc.
 
 # The dot that scales up when clicked
 @onready var dot: Button = %OpenWheelBtn
@@ -31,6 +31,7 @@ extends Control
 @onready var use_button: Button = %UseBtn
 @onready var animation_player: AnimationPlayer = %Animations
 @onready var area: Area2D = %AreaDetect
+@onready var game_ui: Control = %GameUI
 
 @onready var dot_icon_path: String = "res://ui/icons/dot.png"
 @onready var dot_outline_icon_path: String = "res://ui/icons/dot_open.png"
@@ -39,6 +40,7 @@ extends Control
 @onready var main_scene: Node2D = $"/root/MainScene"
 
 @onready var interaction_manager = get_tree().get_root().get_node("MainScene").get_node("%InteractionManager")
+@onready var dialogue_controller: DialogueController = %DialogueController
 
 @warning_ignore("unused_signal")
 signal dialogue_active(is_active: bool)
@@ -77,6 +79,7 @@ func _ready() -> void:
 		pick_up_button.mouse_entered.connect(_on_button_hover.bind(pick_up_button))
 		pick_up_button.mouse_exited.connect(_on_button_exit.bind(pick_up_button))
 	if choices & 0x08:
+		use_button.pressed.connect(on_use)
 		use_button.mouse_entered.connect(_on_button_hover.bind(use_button))
 		use_button.mouse_exited.connect(_on_button_exit.bind(use_button))
 
@@ -186,7 +189,7 @@ func update_choices(new_choices: int) -> void:
 
 func on_inspect() -> void:
 	hide_choices()
-	inspect_button.show_interaction_dialogue(inspect_dialogue)
+	show_interaction_dialogue(dialogue, "Inspect")
 
 func on_zoom() -> void:
 	# For now, only show the object texture
@@ -204,6 +207,14 @@ func on_pick_up() -> void:
 	disable_action("Pick Up")
 	# For now, just add the item to the player's inventory
 	interaction_manager.add_item_to_inventory(item_to_pick_up)
+
+func on_use() -> void:
+	hide_choices()
+
+	if use_node:
+		game_ui.hide()
+		use_node.show()
+		get_tree().paused = true
 
 func disable_action(action_name: String) -> void:
 	match action_name:
@@ -240,3 +251,8 @@ func enable_action(action_name: String) -> void:
 		_:
 			print("Invalid action name")
 			pass
+
+func show_interaction_dialogue(resource, dialogue_name: String) -> void:
+	print("Dialogue button pressed")
+	dialogue_controller.dialogue = resource
+	dialogue_controller.start_dialogue(dialogue_name)

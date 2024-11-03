@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0vkqupmadm3w"]
+
+[ext_resource type="Texture2D" uid="uid://dsvptg4gfkc2f" path="res://assets/objects/scene-1/music_note.png" id="1_okmld"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_co1uy"]
+
+[node name="MusicNote" type="PanelContainer"]
+scale = Vector2(3, 3)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_co1uy")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_okmld")
+stretch_mode = 5

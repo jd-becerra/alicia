@@ -4,7 +4,7 @@ extends Button
 
 @onready var dialogue_controller: DialogueController = %DialogueController
 
-func show_interaction_dialogue(resource) -> void:
+func show_interaction_dialogue(resource, dialogue_name: String) -> void:
 	print("Dialogue button pressed")
 	dialogue_controller.dialogue = resource
-	dialogue_controller.start_dialogue("dialogue_1")
+	dialogue_controller.start_dialogue(dialogue_name)

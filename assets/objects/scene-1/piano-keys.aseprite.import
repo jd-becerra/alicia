@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c0iminbnk15rh"
+path="res://.godot/imported/piano-keys.aseprite-d178213d2f91df14a508a600b4e644bd.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/piano-keys.aseprite"
+dest_files=["res://.godot/imported/piano-keys.aseprite-d178213d2f91df14a508a600b4e644bd.res"]
+
+[params]
+
