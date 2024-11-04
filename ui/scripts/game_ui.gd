@@ -88,14 +88,22 @@ func set_inventory_data() -> void:
 	inventory.set_inventory_data(inventory_data)
 
 func on_inventory_interact(inv: Inventory, item: Item, index: int, button_action: int) -> void:
-	if button_action: # true for pressed, false for released
+	# 0 - MOUSE_BUTTON_LEFT released
+	# 1 - MOUSE_BUTTON_LEFT pressed
+	# 2 - MOUSE_BUTTON_RIGHT (pressed)
+	
+	if button_action == 1:
 		# Grab item if clicked (check that the new item is not null)
 		if inv.items[index]:
 			grabbed_item = inv.grab_item(index)
-	else: # Release item if released
+		update_grab_slot()
+	elif button_action == 0:
 		inv.release_item(grabbed_item, item, index, grabbed_slot)
 		grabbed_item = null
-	update_grab_slot()
+		update_grab_slot()
+	elif button_action == 2:
+		# This action is to USE, INSPECT or ZOOM IN the item on the inventory (depending on the item)
+		print("Right click on item %s" % item.name)
 
 func update_grab_slot() -> void:
 	if grabbed_item:

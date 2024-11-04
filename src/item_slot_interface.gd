@@ -43,11 +43,18 @@ func resize_margin(margin: int) -> void:
 	margin_container.add_theme_constant_override("margin_bottom", margin)
 
 func _on_gui_input(event: InputEvent) -> void:
+	# Send:
+	# 0 - MOUSE_BUTTON_LEFT released
+	# 1 - MOUSE_BUTTON_LEFT pressed
+	# 2 - MOUSE_BUTTON_RIGHT (pressed)
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			slot_selected.emit(self.item_data, get_index(), true)
-		else:
-			slot_selected.emit(get_item_under_mouse(), get_index(), false)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				slot_selected.emit(self.item_data, get_index(), 1)
+			else:
+				slot_selected.emit(get_item_under_mouse(), get_index(), 0)
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+				slot_selected.emit(self.item_data, get_index(), 2)
 
 func get_item_under_mouse() -> Item:
 	# First search for items in the inventory slots
