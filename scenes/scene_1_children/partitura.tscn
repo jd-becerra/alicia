@@ -1,0 +1,188 @@
+[gd_scene load_steps=24 format=3 uid="uid://bw8ct6frxo2ah"]
+
+[ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_5j7nq"]
+[ext_resource type="Texture2D" uid="uid://nf18ocsac2eq" path="res://scenes/scene_1_children/paper_flying.png" id="2_1lr2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yepac"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(0, 0, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxugb"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(85, 0, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwhd3"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(170, 0, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvtio"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(255, 0, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lx2a"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(340, 0, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlv7a"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(0, 77, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap7j2"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(85, 77, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16tsl"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(170, 77, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxdvq"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(255, 77, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3fsf"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(340, 77, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cph3"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(0, 154, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v668"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(85, 154, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upsuw"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(170, 154, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy7wp"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(255, 154, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7g8f"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(340, 154, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ophpl"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(0, 231, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60j2f"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(85, 231, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lat3"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(170, 231, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kthq5"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(255, 231, 85, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcoi7"]
+atlas = ExtResource("2_1lr2x")
+region = Rect2(340, 231, 85, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0tdf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yepac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxugb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwhd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvtio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lx2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlv7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yepac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap7j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16tsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxdvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3fsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cph3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v668")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upsuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy7wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7g8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ophpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60j2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lat3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kthq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcoi7")
+}],
+"loop": false,
+"name": &"Fly away",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yepac")
+}],
+"loop": true,
+"name": &"RESET",
+"speed": 7.0
+}]
+
+[node name="Partitura" type="Node2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_5j7nq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+scale = Vector2(0.713333, 0.828571)
+sprite_frames = SubResource("SpriteFrames_0tdf0")
+animation = &"Fly away"
+offset = Vector2(-5.07331, -1.52096)
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"slice": "",
+"source": "res://assets/objects/scene-1/paper_flying.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "e3ab3d83c9aa942d793b77218b97d556"

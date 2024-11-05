@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://3h1ui57kpxsh"
+path="res://.godot/imported/paper_flying.aseprite-634aacfabf30bdc161b23b31046db181.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/paper_flying.aseprite"
+dest_files=["res://.godot/imported/paper_flying.aseprite-634aacfabf30bdc161b23b31046db181.res"]
+
+[params]
+

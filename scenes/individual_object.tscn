@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://jiys8yai4cme"]
+
+[ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_0vg66"]
+[ext_resource type="Texture2D" uid="uid://ptte0tn6tb1f" path="res://assets/objects/scene-1/partitura_small.png" id="2_65gxu"]
+
+[node name="Partitura" type="Node2D"]
+position = Vector2(2288, 400)
+rotation = 1.65981
+script = ExtResource("1_0vg66")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-182.641, 2273.24)
+scale = Vector2(0.713333, 0.828571)
+texture = ExtResource("2_65gxu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

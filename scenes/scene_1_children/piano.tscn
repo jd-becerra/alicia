@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://vqqc2ili0ds0"]
+
+[ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_ivkd7"]
+[ext_resource type="Texture2D" uid="uid://cjcuf7dhl2bfl" path="res://scenes/scene_1_children/piano.png" id="1_nu6j0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leihu"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(61, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k12ul"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(122, 0, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieh8f"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(0, 45, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx16n"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(61, 45, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywbqq"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(122, 45, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7vt6"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(0, 90, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vnnd"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(61, 90, 61, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u6ag"]
+atlas = ExtResource("1_nu6j0")
+region = Rect2(0, 0, 61, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n1otg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leihu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k12ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieh8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx16n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywbqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7vt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vnnd")
+}],
+"loop": false,
+"name": &"Close",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u6ag")
+}],
+"loop": true,
+"name": &"RESET",
+"speed": 10.0
+}]
+
+[node name="Piano" type="Node2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_ivkd7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_n1otg")
+animation = &"Close"
+frame = 6
+frame_progress = 1.0
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"slice": "",
+"source": "res://assets/objects/scene-1/piano.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f4fc48ce805f267f6edd0c388c0b897f"

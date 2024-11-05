@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bo4ikkygmfq7d"
+path="res://.godot/imported/curtains.aseprite-fcfa7e033b50e4455c432033787ba8ca.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/curtains.aseprite"
+dest_files=["res://.godot/imported/curtains.aseprite-fcfa7e033b50e4455c432033787ba8ca.res"]
+
+[params]
+

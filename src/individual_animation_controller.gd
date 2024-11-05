@@ -2,6 +2,7 @@ extends Node2D
 class_name IndividualAnimationController
 
 @export var animation_name = ""
+@export var has_animation_player: bool = false # If false, we assume the node has AnimatedSprite2D
 
 var is_paused: bool = false
 var is_forward: bool = false
@@ -9,11 +10,20 @@ var dialogue_triggered: bool = false
 
 @onready var main_scene: Node = get_tree().get_root().get_node("MainScene")
 @onready var playback_button: Button = %GameUI/PlaybackButton
-@onready var anim: AnimationPlayer = self.get_node("AnimationPlayer")
 @onready var interaction_manager: Node = get_node("/root/MainScene/InteractionManager")
+var anim = null
 
 # Virtual functions that can be overridden in child scripts
 func _ready():
+	# Check  if node has AnimationPlayer or AnimatedSprite2D
+	if has_animation_player and self.get_node("AnimationPlayer"):
+		anim = self.get_node("AnimationPlayer")
+	elif not has_animation_player and self.get_node("AnimatedSprite2D"):
+		anim = self.get_node("AnimatedSprite2D")
+	else:
+		print("No AnimationPlayer or AnimatedSprite2D found in node", self)
+
+
 	# Optional connection of signals, child classes can extend this logic
 	if playback_button:
 		playback_button.connect("paused", Callable(self, "_on_paused"))
@@ -26,7 +36,7 @@ func _ready():
 # Child classes can override _physics_process if they want to modify animation logic
 func _physics_process(_delta):
 	if not dialogue_triggered and not interaction_manager.current_animation_player:
-		if anim and animation_name != anim.current_animation and animation_name != "":
+		if valid_play():
 			anim.play(animation_name)
 	
 	if interaction_manager.current_animation_player:
@@ -47,3 +57,10 @@ func _on_dialogue_triggered(state: bool):
 
 func _on_change_animation_direction(state: bool):
 	self.is_forward = state
+
+func valid_play() -> bool:
+	if anim is AnimationPlayer:
+		return (anim and animation_name != anim.current_animation and animation_name != "")
+	elif anim is AnimatedSprite2D:
+		return (anim and animation_name != anim.animation and animation_name != "")
+	return false
