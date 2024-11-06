@@ -6,6 +6,7 @@ extends Area2D
 @export var dialog: DialogueResource
 
 @export var enable_dialogue: bool = true  
+@export var dialogue_name: String = ""
 
 @onready var is_dragging: bool = false  # If the player is dragging the progress bar
 @onready var controller: Node = $"/root/MainScene"
@@ -33,13 +34,12 @@ func _process(_delta: float) -> void:
 	# - the dialogue was not triggered yet
 	# - the player is not dragging the progress bar
 
-	if in_dialogue_area and enable_dialogue and not dialogue_was_triggered and not is_dragging:
+	if enable_dialogue and not dialogue_was_triggered and not is_dragging and dialogue_name != "":
 		start_dialogue()
 		dialogue_was_triggered = true
 
 	if not is_dragging and not enable_dialogue:
 		dialogue_was_triggered = false
-
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("dialogue_starter") and not is_paused:
@@ -73,7 +73,7 @@ func _on_dragging(dragging_state: bool) -> void:
 func show_dialogue():
 	var balloon = load(dialogue_balloon_path).instantiate()
 	get_current_scene().add_child(balloon)
-	balloon.start(dialog, "start", [])
+	balloon.start(dialog, dialogue_name, [])
 	return balloon
 
 func get_current_scene() -> Node:

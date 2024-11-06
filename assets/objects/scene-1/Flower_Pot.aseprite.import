@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ce5yq4pm0jlfa"
+path="res://.godot/imported/Flower_Pot.aseprite-8522716f3a37f851c514f75321f3fa53.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/Flower_Pot.aseprite"
+dest_files=["res://.godot/imported/Flower_Pot.aseprite-8522716f3a37f851c514f75321f3fa53.res"]
+
+[params]
+

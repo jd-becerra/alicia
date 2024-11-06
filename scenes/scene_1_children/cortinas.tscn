@@ -1,148 +1,104 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8tk0syg18ije"]
+[gd_scene load_steps=8 format=3 uid="uid://c8tk0syg18ije"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_rumo3"]
 [ext_resource type="Texture2D" uid="uid://b02ynpxiptvgj" path="res://scenes/scene_1_children/curtains.png" id="2_4d7hd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w1a3i"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(200, 140, 200, 70)
+[sub_resource type="Animation" id="Animation_14dym"]
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vukoe"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(400, 140, 200, 70)
+[sub_resource type="Animation" id="Animation_e0vsw"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gifoo"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(600, 140, 200, 70)
+[sub_resource type="Animation" id="Animation_ah33l"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b3f6k"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(0, 210, 200, 70)
+[sub_resource type="Animation" id="Animation_cw7qk"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ktbcg"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(200, 210, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q6xxx"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(0, 0, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bhkqs"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(200, 0, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7y6y"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(400, 0, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f8362"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(600, 0, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wn24q"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(0, 70, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x0xer"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(200, 70, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pinun"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(400, 70, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sn5xf"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(600, 70, 200, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oedby"]
-atlas = ExtResource("2_4d7hd")
-region = Rect2(0, 140, 200, 70)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_58oew"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w1a3i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vukoe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gifoo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b3f6k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ktbcg")
-}],
-"loop": true,
-"name": &"Flap",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q6xxx")
-}],
-"loop": true,
-"name": &"RESET",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bhkqs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v7y6y")
-}],
-"loop": false,
-"name": &"Transition",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f8362")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wn24q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x0xer")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pinun")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sn5xf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oedby")
-}],
-"loop": true,
-"name": &"Windy",
-"speed": 10.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y545i"]
+_data = {
+"Flap": SubResource("Animation_14dym"),
+"RESET": SubResource("Animation_e0vsw"),
+"Transition": SubResource("Animation_ah33l"),
+"Windy": SubResource("Animation_cw7qk")
+}
 
 [node name="Cortinas" type="Node2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_rumo3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y545i")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_58oew")
-animation = &"Flap"
-frame_progress = 0.275216
+use_parent_material = true
+texture = ExtResource("2_4d7hd")
+hframes = 4
+vframes = 4
 metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
 "layer": "",
 "o_ex_p": "",
 "o_folder": "",
 "o_name": "",
-"only_visible": true,
+"only_visible": false,
+"player": "AnimationPlayer",
 "slice": "",
 "source": "res://assets/objects/scene-1/curtains.aseprite"
-}
-metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "e3e50d4812f5cea3ba5f89a9f2a15e31"

@@ -1,7 +1,15 @@
 ~ start
-do play_dialogue_animation("Alicia_Adulta", "Sad_Sigh")
+do play_character_animation("Alicia_Adulta", "Sad_Sigh")
 Alicia: No creí que volvería a ver esta casa nunca más.
-Alicia: Hay demasiadas memorias que llegan a mí en estos momentos.
-Alicia: Las buenas, las malas...
-Alicia: Y las que me gustaría olvidar para siempre.
+=> END
+~ piano
+do play_character_animation("Alicia_Adulta", "Sad", false)
+Alicia: Hay tantas memorias que tengo de este lugar.
+Alicia: Algunas buenas, otras no tanto.
+Alicia: Y otras... otras que me gustaría olvidar para siempre.
+do play_character_animation("Alicia_Adulta", "Surprised", true)
+do play_object_animation("Piano", "Close")
+do play_object_animation("Piano", "Stuck")
+do pause_dialogue(1)
+Alicia: ...
 => END

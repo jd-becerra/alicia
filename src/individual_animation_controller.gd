@@ -2,33 +2,28 @@ extends Node2D
 class_name IndividualAnimationController
 
 @export var animation_name = ""
-@export var has_animation_player: bool = false # If false, we assume the node has AnimatedSprite2D
 
 var is_paused: bool = false
 var is_forward: bool = false
+var is_dragging: bool = false
 var dialogue_triggered: bool = false
 
 @onready var main_scene: Node = get_tree().get_root().get_node("MainScene")
 @onready var playback_button: Button = %GameUI/PlaybackButton
 @onready var interaction_manager: Node = get_node("/root/MainScene/InteractionManager")
-var anim = null
+@onready var anim: AnimationPlayer = self.get_node("AnimationPlayer")
+ 
+var current_animation_time = 0
+var animaton_step = 0.1
 
 # Virtual functions that can be overridden in child scripts
 func _ready():
-	# Check  if node has AnimationPlayer or AnimatedSprite2D
-	if has_animation_player and self.get_node("AnimationPlayer"):
-		anim = self.get_node("AnimationPlayer")
-	elif not has_animation_player and self.get_node("AnimatedSprite2D"):
-		anim = self.get_node("AnimatedSprite2D")
-	else:
-		print("No AnimationPlayer or AnimatedSprite2D found in node", self)
-
-
 	# Optional connection of signals, child classes can extend this logic
 	if playback_button:
 		playback_button.connect("paused", Callable(self, "_on_paused"))
 	if main_scene:
 		main_scene.connect("animation_forward", Callable(self, "_on_change_animation_direction"))
+		main_scene.connect("dragging_enabled", Callable(self, "_on_dragging"))
 
 	for node in main_scene.get_tree().get_nodes_in_group("dialogue_trigger_area"):
 		node.connect("dialogue_triggered", Callable(self, "_on_dialogue_triggered"))
@@ -37,10 +32,18 @@ func _ready():
 func _physics_process(_delta):
 	if not dialogue_triggered and not interaction_manager.current_animation_player:
 		if valid_play():
-			anim.play(animation_name)
+			anim.play(String(animation_name))
 	
 	if interaction_manager.current_animation_player:
 		print(interaction_manager.current_animation_player.current_animation)
+
+	if is_dragging or is_paused:
+		anim.speed_scale = 0
+	else:
+		anim.speed_scale = 1
+
+func _on_dragging(state: bool):
+	self.is_dragging = state
 
 # Functions that can be reused or overridden
 func _on_paused(new_paused_state: bool):
@@ -57,10 +60,10 @@ func _on_dialogue_triggered(state: bool):
 
 func _on_change_animation_direction(state: bool):
 	self.is_forward = state
+	if is_forward:
+		anim.speed_scale = 1
+	else:
+		anim.speed_scale = -1
 
 func valid_play() -> bool:
-	if anim is AnimationPlayer:
-		return (anim and animation_name != anim.current_animation and animation_name != "")
-	elif anim is AnimatedSprite2D:
-		return (anim and animation_name != anim.animation and animation_name != "")
-	return false
+	return (anim and animation_name != anim.current_animation and animation_name != "")

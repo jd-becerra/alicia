@@ -15,18 +15,29 @@ func set_active_menu(menu: Control) -> void:
 		active_menu.hide_choices()
 	active_menu = menu
 
-func play_dialogue_animation(character: String, animation_name: String, play_over_dialogue = false) -> void:
-	var controller = get_node("/root/MainScene/Characters/" + character)
-	var anim_player: AnimationPlayer = controller.get_node("AnimationPlayer")
+func play_character_animation(character: String, animation_name: String, play_over_dialogue = false) -> void:
+	var route = "/root/MainScene/Characters/" + character
+	await play_animation(route, animation_name, play_over_dialogue)
+
+func play_object_animation(object: String, animation_name: String, play_over_dialogue = false) -> void:
+	var route = "/root/MainScene/Objects/" + object
+	await play_animation(route, animation_name, play_over_dialogue)
 	
+
+func play_animation(controller_route: String, animation_name: String, play_over_dialogue) -> void:
+	var controller = get_node(controller_route)
+	var anim_player: AnimationPlayer = controller.get_node("AnimationPlayer")
 	current_animation_player = anim_player
 
 	anim_player.play(animation_name)
 
-	if not play_over_dialogue:  
+	if not play_over_dialogue:
 		await(anim_player.animation_finished)
 		current_animation_player = null
-	
+
+func pause_dialogue(time: float) -> void:
+	await get_tree().create_timer(time).timeout
+
 func get_item_index(item_name: String) -> int:
 	for i in range(full_inventory.items.size()):
 		print("Item: ", full_inventory.items[i].name)

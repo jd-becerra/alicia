@@ -7,6 +7,9 @@
 shader = ExtResource("1_75tn0")
 shader_parameter/weighted = true
 shader_parameter/activate = false
+shader_parameter/Transparency = 4.0
+shader_parameter/Slow = 25.0
+shader_parameter/brightness = 2.5
 
 [sub_resource type="Animation" id="Animation_v4n5a"]
 length = 0.1

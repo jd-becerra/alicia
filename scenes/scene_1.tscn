@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=46 format=3 uid="uid://bvp6rybw5rc0r"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://el7rue4tt3gc" path="res://assets/objects/scene-1/desk.png" id="10_dbg4j"]
 [ext_resource type="PackedScene" uid="uid://c8tk0syg18ije" path="res://scenes/scene_1_children/cortinas.tscn" id="10_u6lph"]
 [ext_resource type="PackedScene" uid="uid://bwpse4ub1mcet" path="res://ui/settings_menu.tscn" id="11_j6iu6"]
+[ext_resource type="PackedScene" uid="uid://dowuvlt4etxdg" path="res://scenes/scene_1_children/flower_pot.tscn" id="11_pirte"]
 [ext_resource type="PackedScene" uid="uid://bw8ct6frxo2ah" path="res://scenes/scene_1_children/partitura.tscn" id="11_pk0dk"]
 [ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="12_v6hkt"]
 [ext_resource type="Resource" uid="uid://c2ajhel3g7e7m" path="res://dialogue/scene_1/piano.dialogue" id="14_qmdee"]
@@ -33,26 +34,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Characters/Alicia_Adulta:position")
+tracks/0/path = NodePath("Characters/Alicia_Adulta:animation_name")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-300, 472)]
+"values": ["RESET"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Characters/Alicia_Adulta:animation_name")
+tracks/1/path = NodePath("Characters/Alicia_Adulta:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["RESET"]
+"update": 0,
+"values": [Vector2(-300, 472)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -69,31 +70,31 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainCamera:position")
+tracks/3/path = NodePath("Characters/Alicia_Adulta:spawnable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2192, 328)]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
+tracks/4/path = NodePath("MainCamera:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(2192, 328)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Characters/Alicia_Adulta:spawnable")
+tracks/5/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -129,19 +130,19 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("MainCamera:zoom")
+tracks/8/path = NodePath("Objects/Partitura:animation_name")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.8, 1.8)]
+"update": 1,
+"values": ["RESET"]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Objects/Partitura:animation_name")
+tracks/9/path = NodePath("Objects/Piano:animation_name")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -153,7 +154,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Objects/Piano:animation_name")
+tracks/10/path = NodePath("Objects/Cortinas:animation_name")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -165,14 +166,14 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Objects/Cortinas:animation_name")
+tracks/11/path = NodePath("DialogueTriggers/Dialogue1:dialogue_name")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["RESET"]
+"values": ["start"]
 }
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
@@ -181,26 +182,26 @@ length = 30.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Characters/Alicia_Adulta:position")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Characters/Alicia_Adulta:animation_name")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 16.6667, 19.7, 22.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 16.7, 19.6, 19.7334, 21.6333, 21.6667, 25.6667, 25.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-300, 472), Vector2(-300, 472), Vector2(616, 472), Vector2(616, 472)]
+"values": ["Idle", "Walk", "Walk", "Idle", "Idle", "Walk", "Idle", "Idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Characters/Alicia_Adulta:animation_name")
+tracks/1/path = NodePath("Characters/Alicia_Adulta:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 16.7, 19.6, 19.7334, 22.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": ["Idle", "Walk", "Walk", "Idle", "Idle"]
+"times": PackedFloat32Array(0, 16.6667, 19.7, 21.6667, 24.2667, 25.6667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-300, 472), Vector2(-300, 472), Vector2(616, 472), Vector2(616, 472), Vector2(1064, 472), Vector2(1280, 424)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -209,10 +210,10 @@ tracks/2/path = NodePath("Player:restricted")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 19.7667, 19.9333, 23.0667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 18.7667, 18.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, true, false, false]
+"values": [true, true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -229,38 +230,38 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainCamera:position")
+tracks/4/path = NodePath("Characters/Alicia_Adulta:spawnable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 7.23333, 9.13333, 11.5, 15.0333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 18.6334, 18.6667, 22.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2192, 328), Vector2(2192, 328), Vector2(1360.03, 328), Vector2(1360.03, 328), Vector2(616, 328)]
+"values": [false, false, true, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
+tracks/5/path = NodePath("MainCamera:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 21.3, 21.3333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
+"times": PackedFloat32Array(0, 6.4, 8.3, 13.1667, 15.5333, 21.3333, 26.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2192, 328), Vector2(2192, 328), Vector2(1360.03, 328), Vector2(1360.03, 328), Vector2(616, 328), Vector2(616, 328), Vector2(1360.03, 328)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Characters/Alicia_Adulta:spawnable")
+tracks/6/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 18.6334, 18.6667, 22.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 21.3, 21.3333, 26.5667, 26.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, false, true, true]
+"values": [false, true, false, true, false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -269,7 +270,7 @@ tracks/7/path = NodePath("Objects/Partitura:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 6.7, 6.73333),
+"times": PackedFloat32Array(0, 6.33333, 6.36666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -281,7 +282,7 @@ tracks/8/path = NodePath("Objects/InteractionMenus/Choices-Partitura:enable_on_s
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 1.83333, 1.86667, 7.4),
+"times": PackedFloat32Array(0, 3.4, 3.5, 7.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false]
@@ -289,50 +290,62 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("MainCamera:zoom")
+tracks/9/path = NodePath("Objects/Partitura:animation_name")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 11.4667, 15.0667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1.3, 1.3), Vector2(1.3, 1.3), Vector2(0.8, 0.8)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Objects/Partitura:animation_name")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 3.8),
+"times": PackedFloat32Array(0, 3.43333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": ["RESET", "Fly away"]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Objects/Piano:animation_name")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(-0.0333333, 8.36667, 12.7333, 26.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["RESET", "Leaf falls", "Almost closing", "Stuck"]
+}
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Objects/Piano:animation_name")
+tracks/11/path = NodePath("Objects/Cortinas:animation_name")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 9.96666),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 2.76667, 2.96667, 16.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": ["RESET", "Close"]
+"values": ["Flap", "Transition", "Windy", "Flap"]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Objects/Cortinas:animation_name")
+tracks/12/path = NodePath("DialogueTriggers/Dialogue1:dialogue_name")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 2.76667, 2.96667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(21.3, 26.5667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["Flap", "Transition", "Windy"]
+"values": ["start", "piano"]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Objects/FlowerPot:animation_name")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 8.4, 12.7667, 26.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["RESET", "Leaf falls", "Almost closing", "Stuck"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -399,6 +412,14 @@ shader_parameter/Transparency = 4.0
 shader_parameter/Slow = 25.0
 shader_parameter/brightness = 1.5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_so6l3"]
+shader = ExtResource("2_33lhp")
+shader_parameter/weighted = true
+shader_parameter/activate = false
+shader_parameter/Transparency = 4.0
+shader_parameter/Slow = 25.0
+shader_parameter/brightness = 2.5
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8677"]
 radius = 56.0
 height = 224.0
@@ -457,6 +478,7 @@ texture = ExtResource("4_vprv8")
 [node name="Characters" type="Node" parent="."]
 
 [node name="Alicia_Adulta" parent="Characters" groups=["character", "dialogue_starter", "grayscale"] instance=ExtResource("5_fmidb")]
+z_index = 1
 material = SubResource("ShaderMaterial_8a5t2")
 position = Vector2(-300, 472)
 collision_layer = 2
@@ -464,23 +486,27 @@ collision_mask = 2
 script = ExtResource("6_f624h")
 spawnable = false
 animation_name = "RESET"
-has_animation_player = true
 
 [node name="Objects" type="Node" parent="."]
 
 [node name="Door-left" parent="Objects" groups=["grayscale"] instance=ExtResource("7_p5sea")]
+z_index = 2
 material = SubResource("ShaderMaterial_2phsl")
 position = Vector2(159, 415)
 script = ExtResource("8_od0cd")
 animation_name = "Closed"
-has_animation_player = true
 
 [node name="Piano" parent="Objects" instance=ExtResource("9_5ut8m")]
-position = Vector2(1384, 424)
+position = Vector2(1384, 384)
 animation_name = "RESET"
 
-[node name="Cortinas" parent="Objects" instance=ExtResource("10_u6lph")]
+[node name="Cortinas" parent="Objects" groups=["grayscale"] instance=ExtResource("10_u6lph")]
+material = SubResource("ShaderMaterial_so6l3")
 position = Vector2(2200, 280)
+animation_name = "RESET"
+
+[node name="FlowerPot" parent="Objects" instance=ExtResource("11_pirte")]
+position = Vector2(1432, 384)
 animation_name = "RESET"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
@@ -488,7 +514,7 @@ position = Vector2(2192, 451)
 texture = ExtResource("10_dbg4j")
 
 [node name="Partitura" parent="Objects" instance=ExtResource("11_pk0dk")]
-position = Vector2(2256, 360)
+position = Vector2(2224, 336)
 animation_name = "RESET"
 
 [node name="InteractionMenus" type="Node" parent="Objects"]
@@ -532,10 +558,10 @@ anchor_left = 0.107
 anchor_top = -0.104
 anchor_right = 0.92
 anchor_bottom = 1.033
-offset_left = 2012.74
-offset_top = 355.392
-offset_right = 1396.16
-offset_bottom = -109.384
+offset_left = 2044.74
+offset_top = 339.392
+offset_right = 1428.16
+offset_bottom = -125.384
 choices = 15
 enable_on_scene = false
 object_name = "Partitura_Interaction"
@@ -553,7 +579,7 @@ camera = NodePath("../PlayerCamera")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(2192, 328)
-zoom = Vector2(1.8, 1.8)
+zoom = Vector2(0.8, 0.8)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2(-1072, 328)
@@ -592,6 +618,7 @@ mouse_filter = 2
 
 [node name="Dialogue1" parent="DialogueTriggers" groups=["dialogue_trigger_area"] instance=ExtResource("14_wopbl")]
 enable_dialogue = false
+dialogue_name = "start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTriggers/Dialogue1"]
 position = Vector2(736, 440)

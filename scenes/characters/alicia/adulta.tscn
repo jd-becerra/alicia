@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2gg6xbyb7lch"]
+[gd_scene load_steps=11 format=3 uid="uid://c2gg6xbyb7lch"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_k4wck"]
 [ext_resource type="Texture2D" uid="uid://cusji0fy50ohl" path="res://scenes/characters/alicia/alicia_adulta.png" id="2_c4ni3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_74mxp"]
-radius = 48.0
+radius = 11.2
 
 [sub_resource type="Animation" id="Animation_tu3qs"]
 length = 6.3
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 2]
 }
 
 [sub_resource type="Animation" id="Animation_b0tw8"]
@@ -66,23 +66,57 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [2, 3, 4, 5]
+"values": [3, 4, 5, 0]
+}
+
+[sub_resource type="Animation" id="Animation_3c78l"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ig0fv"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w60ma"]
 _data = {
 "Idle": SubResource("Animation_tu3qs"),
 "RESET": SubResource("Animation_b0tw8"),
+"Sad": SubResource("Animation_ig0fv"),
 "Sad_Sigh": SubResource("Animation_1hcq0"),
+"Surprised": SubResource("Animation_3c78l"),
 "Walk": SubResource("Animation_uklgq")
 }
 
 [node name="Alicia_Adulta" type="CharacterBody2D"]
 process_mode = 3
+scale = Vector2(5, 5)
 script = ExtResource("1_k4wck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(24, 0)
+position = Vector2(8, 0)
 shape = SubResource("CircleShape2D_74mxp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -106,7 +140,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "d3dfae9a7f46a517d7f645e48e7c54fd"
+metadata/_aseprite_wizard_source_file_hash_ = "c3411632f5650c3ec6e6eab07cd7d4e9"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
