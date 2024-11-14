@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bvp6rybw5rc0r"]
+[gd_scene load_steps=46 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -605,6 +605,7 @@ main_ui = NodePath("../PauseMenu")
 unique_name_in_owner = true
 z_index = 100
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="DocumentWide" parent="UI" instance=ExtResource("17_1cnvc")]
 visible = false

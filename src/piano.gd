@@ -6,6 +6,7 @@ extends Control
 @onready var pentagram: Sprite2D = %Pentagram
 @onready var music_note: PackedScene = preload("res://scenes/music_note.tscn")
 @onready var audio_stream_player = $AudioStreamPlayer
+@onready var redo_btn: Button = %RedoBtn
 
 # Constants
 const KEYS = ["G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5"]
@@ -52,7 +53,8 @@ func _ready() -> void:
 	original_x = (pentagram.global_position.x - (pentagram.get_rect().size.x * pentagram.scale.x) / 2) - 150
 	original_y = pentagram.global_position.y
 	current_x = original_x
-	return_btn.connect("pressed", Callable(self, "_on_return_pressed"))
+	return_btn.pressed.connect(_on_return_pressed)
+	redo_btn.pressed.connect(clear_notes)
 
 func _on_return_pressed() -> void:
 	# Hide itself and show the game UI
@@ -90,16 +92,47 @@ func print_note(button: Button) -> void:
 			print("Congratulations! You played the correct sequence.")
 		else:
 			print("Incorrect sequence. Try again.")
-			# Clear the sequence
-			player_sequence.clear()
-			current_x = original_x
 			
-			# Clear the notes safely
+			# Make printed notes red
 			for note in printed_notes:
-				if is_instance_valid(note):  # Check if the note still exists
-					note.queue_free()
-			printed_notes.clear()  # Clear the array after freeing the notes
+				if is_instance_valid(note):
+					note.modulate = Color(1, 0, 0)
+			await get_tree().create_timer(2).timeout
+
+			clear_notes()
 
 func set_note_position(note_name: String) -> Vector2:
 	# Set position of the note based on the current x position and the note position on a real pentagram
 	return Vector2(current_x, original_y + note_y_positions[note_name])
+
+func clear_notes() -> void:
+	# Clear the sequence
+	player_sequence.clear()
+	current_x = original_x
+	
+	# Clear the notes safely
+	for note in printed_notes:
+		if is_instance_valid(note):  # Check if the note still exists
+			note.queue_free()
+	printed_notes.clear()  # Clear the array after freeing the notes
+
+func show_use_node():
+	if get_node("/root/MainScene/Objects/Piano/AnimationPlayer").current_animation == "Stuck":
+		print("Piano is stuck, can't play it.")
+		return
+
+	game_ui.hide()
+	self.show()
+	get_tree().paused = true
+
+	# If player has Partitura item (with index 2), show the PartituraCorrecta node
+	if check_has_partitura():
+		%PartituraCorrecta.show()
+
+func check_has_partitura() -> bool:
+	var items = get_node("/root/MainScene/Player").inventory_data.items
+	for item in items:
+		if item.index == 2:
+			return true
+
+	return false

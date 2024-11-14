@@ -63,7 +63,6 @@ func _ready() -> void:
 
 	animation_player.connect("animation_finished", Callable(self, "show_buttons"))
 
-	# Hovers
 	dot.mouse_entered.connect(_on_button_hover.bind(dot))
 	dot.mouse_exited.connect(_on_button_exit.bind(dot))
 	if choices & 0x01:
@@ -212,9 +211,7 @@ func on_use() -> void:
 	hide_choices()
 
 	if use_node:
-		game_ui.hide()
-		use_node.show()
-		get_tree().paused = true
+		use_node.show_use_node()
 
 func disable_action(action_name: String) -> void:
 	match action_name:

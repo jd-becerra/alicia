@@ -6,6 +6,18 @@ Alicia: Artistas de todo el mundo llegaban y se sentaban con mi madre a discutir
 
 ~ pick_up
 Alicia: No puedo levantar esto. Es demasiado pesado.
+=> END
+
+~ piano_stuck
+Alicia: Este instrumento es muy viejo.
+Alicia: No puedo levantar la tapa. Parece que está atorada.
+=> END
+
+~ piano_closing
+Alicia: ¡No voy a arriesgar el poner mis manos ahí!
+Alicia: La tapa podría caerse en cualquier momento.
+Alicia: Necesito algo con lo que detenerla.
+=> END
 
 ~ default
 Alicia: El piano de mi madre.

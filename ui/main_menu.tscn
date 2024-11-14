@@ -43,6 +43,7 @@ theme = ExtResource("1_2c24i")
 
 [node name="CargarPartidaBtn" type="Button" parent="Main/Background/Buttons"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -709.333
 offset_top = -335.012
 offset_right = -103.333
@@ -52,6 +53,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="NuevaPartidaBtn" type="Button" parent="Main/Background/Buttons"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -704.667
 offset_top = -169.086
 offset_right = -98.6667
@@ -61,6 +63,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ConfigBtn" type="Button" parent="Main/Background/Buttons"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -700.0
 offset_top = -6.32095
 offset_right = -94.0001
@@ -70,6 +73,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SalirBtn" type="Button" parent="Main/Background/Buttons"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -522.667
 offset_top = 170.667
 offset_right = -264.667

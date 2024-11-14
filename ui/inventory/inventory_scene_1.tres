@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=6 format=3 uid="uid://le8gw3ext3a2"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=7 format=3 uid="uid://le8gw3ext3a2"]
 
 [ext_resource type="Script" path="res://src/inventory.gd" id="1_1ow7l"]
 [ext_resource type="Resource" uid="uid://br274dhsbose7" path="res://ui/inventory/items/carta_escena_1.tres" id="1_l0ajs"]
 [ext_resource type="Script" path="res://src/item.gd" id="1_v7y84"]
 [ext_resource type="Resource" uid="uid://csmjw1oymgd5u" path="res://ui/inventory/items/batuta.tres" id="2_h317m"]
 [ext_resource type="Resource" uid="uid://3s6bb82rc5op" path="res://ui/inventory/items/partitura.tres" id="3_xdins"]
+[ext_resource type="Resource" uid="uid://bflxx32q4oll1" path="res://ui/inventory/items/diario.tres" id="5_0e4o7"]
 
 [resource]
 script = ExtResource("1_1ow7l")
-items = Array[ExtResource("1_v7y84")]([ExtResource("1_l0ajs"), ExtResource("2_h317m"), ExtResource("3_xdins")])
+items = Array[ExtResource("1_v7y84")]([ExtResource("1_l0ajs"), ExtResource("2_h317m"), ExtResource("3_xdins"), ExtResource("5_0e4o7")])

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bsvo744ikbl6r"
+path="res://.godot/imported/restart_icon.aseprite-ab40ffd7371480ab4334e7d1ef5c3be0.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/restart_icon.aseprite"
+dest_files=["res://.godot/imported/restart_icon.aseprite-ab40ffd7371480ab4334e7d1ef5c3be0.res"]
+
+[params]
+

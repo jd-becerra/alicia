@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d0vovso2qbk15"
+path="res://.godot/imported/window_glasses.aseprite-dcb3239ef36082b07a3cd8d72521aa23.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/window_glasses.aseprite"
+dest_files=["res://.godot/imported/window_glasses.aseprite-dcb3239ef36082b07a3cd8d72521aa23.res"]
+
+[params]
+

@@ -20,7 +20,7 @@ void fragment() {
 
         // Mix the texture with the grayscale value
         vec3 tex = mix(texture(TEXTURE, UV).rgb, gray, 1.0);
-        
+
         // Apply the noise effect and divide by transparency (affects RGB only)
         vec3 resultColor = tex * texture(Noise, texture(Noise, UV).xy + cos(TIME) / Slow).rgb / Transparency;
 

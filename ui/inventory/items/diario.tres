@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bflxx32q4oll1"]
+
+[ext_resource type="Script" path="res://src/item.gd" id="1_bte1d"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0jfa7"]
+load_path = "res://.godot/imported/inventory_scene_1.png-62898f728ca80573ae44b068aa40bc80.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0grts"]
+atlas = SubResource("CompressedTexture2D_0jfa7")
+region = Rect2(0, 96, 96, 96)
+
+[resource]
+script = ExtResource("1_bte1d")
+name = "Partitura"
+description = "Es una partitura con la canción que mi madre escribió de joven. Solía cantarla todas las noches antes de dormir."
+texture = SubResource("AtlasTexture_0grts")
+default = false
+pairs_with = ""
+incompatible_dialogue = {}
