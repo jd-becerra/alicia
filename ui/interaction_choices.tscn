@@ -85,6 +85,7 @@ polygon = PackedVector2Array(-2.90734, -3.89495, -2.90734, -13.2428, 3.63418, -1
 [node name="UseBtn" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 7
 layout_mode = 2
 offset_left = 232.0
 offset_top = 88.0
@@ -99,6 +100,7 @@ icon_alignment = 1
 [node name="InspectBtn" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 7
 layout_mode = 2
 offset_left = 128.0
 offset_top = -8.0
@@ -114,6 +116,7 @@ script = ExtResource("5_jsbq6")
 [node name="ZoomBtn" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 7
 layout_mode = 2
 offset_left = 128.0
 offset_top = 192.0
@@ -128,6 +131,7 @@ icon_alignment = 1
 [node name="PickUpBtn" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 7
 layout_mode = 2
 offset_left = 16.0
 offset_top = 88.0

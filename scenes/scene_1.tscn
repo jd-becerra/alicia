@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=50 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6i00iimpjyra" path="res://assets/objects/scene-1/wall-left.png" id="4_vprv8"]
 [ext_resource type="PackedScene" uid="uid://c2gg6xbyb7lch" path="res://scenes/characters/alicia/adulta.tscn" id="5_fmidb"]
 [ext_resource type="Script" path="res://src/player_animation.gd" id="6_f624h"]
+[ext_resource type="AudioStream" uid="uid://bx0poe5ot2qy4" path="res://sounds/footsteps.mp3" id="7_ntmog"]
 [ext_resource type="PackedScene" uid="uid://b4jni2b00pjm8" path="res://assets/objects/scene-1/door-left.tscn" id="7_p5sea"]
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="8_od0cd"]
 [ext_resource type="PackedScene" uid="uid://vqqc2ili0ds0" path="res://scenes/scene_1_children/piano.tscn" id="9_5ut8m"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://el7rue4tt3gc" path="res://assets/objects/scene-1/desk.png" id="10_dbg4j"]
 [ext_resource type="PackedScene" uid="uid://c8tk0syg18ije" path="res://scenes/scene_1_children/cortinas.tscn" id="10_u6lph"]
 [ext_resource type="PackedScene" uid="uid://bwpse4ub1mcet" path="res://ui/settings_menu.tscn" id="11_j6iu6"]
+[ext_resource type="Texture2D" uid="uid://cj3n7ubov1cgy" path="res://assets/objects/scene-1/window_glasses.png" id="11_n4vk4"]
 [ext_resource type="PackedScene" uid="uid://dowuvlt4etxdg" path="res://scenes/scene_1_children/flower_pot.tscn" id="11_pirte"]
 [ext_resource type="PackedScene" uid="uid://bw8ct6frxo2ah" path="res://scenes/scene_1_children/partitura.tscn" id="11_pk0dk"]
 [ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="12_v6hkt"]
@@ -28,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://bj3cboqxul38a" path="res://scenes/piano_keyboard.tscn" id="23_g4shp"]
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="28_yl3b4"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -174,6 +177,18 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["start"]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Characters/Alicia_Adulta/AudioStreamPlayer2D:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
@@ -347,6 +362,18 @@ tracks/13/keys = {
 "update": 1,
 "values": ["RESET", "Leaf falls", "Almost closing", "Stuck"]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Characters/Alicia_Adulta/AudioStreamPlayer2D:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(17.9333, 19.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
 _data = {
@@ -420,6 +447,11 @@ shader_parameter/Transparency = 4.0
 shader_parameter/Slow = 25.0
 shader_parameter/brightness = 2.5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idhes"]
+shader = ExtResource("28_yl3b4")
+shader_parameter/radius = 3
+shader_parameter/offset = Vector3(0, 0, 0)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8677"]
 radius = 56.0
 height = 224.0
@@ -487,6 +519,9 @@ script = ExtResource("6_f624h")
 spawnable = false
 animation_name = "RESET"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Characters/Alicia_Adulta"]
+stream = ExtResource("7_ntmog")
+
 [node name="Objects" type="Node" parent="."]
 
 [node name="Door-left" parent="Objects" groups=["grayscale"] instance=ExtResource("7_p5sea")]
@@ -500,6 +535,10 @@ animation_name = "Closed"
 position = Vector2(1384, 384)
 animation_name = "RESET"
 
+[node name="WindowGlasses" type="Sprite2D" parent="Objects"]
+position = Vector2(2192, 272)
+texture = ExtResource("11_n4vk4")
+
 [node name="Cortinas" parent="Objects" groups=["grayscale"] instance=ExtResource("10_u6lph")]
 material = SubResource("ShaderMaterial_so6l3")
 position = Vector2(2200, 280)
@@ -507,10 +546,10 @@ animation_name = "RESET"
 
 [node name="FlowerPot" parent="Objects" instance=ExtResource("11_pirte")]
 position = Vector2(1432, 384)
-animation_name = "RESET"
+animation_name = "Almost closing"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
-position = Vector2(2192, 451)
+position = Vector2(2224, 440)
 texture = ExtResource("10_dbg4j")
 
 [node name="Partitura" parent="Objects" instance=ExtResource("11_pk0dk")]
@@ -613,6 +652,15 @@ mouse_filter = 2
 
 [node name="PianoUI" parent="UI" instance=ExtResource("23_g4shp")]
 visible = false
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_idhes")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="DialogueTriggers" type="Node" parent="."]
