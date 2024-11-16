@@ -102,6 +102,7 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+use_parent_material = true
 texture = ExtResource("2_uof8t")
 hframes = 5
 vframes = 4

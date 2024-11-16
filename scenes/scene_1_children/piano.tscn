@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://vqqc2ili0ds0"]
+[gd_scene load_steps=10 format=3 uid="uid://vqqc2ili0ds0"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_ivkd7"]
 [ext_resource type="Texture2D" uid="uid://cjcuf7dhl2bfl" path="res://scenes/scene_1_children/piano.png" id="1_nu6j0"]
+[ext_resource type="Material" uid="uid://b0i2bqx4jie3y" path="res://shaders/wobbly_effect.tres" id="2_p7waf"]
 
 [sub_resource type="Animation" id="Animation_basot"]
 length = 0.5
@@ -101,6 +102,7 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_p7waf")
 texture = ExtResource("1_nu6j0")
 hframes = 3
 vframes = 3

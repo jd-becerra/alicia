@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b0i2bqx4jie3y"]
+
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="1_0c4nh"]
+[ext_resource type="Texture2D" uid="uid://bmb5828a8x6vl" path="res://shaders/Normals/45e1265ab27393903ca3faea493f5a54.jpg" id="2_fveay"]
+
+[resource]
+shader = ExtResource("1_0c4nh")
+shader_parameter/strength = 0.002
+shader_parameter/speed = 6.0
+shader_parameter/frames = 100
+shader_parameter/flowMap = ExtResource("2_fveay")

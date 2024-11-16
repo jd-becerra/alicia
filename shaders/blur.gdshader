@@ -1,84 +1,28 @@
 shader_type canvas_item;
-uniform int radius = 5;
-uniform vec3 offset=vec3(0.0);
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
-void fragment() 
- {
-     vec2 src_size = vec2 ( SCREEN_PIXEL_SIZE.x,  SCREEN_PIXEL_SIZE.y);
-     vec2 uv = UV.xy;
-     float n = float((radius + 1) * (radius + 1));
-     vec3 m0 = offset; vec3 m1 = offset; vec3 m2 = offset; vec3 m3 = offset;
-     vec3 s0 = offset; vec3 s1 = offset; vec3 s2 = offset; vec3 s3 = offset;
-     vec3 c;
+uniform sampler2D flowMap; //Displacement map
+uniform float strength = 0.005;    //Force of the effect
+uniform float speed = 6;       //Speed of the effect
+uniform int frames : hint_range(1, 100) = 3; //Frames of the effect
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+//Returns a value between 0 and 1 depending of the frames -> exemple: frames = 4, frame 1 = 0.25
+float clock(float time){
+	float fframes = float(frames);
+	return floor(mod(time * speed, fframes)) / fframes;
+}
 
-     for (int j = -radius; j <= 0; ++j)  {
-         for (int i = -radius; i <= 0; ++i)  {
-             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
-             m0 += c;
-             s0 += c * c;
-         }
-     }
-
-     for (int j = -radius; j <= 0; ++j)  {
-         for (int i = 0; i <= radius; ++i)  {
-             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
-             m1 += c;
-             s1 += c * c;
-         }
-     }
-
-     for (int j = 0; j <= radius; ++j)  {
-         for (int i = 0; i <= radius; ++i)  {
-             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
-             m2 += c;
-             s2 += c * c;
-         }
-     }
-
-     for (int j = 0; j <= radius; ++j)  {
-         for (int i = -radius; i <= 0; ++i)  {
-             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
-             m3 += c;
-             s3 += c * c;
-         }
-     }
+void fragment(){
+	float c = clock(TIME); //Get clock frame
+	vec4 offset = texture(flowMap, vec2(UV.x + c, UV.y + c)) * strength; //Get offset 
+	//COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + normal.xy); //Apply offset
+	COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + offset.xy - vec2(0.5,0.5)*strength); //We need to remove the displacement 
+}
 
 
-     float min_sigma2 = 1e+2;
-     m0 /= n;
-     s0 = abs(s0 / n - m0 * m0);
-
-     float sigma2 = s0.r + s0.g + s0.b;
-     if (sigma2 < min_sigma2) {
-         min_sigma2 = sigma2;
-         COLOR = vec4(m0, 1.0);
-     }
-
-     m1 /= n;
-     s1 = abs(s1 / n - m1 * m1);
-
-     sigma2 = s1.r + s1.g + s1.b;
-     if (sigma2 < min_sigma2) {
-         min_sigma2 = sigma2;
-         COLOR = vec4(m1, 1.0);
-     }
-
-     m2 /= n;
-     s2 = abs(s2 / n - m2 * m2);
-
-     sigma2 = s2.r + s2.g + s2.b;
-     if (sigma2 < min_sigma2) {
-         min_sigma2 = sigma2;
-         COLOR = vec4(m2, 1.0);
-     }
-
-     m3 /= n;
-     s3 = abs(s3 / n - m3 * m3);
-
-     sigma2 = s3.r + s3.g + s3.b;
-     if (sigma2 < min_sigma2) {
-         min_sigma2 = sigma2;
-         COLOR = vec4(m3, 1.0);
-     }
- }
+// TEST CLOCK
+/*
+void fragment(){
+	float c = clock(TIME);
+	COLOR = vec4( c, c, c, 1);
+}
+*/

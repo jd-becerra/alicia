@@ -1,7 +1,6 @@
-[gd_scene load_steps=50 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=44 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
-[ext_resource type="Shader" path="res://shaders/gray_filter.gdshader" id="2_33lhp"]
 [ext_resource type="Texture2D" uid="uid://d15hx26j84xbp" path="res://assets/backgrounds/background_scene_1.png" id="3_wgbc6"]
 [ext_resource type="Texture2D" uid="uid://6i00iimpjyra" path="res://assets/objects/scene-1/wall-left.png" id="4_vprv8"]
 [ext_resource type="PackedScene" uid="uid://c2gg6xbyb7lch" path="res://scenes/characters/alicia/adulta.tscn" id="5_fmidb"]
@@ -11,6 +10,7 @@
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="8_od0cd"]
 [ext_resource type="PackedScene" uid="uid://vqqc2ili0ds0" path="res://scenes/scene_1_children/piano.tscn" id="9_5ut8m"]
 [ext_resource type="PackedScene" uid="uid://wvf46r8j6hqf" path="res://scenes/player.tscn" id="9_f76i4"]
+[ext_resource type="Material" uid="uid://cnveewulg1eue" path="res://shaders/wobbly_w_grayscale.tres" id="9_h460a"]
 [ext_resource type="PackedScene" uid="uid://bva32pwklon34" path="res://ui/menu_pausa.tscn" id="10_2h2bc"]
 [ext_resource type="Texture2D" uid="uid://el7rue4tt3gc" path="res://assets/objects/scene-1/desk.png" id="10_dbg4j"]
 [ext_resource type="PackedScene" uid="uid://c8tk0syg18ije" path="res://scenes/scene_1_children/cortinas.tscn" id="10_u6lph"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cj3n7ubov1cgy" path="res://assets/objects/scene-1/window_glasses.png" id="11_n4vk4"]
 [ext_resource type="PackedScene" uid="uid://dowuvlt4etxdg" path="res://scenes/scene_1_children/flower_pot.tscn" id="11_pirte"]
 [ext_resource type="PackedScene" uid="uid://bw8ct6frxo2ah" path="res://scenes/scene_1_children/partitura.tscn" id="11_pk0dk"]
+[ext_resource type="Material" uid="uid://b0i2bqx4jie3y" path="res://shaders/wobbly_effect.tres" id="12_j5l1c"]
 [ext_resource type="PackedScene" uid="uid://cddj0nemptmr1" path="res://ui/menu.tscn" id="12_v6hkt"]
 [ext_resource type="Resource" uid="uid://c2ajhel3g7e7m" path="res://dialogue/scene_1/piano.dialogue" id="14_qmdee"]
 [ext_resource type="PackedScene" uid="uid://b0ln2tc7ccnr5" path="res://scenes/dialogue_trigger.tscn" id="14_wopbl"]
@@ -31,6 +32,7 @@
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="28_yl3b4"]
+[ext_resource type="Texture2D" uid="uid://bmb5828a8x6vl" path="res://shaders/Normals/45e1265ab27393903ca3faea493f5a54.jpg" id="29_00jup"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -190,10 +192,22 @@ tracks/12/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Objects/WindowGlasses:texture")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_n4vk4")]
+}
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
 resource_name = "Scene1-Beat1"
-length = 30.0
+length = 60.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -201,7 +215,7 @@ tracks/0/path = NodePath("Characters/Alicia_Adulta:animation_name")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 16.7, 19.6, 19.7334, 21.6333, 21.6667, 25.6667, 25.7),
+"times": PackedFloat32Array(0, 22.2333, 25.1333, 25.2667, 27.1666, 27.2, 31.2, 31.2333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": ["Idle", "Walk", "Walk", "Idle", "Idle", "Walk", "Idle", "Idle"]
@@ -213,10 +227,10 @@ tracks/1/path = NodePath("Characters/Alicia_Adulta:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 16.6667, 19.7, 21.6667, 24.2667, 25.6667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 22.2, 25.2333, 27.2, 29.8, 31.2, 32.1333, 34.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-300, 472), Vector2(-300, 472), Vector2(616, 472), Vector2(616, 472), Vector2(1064, 472), Vector2(1280, 424)]
+"values": [Vector2(-300, 472), Vector2(-300, 472), Vector2(616, 472), Vector2(616, 472), Vector2(1064, 472), Vector2(1280, 424), Vector2(1280, 424), Vector2(2200, 424)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -225,7 +239,7 @@ tracks/2/path = NodePath("Player:restricted")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 18.7667, 18.8),
+"times": PackedFloat32Array(0, 24.3, 24.3333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -237,7 +251,7 @@ tracks/3/path = NodePath("Objects/Door-left:animation_name")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(-0.133333, 16.6333, 16.8, 19.0667, 19.2, 22.3667),
+"times": PackedFloat32Array(-0.133333, 22.1666, 22.3333, 24.6, 24.7333, 27.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": ["Closed", "Closed", "Open", "Open", "Closed", "Closed"]
@@ -249,7 +263,7 @@ tracks/4/path = NodePath("Characters/Alicia_Adulta:spawnable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 18.6334, 18.6667, 22.9),
+"times": PackedFloat32Array(0, 24.1667, 24.2, 28.4333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [false, false, true, true]
@@ -261,7 +275,7 @@ tracks/5/path = NodePath("MainCamera:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 6.4, 8.3, 13.1667, 15.5333, 21.3333, 26.3),
+"times": PackedFloat32Array(0, 11.9333, 13.8333, 18.7, 21.0666, 26.8666, 31.8333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(2192, 328), Vector2(2192, 328), Vector2(1360.03, 328), Vector2(1360.03, 328), Vector2(616, 328), Vector2(616, 328), Vector2(1360.03, 328)]
@@ -273,7 +287,7 @@ tracks/6/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 21.3, 21.3333, 26.5667, 26.6),
+"times": PackedFloat32Array(0, 26.8333, 26.8666, 32.1, 32.1333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false]
@@ -285,7 +299,7 @@ tracks/7/path = NodePath("Objects/Partitura:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 6.33333, 6.36666),
+"times": PackedFloat32Array(0, 11.8667, 11.9),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -297,7 +311,7 @@ tracks/8/path = NodePath("Objects/InteractionMenus/Choices-Partitura:enable_on_s
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 3.4, 3.5, 7.4),
+"times": PackedFloat32Array(0, 8.93333, 9.03333, 12.9333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false]
@@ -309,7 +323,7 @@ tracks/9/path = NodePath("Objects/Partitura:animation_name")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 3.43333),
+"times": PackedFloat32Array(0, 8.96666),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": ["RESET", "Fly away"]
@@ -321,7 +335,7 @@ tracks/10/path = NodePath("Objects/Piano:animation_name")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(-0.0333333, 8.36667, 12.7333, 26.5667),
+"times": PackedFloat32Array(-0.0333333, 13.9, 18.2666, 32.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["RESET", "Leaf falls", "Almost closing", "Stuck"]
@@ -333,10 +347,10 @@ tracks/11/path = NodePath("Objects/Cortinas:animation_name")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 2.76667, 2.96667, 16.9333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 4, 8.33333, 8.5, 22.4666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": ["Flap", "Transition", "Windy", "Flap"]
+"values": ["RESET", "Flap", "Transition", "Windy", "Flap"]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -345,7 +359,7 @@ tracks/12/path = NodePath("DialogueTriggers/Dialogue1:dialogue_name")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(21.3, 26.5667),
+"times": PackedFloat32Array(26.8333, 32.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": ["start", "piano"]
@@ -357,7 +371,7 @@ tracks/13/path = NodePath("Objects/FlowerPot:animation_name")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 8.4, 12.7667, 26.5667),
+"times": PackedFloat32Array(0, 13.9, 18.2667, 32.0667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["RESET", "Leaf falls", "Almost closing", "Stuck"]
@@ -369,10 +383,22 @@ tracks/14/path = NodePath("Characters/Alicia_Adulta/AudioStreamPlayer2D:playing"
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(17.9333, 19.8),
+"times": PackedFloat32Array(23.4333, 25.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Objects/WindowGlasses:texture")
+tracks/15/interp = 0
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_n4vk4")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -380,25 +406,6 @@ _data = {
 "RESET": SubResource("Animation_vp3wc"),
 "Scene1-Beat1": SubResource("Animation_e3rfi")
 }
-
-[sub_resource type="Gradient" id="Gradient_bctbj"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nuxf5"]
-noise_type = 2
-frequency = 0.3919
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ursvk"]
-color_ramp = SubResource("Gradient_bctbj")
-noise = SubResource("FastNoiseLite_nuxf5")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xnbg"]
-shader = ExtResource("2_33lhp")
-shader_parameter/weighted = true
-shader_parameter/activate = false
-shader_parameter/Transparency = 1.0
-shader_parameter/Slow = 30.0
-shader_parameter/brightness = 1.5
-shader_parameter/Noise = SubResource("NoiseTexture2D_ursvk")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hspma"]
 size = Vector2(3428, 399.25)
@@ -415,42 +422,12 @@ size = Vector2(640, 1012.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyq2x"]
 size = Vector2(512.099, 990)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yci8v"]
-shader = ExtResource("2_33lhp")
-shader_parameter/weighted = true
-shader_parameter/activate = false
-shader_parameter/Transparency = 4.0
-shader_parameter/Slow = 25.0
-shader_parameter/brightness = 1.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8a5t2"]
-shader = ExtResource("2_33lhp")
-shader_parameter/weighted = true
-shader_parameter/activate = false
-shader_parameter/Transparency = 4.0
-shader_parameter/Slow = 25.0
-shader_parameter/brightness = 1.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2phsl"]
-shader = ExtResource("2_33lhp")
-shader_parameter/weighted = true
-shader_parameter/activate = false
-shader_parameter/Transparency = 4.0
-shader_parameter/Slow = 25.0
-shader_parameter/brightness = 1.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_so6l3"]
-shader = ExtResource("2_33lhp")
-shader_parameter/weighted = true
-shader_parameter/activate = false
-shader_parameter/Transparency = 4.0
-shader_parameter/Slow = 25.0
-shader_parameter/brightness = 2.5
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idhes"]
 shader = ExtResource("28_yl3b4")
-shader_parameter/radius = 3
-shader_parameter/offset = Vector3(0, 0, 0)
+shader_parameter/strength = 0.01
+shader_parameter/speed = 10.0
+shader_parameter/frames = 100
+shader_parameter/flowMap = ExtResource("29_00jup")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8677"]
 radius = 56.0
@@ -475,7 +452,7 @@ libraries = {
 
 [node name="BackgroundScene1" type="Sprite2D" parent="Background" groups=["grayscale"]]
 z_index = -15
-material = SubResource("ShaderMaterial_2xnbg")
+material = ExtResource("9_h460a")
 position = Vector2(1477, 355)
 texture = ExtResource("3_wgbc6")
 
@@ -503,7 +480,7 @@ shape = SubResource("RectangleShape2D_cyq2x")
 
 [node name="Foreground" type="Sprite2D" parent="Background" groups=["grayscale"]]
 z_index = 10
-material = SubResource("ShaderMaterial_yci8v")
+material = ExtResource("9_h460a")
 position = Vector2(54.5, 355)
 texture = ExtResource("4_vprv8")
 
@@ -511,7 +488,7 @@ texture = ExtResource("4_vprv8")
 
 [node name="Alicia_Adulta" parent="Characters" groups=["character", "dialogue_starter", "grayscale"] instance=ExtResource("5_fmidb")]
 z_index = 1
-material = SubResource("ShaderMaterial_8a5t2")
+material = ExtResource("9_h460a")
 position = Vector2(-300, 472)
 collision_layer = 2
 collision_mask = 2
@@ -526,7 +503,7 @@ stream = ExtResource("7_ntmog")
 
 [node name="Door-left" parent="Objects" groups=["grayscale"] instance=ExtResource("7_p5sea")]
 z_index = 2
-material = SubResource("ShaderMaterial_2phsl")
+material = ExtResource("9_h460a")
 position = Vector2(159, 415)
 script = ExtResource("8_od0cd")
 animation_name = "Closed"
@@ -536,23 +513,27 @@ position = Vector2(1384, 384)
 animation_name = "RESET"
 
 [node name="WindowGlasses" type="Sprite2D" parent="Objects"]
+material = ExtResource("12_j5l1c")
 position = Vector2(2192, 272)
 texture = ExtResource("11_n4vk4")
 
 [node name="Cortinas" parent="Objects" groups=["grayscale"] instance=ExtResource("10_u6lph")]
-material = SubResource("ShaderMaterial_so6l3")
+material = ExtResource("9_h460a")
 position = Vector2(2200, 280)
 animation_name = "RESET"
 
 [node name="FlowerPot" parent="Objects" instance=ExtResource("11_pirte")]
+material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
-animation_name = "Almost closing"
+animation_name = "Stuck"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
-position = Vector2(2224, 440)
+material = ExtResource("12_j5l1c")
+position = Vector2(2216, 416)
 texture = ExtResource("10_dbg4j")
 
 [node name="Partitura" parent="Objects" instance=ExtResource("11_pk0dk")]
+material = ExtResource("12_j5l1c")
 position = Vector2(2224, 336)
 animation_name = "RESET"
 
@@ -612,6 +593,7 @@ item_to_pick_up = ExtResource("17_ygw7t")
 unique_name_in_owner = true
 visible = false
 z_index = 5
+material = ExtResource("12_j5l1c")
 position = Vector2(-1040, 472)
 speed = 10000.0
 camera = NodePath("../PlayerCamera")
@@ -655,6 +637,7 @@ visible = false
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
 material = SubResource("ShaderMaterial_idhes")
 anchors_preset = 15
 anchor_right = 1.0

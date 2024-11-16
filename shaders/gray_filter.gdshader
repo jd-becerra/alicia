@@ -1,32 +1,55 @@
 shader_type canvas_item;
 
-uniform sampler2D Noise;
+// Uniforms from Shader 1
+uniform sampler2D flowMap; // Displacement map
+uniform float strength = 0.005;    // Force of the effect
+uniform float speed = 6.0;       // Speed of the effect
+uniform int frames : hint_range(1, 100) = 3; // Frames of the effect
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
-// --- Uniforms --- //
+// Uniforms from Shader 2
+uniform sampler2D Noise;
 uniform bool weighted = true;   // Determines whether to use normal or weighted averages
 uniform bool activate = false;
 uniform float Transparency = 4.0;
 uniform float Slow = 25.0;
 uniform float brightness = 2.5;
 
+// Function to calculate clock frame
+float clock(float time) {
+    float fframes = float(frames);
+    return floor(mod(time * speed, fframes)) / fframes;
+}
+
 void fragment() {
+    // --- Shader 1 Logic ---
+    float c = clock(TIME); // Get clock frame
+    vec4 offset = texture(flowMap, vec2(UV.x + c, UV.y + c)) * strength; // Get offset
+
+    // Apply the offset to the UV
+    vec2 displacedUV = vec2(UV.x, UV.y) + offset.xy - vec2(0.5, 0.5) * strength;
+    vec4 baseColor = texture(TEXTURE, displacedUV); // Get the displaced texture color
+
+    // --- Shader 2 Logic ---
     if (activate) {
         // Convert the original color to grayscale
         vec3 gray = mix(
-            vec3((COLOR.r + COLOR.g + COLOR.b) / 3.0),      // Normal grayscale
-            vec3(0.299 * COLOR.r + 0.587 * COLOR.g + 0.114 * COLOR.b),  // Weighted grayscale
+            vec3((baseColor.r + baseColor.g + baseColor.b) / 3.0),      // Normal grayscale
+            vec3(0.299 * baseColor.r + 0.587 * baseColor.g + 0.114 * baseColor.b),  // Weighted grayscale
             float(weighted)
         );
 
         // Mix the texture with the grayscale value
-        vec3 tex = mix(texture(TEXTURE, UV).rgb, gray, 1.0);
+        vec3 tex = mix(baseColor.rgb, gray, 1.0);
 
         // Apply the noise effect and divide by transparency (affects RGB only)
         vec3 resultColor = tex * texture(Noise, texture(Noise, UV).xy + cos(TIME) / Slow).rgb / Transparency;
+        resultColor *= brightness;
 
-		resultColor *= brightness;
-
-        // Preserve the original alpha (COLOR.a) and only modify the RGB
-        COLOR = vec4(resultColor, COLOR.a);
+        // Preserve the original alpha (baseColor.a) and only modify the RGB
+        COLOR = vec4(resultColor, baseColor.a);
+    } else {
+        // If not activated, just use the result from Shader 1
+        COLOR = baseColor;
     }
 }
