@@ -14,6 +14,8 @@ do pause_dialogue(1)
 Alicia: ...
 => END
 ~ escritorio
-# do play_character_animation("Alicia_Adulta", "Look_Window")
-
+do play_character_animation("Alicia_Adulta", "Sad", false)
+Alicia: Si pudiera regresar en el tiempo...
+Alicia: Hay muchas cosas que habría cambiado.
+do play_character_animation("Alicia_Adulta", "Sad_Sigh")
 => END

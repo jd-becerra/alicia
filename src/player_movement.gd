@@ -39,6 +39,7 @@ var clicked = false
 var is_dragging = false
 var first_click = false  # To detect double-click
 var is_dialogue_active = false
+var initial_y_position: float
 
 func _ready():
 	# target_position = global_position
@@ -83,10 +84,11 @@ func handle_click(click_position: Vector2):
 	update_target_position(click_position)
 
 func update_target_position(new_position: Vector2):
-	new_position.y = global_position.y  # Restrict to x-axis
+	new_position.y = initial_y_position
 	if new_position.distance_to(global_position) > move_threshold:
 		target_position = new_position
 		is_moving = true
+	print("Target position: ", target_position)
 
 func _physics_process(delta):
 	# Player can only move when the game is paused
@@ -150,6 +152,7 @@ func initialize(pos: Vector2, flip: bool):
 	last_click_position = Vector2.ZERO
 
 	global_position = pos
+	initial_y_position = pos.y
 	target_position = global_position
 	last_position = Vector2.ZERO
 
