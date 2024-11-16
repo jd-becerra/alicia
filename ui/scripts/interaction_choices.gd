@@ -49,6 +49,7 @@ signal unhandled_left_click_release(event: InputEvent)
 var wheel_open = false
 var mouse_inside_area = false
 var game_paused = false
+var force_disable = false # This will force disabling the menu even if the AnimationPlayer is telling it to show
 
 func _ready() -> void:
 	# Connect the dot button to the _on_dot_pressed function
@@ -83,7 +84,7 @@ func _ready() -> void:
 		use_button.mouse_exited.connect(_on_button_exit.bind(use_button))
 
 func _process(_delta: float) -> void:
-	if game_paused and enable_on_scene:
+	if game_paused and enable_on_scene and not force_disable:
 		self.show()
 	else:
 		self.hide()

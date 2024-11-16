@@ -38,6 +38,9 @@ void fragment() {
             vec3(0.299 * baseColor.r + 0.587 * baseColor.g + 0.114 * baseColor.b),  // Weighted grayscale
             float(weighted)
         );
+		
+		// Make grayscale brighter
+		gray *= 1.2;
 
         // Mix the texture with the grayscale value
         vec3 tex = mix(baseColor.rgb, gray, 1.0);
@@ -47,7 +50,7 @@ void fragment() {
         resultColor *= brightness;
 
         // Preserve the original alpha (baseColor.a) and only modify the RGB
-        COLOR = vec4(resultColor, baseColor.a);
+        COLOR = vec4(tex, baseColor.a);
     } else {
         // If not activated, just use the result from Shader 1
         COLOR = baseColor;

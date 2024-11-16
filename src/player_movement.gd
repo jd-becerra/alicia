@@ -96,7 +96,6 @@ func update_target_position(new_position: Vector2):
 	if new_position.distance_to(global_position) > move_threshold:
 		target_position = new_position
 		is_moving = true
-	print("Target position: ", target_position)
 
 func _physics_process(delta):
 	# Player can only move when the game is paused
@@ -131,7 +130,6 @@ func _physics_process(delta):
 		is_moving = false
 		velocity = Vector2.ZERO
 		is_double_speed = false
-	print("Player position: ", global_position)
 
 func update_sprite_direction(flip: bool):
 	sprite.flip_h = flip

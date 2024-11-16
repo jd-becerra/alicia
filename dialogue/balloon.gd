@@ -70,9 +70,7 @@ var dialogue_line: DialogueLine:
 
 		# Change background color of the character label
 		if characters.has(dialogue_line.character):
-			var new_stylebox = panel.get_theme_stylebox("panel")
-			new_stylebox.bg_color = characters[dialogue_line.character]
-			panel.add_theme_stylebox_override("panel", new_stylebox)
+			%CharacterLabel.add_theme_color_override("default_color", characters[dialogue_line.character])
 
 		dialogue_label.hide()
 		dialogue_label.dialogue_line = dialogue_line
