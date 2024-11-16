@@ -58,6 +58,14 @@ func _input(event):
 	if not game_paused or not self.visible or click_interactive_menus() or is_dialogue_active:
 		return
 
+	# Move normally with ui_left and ui_right to left or right(for debugging)
+	if Input.is_action_pressed("ui_left"):
+		global_position.x -= move_threshold
+		return
+	elif Input.is_action_pressed("ui_right"):
+		global_position.x += move_threshold
+		return
+
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if not click_inside_menu(event.global_position):
@@ -123,6 +131,7 @@ func _physics_process(delta):
 		is_moving = false
 		velocity = Vector2.ZERO
 		is_double_speed = false
+	print("Player position: ", global_position)
 
 func update_sprite_direction(flip: bool):
 	sprite.flip_h = flip

@@ -99,7 +99,7 @@ tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
-tracks/5/interp = 1
+tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
@@ -171,7 +171,7 @@ tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/path = NodePath("DialogueTriggers/Dialogue1:dialogue_name")
-tracks/11/interp = 1
+tracks/11/interp = 0
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
@@ -443,7 +443,7 @@ libraries = {
 [node name="Background" type="StaticBody2D" parent="."]
 
 [node name="BackgroundScene1" type="Sprite2D" parent="Background" groups=["grayscale"]]
-z_index = -15
+z_index = -1
 material = ExtResource("9_h460a")
 position = Vector2(1477, 355)
 texture = ExtResource("3_wgbc6")
@@ -479,7 +479,7 @@ texture = ExtResource("4_vprv8")
 [node name="Characters" type="Node" parent="."]
 
 [node name="Alicia_Adulta" parent="Characters" groups=["character", "dialogue_starter", "grayscale"] instance=ExtResource("5_fmidb")]
-z_index = 4
+z_index = 5
 material = ExtResource("9_h460a")
 position = Vector2(-300, 472)
 collision_layer = 2
@@ -517,6 +517,7 @@ animation_name = "RESET"
 [node name="FlowerPot" parent="Objects" instance=ExtResource("11_pirte")]
 material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
+animation_name = "RESET"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
 material = ExtResource("12_j5l1c")
@@ -621,10 +622,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DocumentWide" parent="UI" instance=ExtResource("17_1cnvc")]
 visible = false
+z_index = 99
 mouse_filter = 2
 
 [node name="PianoUI" parent="UI" instance=ExtResource("23_g4shp")]
 visible = false
+z_index = 98
 
 [node name="DialogueTriggers" type="Node" parent="."]
 

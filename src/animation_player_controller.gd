@@ -23,9 +23,6 @@ var tolerance: float = 0.01  # Tolerance for animation end comparison
 var animation_finished = false
 var is_dialogue_triggered = false
 var animation_played_first_time = true
-var time_keys_enabled = false
-var time_keys_step: float = 0.1
-var time_keys_speed: float = 5.0
 
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
@@ -65,12 +62,9 @@ func _process(_delta):
 		# progress_bar.visible = true
 		# animation_played_first_time = false
 
-	if not time_keys_enabled and not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
+	if not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
 		animation.set_speed_scale(1)
 		update_progress_bar()
-	elif time_keys_enabled:
-		# Ensure animation doesn't play while using time keys
-		animation.set_speed_scale(0)
 
 	# Check if animation reaches the end using tolerance for floating point precision
 	if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
@@ -88,24 +82,6 @@ func update_playback_button(state: bool):
 	playback_button.emit_signal("paused", state)
 	if not state: # If game is not paused, make sure to set animation speed to 1
 		animation.set_speed_scale(1)
-		
-
-func handle_time_keys():
-	var delta = get_process_delta_time()
-	var change = time_keys_speed * delta
-	var current_pos = animation.current_animation_position
-	var new_pos = current_pos
-
-	if Input.is_action_pressed("ui_left"):
-		new_pos = max(0, current_pos - change)
-	elif Input.is_action_pressed("ui_right"):
-		new_pos = min(animation.get_current_animation_length(), current_pos + change)
-	
-	if new_pos != current_pos:
-		animation.seek(new_pos, true)
-		update_progress_bar()
-		emit_signal("animation_forward", new_pos > last_time)
-		last_time = new_pos
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_playback"):
@@ -115,26 +91,10 @@ func _input(event):
 	var dragging = event is InputEventMouseMotion and is_dragging
 	var clicking = event is InputEventMouseButton and event.pressed
 
-	# Seek with arrow keys (optional)
-	var time_keys_pressed = Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right")
-	if time_keys_pressed and \
-		not is_dialogue_triggered:
-		if not time_keys_enabled:
-			time_keys_enabled = true
-			animation.set_speed_scale(0)
-		handle_time_keys()
-		return
-	elif time_keys_enabled and not time_keys_pressed:
-		time_keys_enabled = false
-		if not is_paused and not is_dialogue_triggered:
-			animation.set_speed_scale(1)
-		return	
-
 	# Check if the mouse is pressed (for clicking) or if dragging the progress bar
 	if dragging or \
 		(clicking and progress_bar.get_global_rect().has_point(event.global_position)) and \
-			not is_dialogue_triggered \
-			and not time_keys_enabled:
+			not is_dialogue_triggered:
 		# Disable the dialogue trigger when dragging the progress bar
 		if not is_dragging:
 			is_dragging = true
@@ -169,7 +129,6 @@ func on_dialogue_triggered(is_active: bool):
 
 	if is_active:
 		animation.set_speed_scale(0)
-
 
 func _on_paused(state: bool):
 	is_paused = state

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://wujyjtv7v6pl" path="res://scenes/avatar_jugador.png" id="2_u3d3k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2eoaa"]
-size = Vector2(106, 211)
+size = Vector2(17.6, 43.2)
 
 [sub_resource type="Animation" id="Animation_tq5xq"]
 length = 6.3
@@ -92,7 +92,8 @@ metadata/_aseprite_wizard_interface_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "14d55fd7ff3a6c4bd47c2040ab2957b6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, -5.5)
+position = Vector2(-0.800001, -0.799997)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2eoaa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
