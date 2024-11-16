@@ -207,6 +207,11 @@ func on_pick_up() -> void:
 	disable_action("Pick Up")
 	# For now, just add the item to the player's inventory
 	interaction_manager.add_item_to_inventory(item_to_pick_up)
+	
+	# If item is "Partitura", force_disable the menu and hide that object from the scene
+	if item_to_pick_up.name == "Partitura":
+		force_disable = true
+		main_scene.get_node("Objects/Partitura").hide()
 
 func on_use() -> void:
 	hide_choices()
