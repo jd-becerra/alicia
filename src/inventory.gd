@@ -54,16 +54,7 @@ func add_item(index: int, new_item: Item) -> void:
 
 	inventory_changed.emit(items)
 
-func release_item(grabbed_item: Item, target_item: Item, index: int, grabbed_slot: PanelContainer) -> void:
-	if target_item:
-		print("Released %s item on %s item" % [grabbed_item.name, target_item.name])
-	else:
-		var object_under = interaction_object_under(grabbed_slot)
-		if object_under:
-			print("Released %s item on %s object" % [grabbed_item.name, object_under.name])
-		else:
-			print("Released %s item on empty slot" % grabbed_item.name)
-
+func release_item(grabbed_item: Item, index: int) -> void:
 	items[index] = grabbed_item
 	inventory_changed.emit(items)
 
@@ -88,3 +79,4 @@ func interaction_object_under(slot: PanelContainer) -> Item:
 			return dot.item
 
 	return null
+

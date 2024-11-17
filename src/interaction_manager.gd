@@ -4,10 +4,30 @@ extends Node
 ## Available items on the scene
 @export var full_inventory: Inventory
 
-@onready var player_inventory: Inventory = get_tree().get_root().get_node("MainScene").get_node("%Player").inventory_data
-@onready var game_ui = get_tree().get_root().get_node("MainScene").get_node("%GameUI")
+var main_scene
+var player_inventory: Inventory
+var game_ui
+var game_states
+
 var active_menu = null
 var current_animation_player = null
+var is_initialized = false
+
+func _process(_delta: float) -> void:
+	if not get_tree().current_scene:
+		return
+
+	if not get_tree().current_scene.name == "MainScene":
+		return
+
+	if is_initialized:
+		return
+		
+	main_scene = get_tree().get_root().get_node("MainScene")
+	player_inventory = main_scene.get_node("%Player").inventory_data
+	game_ui = main_scene.get_node("%GameUI")
+	game_states = main_scene.get_node("%States")
+	is_initialized = true
 
 func set_active_menu(menu: Control) -> void:
 	if active_menu != menu and active_menu:
@@ -22,7 +42,6 @@ func play_character_animation(character: String, animation_name: String, play_ov
 func play_object_animation(object: String, animation_name: String, play_over_dialogue = false) -> void:
 	var route = "/root/MainScene/Objects/" + object
 	await play_animation(route, animation_name, play_over_dialogue)
-	
 
 func play_animation(controller_route: String, animation_name: String, play_over_dialogue) -> void:
 	var controller = get_node(controller_route)

@@ -12,6 +12,6 @@ class_name Item
 @export var pairs_with: String = ""
 
 ## Dictionary to store dialogue for incompatible items (key: item name, value: dialogue start name). Key: String, Value: String
-@export var incompatible_dialogue: Dictionary = {}
+@export var incompatible_dialogue: Array[String]
 
 var index: int = -1

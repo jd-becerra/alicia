@@ -5,13 +5,18 @@ extends Control
 # Make an array of boolean values to represent the availability of each interaction choice
 ## Options: [ Inspect, Zoom, Pick Up, Use ]
 @export_category("Main settings")
-@export_flags("Inspect:1", "Zoom:2", "PickUp:3", "Use:4") var choices
 @export var enable_on_scene: bool = true
 @export var object_name: String = ""
 
 # Dialogue and animations for all the interactions
 @export var dialogue: DialogueResource
 @export var animations: AnimationPlayer
+
+@export_category("Choices")
+@export var inspect: bool = false
+@export var zoom: bool = false
+@export var pick_up: bool = false
+@export var use: bool = false
 
 @export_category("Zoom")
 @export var zoom_object_path: String   # Receives a path to a texture
@@ -41,6 +46,7 @@ extends Control
 
 @onready var interaction_manager = get_tree().get_root().get_node("MainScene").get_node("%InteractionManager")
 @onready var dialogue_controller: DialogueController = %DialogueController
+@onready var game_states = main_scene.get_node("%States")
 
 @warning_ignore("unused_signal")
 signal dialogue_active(is_active: bool)
@@ -66,19 +72,19 @@ func _ready() -> void:
 
 	dot.mouse_entered.connect(_on_button_hover.bind(dot))
 	dot.mouse_exited.connect(_on_button_exit.bind(dot))
-	if choices & 0x01:
+	if inspect:
 		inspect_button.pressed.connect(on_inspect)
 		inspect_button.mouse_entered.connect(_on_button_hover.bind(inspect_button))
 		inspect_button.mouse_exited.connect(_on_button_exit.bind(inspect_button))
-	if choices & 0x02:
+	if zoom:
 		zoom_button.pressed.connect(on_zoom)
 		zoom_button.mouse_entered.connect(_on_button_hover.bind(zoom_button))
 		zoom_button.mouse_exited.connect(_on_button_exit.bind(zoom_button))
-	if choices & 0x04:
+	if pick_up:
 		pick_up_button.pressed.connect(on_pick_up)
 		pick_up_button.mouse_entered.connect(_on_button_hover.bind(pick_up_button))
 		pick_up_button.mouse_exited.connect(_on_button_exit.bind(pick_up_button))
-	if choices & 0x08:
+	if use:
 		use_button.pressed.connect(on_use)
 		use_button.mouse_entered.connect(_on_button_hover.bind(use_button))
 		use_button.mouse_exited.connect(_on_button_exit.bind(use_button))
@@ -86,6 +92,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if game_paused and enable_on_scene and not force_disable:
 		self.show()
+		if is_grabbed_slot_over():
+			_on_button_hover(dot)
+		else:
+			_on_button_exit(dot)
 	else:
 		self.hide()
 
@@ -129,13 +139,13 @@ func hide_choices() -> void:
 
 func show_buttons(anim_name: String) -> void:
 	if anim_name == "open_wheel":
-		if choices & 0x01:
+		if inspect:
 			inspect_button.show()
-		if choices & 0x02:
+		if zoom:
 			zoom_button.show()
-		if choices & 0x04:
+		if pick_up:
 			pick_up_button.show()
-		if choices & 0x08:
+		if use:
 			use_button.show()
 		
 
@@ -150,6 +160,12 @@ func _on_button_exit(btn: Button) -> void:
 	mouse_inside_area = false
 	if wheel_open or (not wheel_open and btn == dot):
 		btn.scale = Vector2(1, 1)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and \
+		event.button_index == MOUSE_BUTTON_LEFT and \
+		event.pressed == false:
+			check_grabbed_slot()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -183,9 +199,11 @@ func _on_enter_area(mouse_inside: bool) -> void:
 	else:
 		mouse_inside_area = false
 
-func update_choices(new_choices: int) -> void:
-	# Allows to change the choices from the outside
-	choices = new_choices
+func update_choices(new_inspect: bool, new_zoom: bool, new_pick_up: bool, new_use: bool) -> void:
+	inspect = new_inspect
+	zoom = new_zoom
+	pick_up = new_pick_up
+	use = new_use
 
 func on_inspect() -> void:
 	hide_choices()
@@ -217,22 +235,27 @@ func on_use() -> void:
 	hide_choices()
 
 	if use_node:
+		if object_name == "Piano_Interaction" and not game_states.piano_open:
+			print("Piano is closed, can't use it")
+			# Here we should make a dialogue when Piano is closed
+			# show_interaction_dialogue(dialogue, "Piano_Closed")
+			return
 		use_node.show_use_node()
 
 func disable_action(action_name: String) -> void:
 	match action_name:
 		"Inspect":
 			inspect_button.hide()
-			choices &= ~0x01
+			inspect = false
 		"Zoom":
 			zoom_button.hide()
-			choices &= ~0x02
+			zoom = false
 		"Pick Up":
 			pick_up_button.hide()
-			choices &= ~0x04
+			pick_up = false
 		"Use":
 			use_button.hide()
-			choices &= ~0x08
+			use = false
 		_:
 			print("Invalid action name")
 			pass
@@ -241,21 +264,56 @@ func enable_action(action_name: String) -> void:
 	match action_name:
 		"Inspect":
 			inspect_button.show()
-			choices |= 0x01
+			inspect = true
 		"Zoom":
 			zoom_button.show()
-			choices |= 0x02
+			zoom = true
 		"Pick Up":
 			pick_up_button.show()
-			choices |= 0x04
+			pick_up = true
 		"Use":
 			use_button.show()
-			choices |= 0x08
+			use = true
 		_:
 			print("Invalid action name")
 			pass
 
 func show_interaction_dialogue(resource, dialogue_name: String) -> void:
-	print("Dialogue button pressed")
 	dialogue_controller.dialogue = resource
 	dialogue_controller.start_dialogue(dialogue_name)
+
+func is_grabbed_slot_over() -> bool:
+	# Improved logic to ensure reliable detection when the grabbed slot is over the dot button
+	var mouse_position = get_global_mouse_position()
+	if dot.get_global_rect().has_point(mouse_position):
+		return true
+	return false
+
+func check_grabbed_slot() -> void:
+	var grabbed_slot = game_ui.get_node("%GrabbedSlot")
+	if grabbed_slot and grabbed_slot.visible and is_grabbed_slot_over():
+		print("Grabbed item: ", game_ui.grabbed_item.name, " is over: ", object_name)
+		check_interactions(game_ui.grabbed_item, dot.item)
+
+func check_interactions(grabbed_item: Item, object_under: Item) -> void:
+	var game_states = main_scene.get_node("%States")
+
+	print("Released %s item on %s object" % [grabbed_item.name, object_under.name])
+	if grabbed_item.name == "Partitura" and object_under.name == "Piano_Interaction":
+		# Here we should make partitura on piano visible when USE
+		pass
+	if grabbed_item.name == "Batuta" and object_under.name == "Piano_Interaction":
+		var piano_anim_player = main_scene.get_node("Objects/Piano/AnimationPlayer")
+		var flowerpot_anim_player = main_scene.get_node("Objects/FlowerPot/AnimationPlayer")
+		if piano_anim_player.current_animation == "RESET" or \
+				piano_anim_player.current_animation == "Almost closing" or \
+				piano_anim_player.current_animation == "Leaf falls":
+			game_states.piano_open = true
+			piano_anim_player.play("Open")
+			flowerpot_anim_player.play("No_Leaf")
+		else:
+			# Here we should make a dialogue when Piano can't be opened
+			print("Piano can't be opened")
+	else:
+		# If the items don't match, start a dialogue for the interaction
+		pass

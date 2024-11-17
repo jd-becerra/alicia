@@ -15,9 +15,9 @@ noise = SubResource("FastNoiseLite_nuxf5")
 
 [resource]
 shader = ExtResource("1_xdmg5")
-shader_parameter/strength = 0.001
+shader_parameter/strength = 0.002
 shader_parameter/speed = 6.0
-shader_parameter/frames = 10
+shader_parameter/frames = 5
 shader_parameter/weighted = true
 shader_parameter/activate = false
 shader_parameter/Transparency = 1.0

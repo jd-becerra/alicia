@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dowuvlt4etxdg"]
+[gd_scene load_steps=10 format=3 uid="uid://dowuvlt4etxdg"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_b4tjd"]
 [ext_resource type="Texture2D" uid="uid://bphr10px1ya5q" path="res://scenes/scene_1_children/Flower_Pot.png" id="2_uof8t"]
@@ -82,11 +82,28 @@ tracks/0/keys = {
 "values": [18]
 }
 
+[sub_resource type="Animation" id="Animation_qgcko"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7qun8"]
 _data = {
 "Almost closing": SubResource("Animation_basot"),
 "Close": SubResource("Animation_omlan"),
 "Leaf falls": SubResource("Animation_4ociv"),
+"No_Leaf": SubResource("Animation_qgcko"),
 "RESET": SubResource("Animation_gvld3"),
 "Stuck": SubResource("Animation_2kwr3")
 }
@@ -118,4 +135,4 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://assets/objects/scene-1/Flower_Pot.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "7cedbeededc2bf2449b7f6eab4cbcab7"
+metadata/_aseprite_wizard_source_file_hash_ = "7d547718c9076c42a03051de0d860a4e"

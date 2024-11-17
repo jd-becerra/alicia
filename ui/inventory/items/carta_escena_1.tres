@@ -16,4 +16,4 @@ description = "Es la carta que me envió mi tía hace un mes. Dice que mi madre.
 texture = SubResource("AtlasTexture_te34w")
 default = true
 pairs_with = ""
-incompatible_dialogue = {}
+incompatible_dialogue = Array[String]([])

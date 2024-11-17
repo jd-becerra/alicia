@@ -90,6 +90,10 @@ func print_note(button: Button) -> void:
 	if player_sequence.size() == MAX_NOTES:
 		if player_sequence == CORRECT_SEQUENCE:
 			print("Congratulations! You played the correct sequence.")
+			var main_scene = get_node("/root/MainScene")
+			self.hide()
+			get_tree().paused = false
+			main_scene.enable_normal_animation("Scene1_Ending")
 		else:
 			print("Incorrect sequence. Try again.")
 			

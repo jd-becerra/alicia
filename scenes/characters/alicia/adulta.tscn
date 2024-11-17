@@ -165,6 +165,7 @@ _data = {
 process_mode = 3
 scale = Vector2(5, 5)
 script = ExtResource("1_k4wck")
+animation_name = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 0)

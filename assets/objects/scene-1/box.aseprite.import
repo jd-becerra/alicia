@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ncf7v2jxo5d1"
+path="res://.godot/imported/box.aseprite-dcde8622729e2b3b2e58d365b8c6653b.res"
+
+[deps]
+
+source_file="res://assets/objects/scene-1/box.aseprite"
+dest_files=["res://.godot/imported/box.aseprite-dcde8622729e2b3b2e58d365b8c6653b.res"]
+
+[params]
+

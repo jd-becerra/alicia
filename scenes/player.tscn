@@ -93,7 +93,6 @@ metadata/_aseprite_wizard_source_file_hash_ = "14d55fd7ff3a6c4bd47c2040ab2957b6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.800001, -0.799997)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2eoaa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

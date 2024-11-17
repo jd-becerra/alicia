@@ -15,6 +15,7 @@ extends Node2D
 @onready var inventory: PanelContainer = menu.get_node("Inventory")
 
 @onready var dialogue_indicator: PackedScene = preload("res://ui/dialogue_indicator.tscn")
+@onready var vhs_effect: ColorRect = main_scene.get_node("%VHSEffect")
 
 var is_dragging: bool = false
 var last_time = 0
@@ -55,12 +56,20 @@ func _ready():
 		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
 func _process(_delta):
+	if animation.current_animation != "Scene1-Beat1":
+		return
+
 	# THIS FEATURE WILL BE IMPLEMENTED IN THE FINAL BUILD
 	# Enable progress bar only after animation was played for the first time
 	# if animation_played_first_time and animation_finished:
 		# playback_button.visible = true
 		# progress_bar.visible = true
 		# animation_played_first_time = false
+
+	if is_dragging:
+		vhs_effect.visible = true
+	else:
+		vhs_effect.visible = false
 
 	if not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
 		animation.set_speed_scale(1)
@@ -84,6 +93,9 @@ func update_playback_button(state: bool):
 		animation.set_speed_scale(1)
 
 func _input(event):
+	if animation.current_animation != "Scene1-Beat1":
+		return
+
 	if Input.is_action_just_pressed("ui_playback"):
 		update_playback_button(!playback_button.is_paused)
 		return
@@ -209,3 +221,16 @@ func add_dialogue_indicators():
 		# Add the indicator to the progress bar directly
 		progress_bar.add_child(container)
 		container.add_child(indicator)
+
+func enable_normal_animation(new_animation_name: String):
+	is_paused = false
+	update_playback_button(false)
+	# Reset everything to normal state
+	for node in get_tree().get_nodes_in_group("grayscale"):
+		node.material.set_shader_parameter("activate", false)	
+
+	animation.play(new_animation_name)
+	animation_finished = false
+	animation_camera.enabled = true
+	movement_camera.enabled = false
+	player_movement_character.hide_player()

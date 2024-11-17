@@ -98,7 +98,7 @@ func on_inventory_interact(inv: Inventory, item: Item, index: int, button_action
 			grabbed_item = inv.grab_item(index)
 		update_grab_slot()
 	elif button_action == 0:
-		inv.release_item(grabbed_item, item, index, grabbed_slot)
+		inv.release_item(grabbed_item, index)
 		grabbed_item = null
 		update_grab_slot()
 	elif button_action == 2:

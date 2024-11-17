@@ -16,4 +16,4 @@ description = "Es la batuta de mi madre. Ella era la mejor directora de orquesta
 texture = SubResource("AtlasTexture_bpmjf")
 default = false
 pairs_with = "Piano"
-incompatible_dialogue = {}
+incompatible_dialogue = Array[String]([])

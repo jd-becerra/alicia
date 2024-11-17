@@ -16,4 +16,4 @@ description = "Es una partitura con la canción que mi madre escribió de joven.
 texture = SubResource("AtlasTexture_0grts")
 default = false
 pairs_with = ""
-incompatible_dialogue = {}
+incompatible_dialogue = Array[String]([])

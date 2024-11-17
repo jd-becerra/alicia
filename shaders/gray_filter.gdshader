@@ -24,7 +24,14 @@ float clock(float time) {
 void fragment() {
     // --- Shader 1 Logic ---
     float c = clock(TIME); // Get clock frame
-    vec4 offset = texture(flowMap, vec2(UV.x + c, UV.y + c)) * strength; // Get offset
+    // Scale the flowMap to fit the entire image
+    vec2 flowMapSize = vec2(textureSize(flowMap, 0)); // Flow map texture size
+    vec2 screenSize = vec2(textureSize(SCREEN_TEXTURE, 0)); // Screen texture size
+    vec2 scaledUV = UV * (screenSize / flowMapSize); // Scale UV coordinates
+    // Add time-based motion and wrap the flowMap UVs
+    vec2 movingUV = mod(scaledUV + vec2(c, 0.0), 1.0); // Add motion and wrap around
+    // Sample the flowMap with wrapped UV
+    vec4 offset = texture(flowMap, movingUV) * strength;
 
     // Apply the offset to the UV
     vec2 displacedUV = vec2(UV.x, UV.y) + offset.xy - vec2(0.5, 0.5) * strength;

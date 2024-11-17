@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=52 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Texture2D" uid="uid://cjoub15adxvx1" path="res://assets/objects/scene-1/window_glasses_close.png" id="3_0tvtj"]
@@ -28,11 +28,14 @@
 [ext_resource type="Resource" uid="uid://csmjw1oymgd5u" path="res://ui/inventory/items/batuta.tres" id="15_psqa6"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="Resource" uid="uid://3s6bb82rc5op" path="res://ui/inventory/items/partitura.tres" id="17_ygw7t"]
+[ext_resource type="Texture2D" uid="uid://macule0qyaw4" path="res://assets/objects/scene-1/box.png" id="18_qv5mr"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
 [ext_resource type="PackedScene" uid="uid://bj3cboqxul38a" path="res://scenes/piano_keyboard.tscn" id="23_g4shp"]
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="30_e1tkr"]
+[ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="31_bcrex"]
+[ext_resource type="Script" path="res://src/states.gd" id="34_m4xoq"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -204,6 +207,18 @@ tracks/13/keys = {
 "update": 1,
 "values": [ExtResource("11_n4vk4")]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MainCamera:zoom")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
 resource_name = "Scene1-Beat1"
@@ -335,7 +350,7 @@ tracks/10/path = NodePath("Objects/Piano:animation_name")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(-0.0333333, 13.9, 18.2666, 32.1),
+"times": PackedFloat32Array(0, 13.9, 18.2666, 32.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["RESET", "Leaf falls", "Almost closing", "Stuck"]
@@ -401,10 +416,51 @@ tracks/15/keys = {
 "values": [ExtResource("11_n4vk4"), ExtResource("11_n4vk4"), ExtResource("3_0tvtj")]
 }
 
+[sub_resource type="Animation" id="Animation_sb77p"]
+resource_name = "Scene1_Ending"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainCamera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1392, 328), Vector2(1392, 385)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainCamera:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1.7, 1.7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Objects/Piano:animation_name")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Alicia_Playing_Starts"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
 _data = {
 "RESET": SubResource("Animation_vp3wc"),
-"Scene1-Beat1": SubResource("Animation_e3rfi")
+"Scene1-Beat1": SubResource("Animation_e3rfi"),
+"Scene1_Ending": SubResource("Animation_sb77p")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hspma"]
@@ -422,24 +478,43 @@ size = Vector2(640, 1012.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyq2x"]
 size = Vector2(512.099, 990)
 
-[sub_resource type="Gradient" id="Gradient_nxign"]
+[sub_resource type="Gradient" id="Gradient_ifauv"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_a8vgh"]
-seed = 4
-frequency = 1.0
-domain_warp_enabled = true
-domain_warp_fractal_type = 0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c3d0t"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_83vab"]
-invert = true
-color_ramp = SubResource("Gradient_nxign")
-noise = SubResource("FastNoiseLite_a8vgh")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gbnau"]
+color_ramp = SubResource("Gradient_ifauv")
+noise = SubResource("FastNoiseLite_c3d0t")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_swedw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rre2d"]
 shader = ExtResource("30_e1tkr")
 shader_parameter/disp = Vector2(0, 0)
 shader_parameter/zoom = 1.0
-shader_parameter/iChannel1 = SubResource("NoiseTexture2D_83vab")
+shader_parameter/iChannel1 = SubResource("NoiseTexture2D_gbnau")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swedw"]
+shader = ExtResource("31_bcrex")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 2.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = -0.026
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8677"]
 radius = 56.0
@@ -546,8 +621,14 @@ texture = ExtResource("10_dbg4j")
 
 [node name="Partitura" parent="Objects" instance=ExtResource("11_pk0dk")]
 material = ExtResource("12_j5l1c")
-position = Vector2(2224, 336)
+position = Vector2(2208, 320)
 animation_name = "RESET"
+
+[node name="Box" type="Sprite2D" parent="Objects"]
+material = ExtResource("12_j5l1c")
+position = Vector2(1784, 440)
+scale = Vector2(3, 3)
+texture = ExtResource("18_qv5mr")
 
 [node name="InteractionMenus" type="Node" parent="Objects"]
 
@@ -562,9 +643,11 @@ offset_left = -8.57202
 offset_top = -8.68802
 offset_right = 0.235962
 offset_bottom = 5.17596
-choices = 13
 object_name = "Piano_Interaction"
 dialogue = ExtResource("14_qmdee")
+inspect = true
+pick_up = true
+use = true
 use_node = NodePath("../../../UI/PianoUI")
 
 [node name="Choices-Escritorio" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -574,13 +657,31 @@ anchor_left = 0.107
 anchor_top = -0.104
 anchor_right = 0.92
 anchor_bottom = 1.033
-offset_left = 1788.74
-offset_top = 394.392
-offset_right = 1156.16
-offset_bottom = -67.384
-choices = 13
+offset_left = 1828.74
+offset_top = 323.392
+offset_right = 1196.16
+offset_bottom = -138.384
 object_name = "Escritorio_Interaction"
 dialogue = ExtResource("15_aga7y")
+inspect = true
+pick_up = true
+use = true
+
+[node name="Choices-Batuta" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+anchors_preset = -1
+anchor_left = 0.107
+anchor_top = -0.104
+anchor_right = 0.92
+anchor_bottom = 1.033
+offset_left = 1500.74
+offset_top = 395.392
+offset_right = 868.156
+offset_bottom = -66.384
+object_name = "Batuta_Interaction"
+dialogue = ExtResource("15_aga7y")
+inspect = true
+pick_up = true
+use = true
 item_to_pick_up = ExtResource("15_psqa6")
 
 [node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -590,14 +691,16 @@ anchor_left = 0.107
 anchor_top = -0.104
 anchor_right = 0.92
 anchor_bottom = 1.033
-offset_left = 2044.74
-offset_top = 339.392
-offset_right = 1428.16
-offset_bottom = -125.384
-choices = 15
+offset_left = 2020.74
+offset_top = 323.392
+offset_right = 1404.16
+offset_bottom = -141.384
 enable_on_scene = false
 object_name = "Partitura_Interaction"
 dialogue = ExtResource("15_obtgh")
+inspect = true
+zoom = true
+pick_up = true
 zoom_object_path = "res://assets/objects/scene-1/partitura_wide.png"
 item_to_pick_up = ExtResource("17_ygw7t")
 
@@ -611,10 +714,12 @@ speed = 10000.0
 camera = NodePath("../PlayerCamera")
 
 [node name="MainCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(2192, 328)
 zoom = Vector2(0.8, 0.8)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-1072, 328)
 enabled = false
 zoom = Vector2(0.8, 0.8)
@@ -649,7 +754,17 @@ mouse_filter = 2
 visible = false
 z_index = 98
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
+[node name="NotebookEffect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_rre2d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VHSEffect" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_swedw")
 anchors_preset = 15
 anchor_right = 1.0
@@ -672,3 +787,7 @@ shape = SubResource("CapsuleShape2D_g8677")
 unique_name_in_owner = true
 script = ExtResource("23_jdu5f")
 full_inventory = ExtResource("23_ki66i")
+
+[node name="States" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("34_m4xoq")
