@@ -327,7 +327,7 @@ func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 			flowerpot_anim_player.play("No_Leaf")
 			
 			# Await for the item to return to the inventory
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(0.5).timeout
 			interaction_manager.remove_item_from_inventory(grabbed_item)
 		else:
 			# Here we should make a dialogue when Piano can't be opened

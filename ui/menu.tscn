@@ -393,9 +393,9 @@ scale = Vector2(1, 1e-05)
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1128.0
-offset_top = 136.0
+offset_top = 24.0
 offset_right = 1146.0
-offset_bottom = 167.0
+offset_bottom = 55.0
 text = "V"
 
 [node name="GrabbedSlot" parent="." instance=ExtResource("6_jly75")]
