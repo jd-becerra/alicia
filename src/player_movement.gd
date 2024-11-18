@@ -40,6 +40,7 @@ var is_dragging = false
 var first_click = false  # To detect double-click
 var is_dialogue_active = false
 var initial_y_position: float
+var clicked_interaction_button: bool = false
 
 func _ready():
 	# target_position = global_position
@@ -53,6 +54,7 @@ func _ready():
 
 		# Since the interaction menus take unhandled_input, we need to connect to the signal to receive it as well
 		interaction_menu.connect("unhandled_left_click_release", Callable(self, "on_unhandled_left_click_release"))
+		interaction_menu.connect("clicked_interaction_button", Callable(self, "on_interaction_button_clicked"))
 
 func _input(event):
 	if not game_paused or not self.visible or click_interactive_menus() or is_dialogue_active:
@@ -76,6 +78,9 @@ func _input(event):
 
 	if clicked or is_dragging:
 		update_target_position(get_global_mouse_position())
+
+func on_interaction_button_clicked(is_clicked: bool):
+	clicked_interaction_button = is_clicked
 
 func handle_click(click_position: Vector2):
 	clicked = true
@@ -102,7 +107,7 @@ func _physics_process(delta):
 	if not game_paused or not self.visible:
 		return
 
-	if not is_moving or is_dialogue_active:
+	if not is_moving or is_dialogue_active or clicked_interaction_button:
 		handle_idle_state()
 		return
 

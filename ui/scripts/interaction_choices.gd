@@ -51,6 +51,7 @@ extends Control
 @warning_ignore("unused_signal")
 signal dialogue_active(is_active: bool)
 signal unhandled_left_click_release(event: InputEvent)
+signal clicked_interaction_button(clicked: bool)
 
 var wheel_open = false
 var mouse_inside_area = false
@@ -98,6 +99,8 @@ func _process(_delta: float) -> void:
 			_on_button_exit(dot)
 	else:
 		self.hide()
+	if Input.is_action_just_released("click"):
+		release_interaction_click()
 
 func _on_dot_pressed() -> void:
 	if not wheel_open:
@@ -105,6 +108,9 @@ func _on_dot_pressed() -> void:
 		show_choices()
 	else:
 		hide_choices()
+
+func release_interaction_click() -> void:
+	emit_signal("clicked_interaction_button", false)
 
 func show_choices() -> void:
 	dot.icon = load(dot_outline_icon_path)
@@ -206,16 +212,19 @@ func update_choices(new_inspect: bool, new_zoom: bool, new_pick_up: bool, new_us
 	use = new_use
 
 func on_inspect() -> void:
+	emit_signal("clicked_interaction_button", true)
 	hide_choices()
 	show_interaction_dialogue(dialogue, "Inspect")
 
 func on_zoom() -> void:
 	# For now, only show the object texture
+	emit_signal("clicked_interaction_button", true)
 	hide_choices()
 	var document_wide = get_node("/root/MainScene/UI/DocumentWide")
 	document_wide.show_object(zoom_object_path)
 
 func on_pick_up() -> void:
+	emit_signal("clicked_interaction_button", true)
 	hide_choices()
 
 	if not item_to_pick_up:
@@ -225,6 +234,12 @@ func on_pick_up() -> void:
 	disable_action("Pick Up")
 	# For now, just add the item to the player's inventory
 	interaction_manager.add_item_to_inventory(item_to_pick_up)
+
+
+	if not game_ui.get_node("%Inventory").visible:
+		game_ui.get_node("%Animations").play("Open_Inventory")
+		await get_tree().create_timer(1.0).timeout
+		game_ui.get_node("%Animations").play("Close_Inventory")
 	
 	# If item is "Partitura", force_disable the menu and hide that object from the scene
 	if item_to_pick_up.name == "Partitura":
@@ -232,6 +247,7 @@ func on_pick_up() -> void:
 		main_scene.get_node("Objects/Partitura").hide()
 
 func on_use() -> void:
+	emit_signal("clicked_interaction_button", true)
 	hide_choices()
 
 	if use_node:
@@ -296,8 +312,6 @@ func check_grabbed_slot() -> void:
 		check_interactions(game_ui.grabbed_item, dot.item)
 
 func check_interactions(grabbed_item: Item, object_under: Item) -> void:
-	var game_states = main_scene.get_node("%States")
-
 	print("Released %s item on %s object" % [grabbed_item.name, object_under.name])
 	if grabbed_item.name == "Partitura" and object_under.name == "Piano_Interaction":
 		# Here we should make partitura on piano visible when USE
@@ -311,6 +325,10 @@ func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 			game_states.piano_open = true
 			piano_anim_player.play("Open")
 			flowerpot_anim_player.play("No_Leaf")
+			
+			# Await for the item to return to the inventory
+			await get_tree().create_timer(1.0).timeout
+			interaction_manager.remove_item_from_inventory(grabbed_item)
 		else:
 			# Here we should make a dialogue when Piano can't be opened
 			print("Piano can't be opened")

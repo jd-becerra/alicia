@@ -67,8 +67,13 @@ func get_item_index(item_name: String) -> int:
 
 func add_item_to_inventory(item: Item) -> void:
 	var item_index = get_item_index(item.name)
+	if item_index != -1:
+		player_inventory.add_item(item_index, item)
+
+func remove_item_from_inventory(item: Item) -> void:
+	var item_index = get_item_index(item.name)
 	print("Item index: ", item_index)
 
 	if item_index != -1:
-		print("Adding: ", item.name,  " to inventory")
-		player_inventory.add_item(item_index, item)
+		print("Removing: ", item.name,  " from inventory")
+		player_inventory.remove_item(item_index)

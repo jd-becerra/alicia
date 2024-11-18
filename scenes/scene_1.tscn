@@ -626,7 +626,7 @@ animation_name = "RESET"
 
 [node name="Box" type="Sprite2D" parent="Objects"]
 material = ExtResource("12_j5l1c")
-position = Vector2(1784, 440)
+position = Vector2(1784, 448)
 scale = Vector2(3, 3)
 texture = ExtResource("18_qv5mr")
 
@@ -765,6 +765,7 @@ mouse_filter = 2
 
 [node name="VHSEffect" type="ColorRect" parent="UI"]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_swedw")
 anchors_preset = 15
 anchor_right = 1.0

@@ -20,6 +20,11 @@ func fill_grid(items: Array):
 	if items.size() == 0:
 		return
 
+	# Clean the grid
+	for slot_pos in range(0, item_grid.get_child_count()):
+		var item_slot = item_grid.get_child(slot_pos)
+		item_slot.set_data(null)
+
 	for slot_pos in range(0, items.size()):
 		var item_slot = item_grid.get_child(slot_pos)
 		item_slot.set_data(items[slot_pos])

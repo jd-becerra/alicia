@@ -32,11 +32,11 @@ vec4 getCol(vec2 pos) {
     c1 = mix(vec4(1, 1, 1, 0), c1, e.x * e.y * e.z * e.w);
 
     // Calculate light intensity (dot product with a specific vector for shading)
-    float d = clamp(dot(c1.xyz, vec3(1.0, -0.5, -0.9)), 0.0, 1.0);
+    float d = clamp(dot(c1.xyz, vec3(1.0, -0.5, -0.5)), 0.0, 1.0);
 
     // Blend with a flat gray color to simulate hand-drawn shading
     vec4 c2 = vec4(0.5);
-    return min(mix(c1, c2, 1.8 * d), 0.7);
+    return min(mix(c1, c2, .5 * d), 1.);
 }
 
 vec4 getColHT(vec2 pos)
@@ -109,9 +109,12 @@ void fragment()
     col.x*=col.x*col.x;
 
     vec2 s=sin(pos.xy*.1/sqrt(iResolution.y/400.));
-    vec3 karo=vec3(1.5);
-    karo-=.5*vec3(.25,.1,.1)*dot(exp(-s*s*80.),vec2(1));
-    float r=length(pos-iResolution.xy*.5)/iResolution.x;
+    vec3 karo=vec3(1.4);
+    
+	// This line adds the squares that look like notebook lines
+	// karo-=.5*vec3(.05,.05,.05)*dot(exp(-s*s*80.),vec2(1));
+    
+	float r=length(pos-iResolution.xy*.5)/iResolution.x;
     float vign=1.-r*r*r;
 	COLOR = vec4(vec3(col.x*col2*karo*vign),1);
     //COLOR=getCol(FRAGCOORD.xy * 0.5);

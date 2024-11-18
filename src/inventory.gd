@@ -58,6 +58,18 @@ func release_item(grabbed_item: Item, index: int) -> void:
 	items[index] = grabbed_item
 	inventory_changed.emit(items)
 
+func remove_item(index: int) -> void:
+	# items[index] = null
+	# inventory_changed.emit(items)
+
+	# Rearrange the items starting from the index to the end
+	for i in range(index, items.size() - 1):
+		items[i] = items[i + 1]
+	items[items.size() - 1] = null
+
+	inventory_changed.emit(items)
+	print("We now have %s items" % items.size())
+
 func interaction_object_under(slot: PanelContainer) -> Item:
 	var scene_tree: SceneTree = Engine.get_main_loop().current_scene.get_tree()
 	var main_scene = scene_tree.get_root().get_node("MainScene")
@@ -79,4 +91,3 @@ func interaction_object_under(slot: PanelContainer) -> Item:
 			return dot.item
 
 	return null
-

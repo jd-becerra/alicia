@@ -146,6 +146,7 @@ func _on_paused(state: bool):
 	is_paused = state
 	if is_paused:
 		menu.can_show_inventory = true
+		menu.get_node("%Top").visible = true
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
 			# WARNING: the node has to have the shader material "gray_filter" attached to it

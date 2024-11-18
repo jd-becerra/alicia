@@ -50,9 +50,7 @@ func toggle_inventory() -> void:
 		open_ui()
 
 func open_ui() -> void:
-	top.size.y = top_open_height
-	# make toggle_inventory_btn position under top
-	toggle_inventory_btn.position.y = top_open_height + toggle_btn_offset
+	%Animations.play("Open_Inventory")
 
 	settings_btn.show()
 
@@ -66,8 +64,7 @@ func open_ui() -> void:
 	show_inventory = true
 
 func close_ui() -> void:
-	top.size.y = top_closed_height
-	toggle_inventory_btn.position.y = top_closed_height + toggle_btn_offset
+	%Animations.play("Close_Inventory")
 
 	settings_btn.hide()
 	inventory.hide()
