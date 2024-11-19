@@ -41,6 +41,8 @@ func _ready():
 	# Ensure signal is connected only once
 	playback_button.connect("paused", Callable(self, "_on_paused"))
 
+	animation.animation_finished.connect(_on_animation_finished)
+
 	# Connect to the enable_dialogue signal with all DialogueTrigger nodes
 	connect("enable_dialogue", Callable(self, "_on_enable_dialogue"))
 	connect("dragging_enabled", Callable(self, "_on_dragging"))
@@ -55,7 +57,14 @@ func _ready():
 		var dialogue_controller = node.get_node("DialogueController")
 		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
+func _on_animation_finished(anim_name: String):
+	if not animation_finished and anim_name == "Scene1-Beat1":
+		animation_finished = true
+		update_playback_button(true)
+
 func _process(_delta):
+	print("Animation finished: ", animation_finished)
+
 	if animation.current_animation != "Scene1-Beat1":
 		return
 
@@ -68,8 +77,10 @@ func _process(_delta):
 
 	if is_dragging:
 		vhs_effect.visible = true
+		set_shader_strength(0.005)
 	else:
 		vhs_effect.visible = false
+		set_shader_strength(0.002)
 
 	if not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
 		animation.set_speed_scale(1)
@@ -93,7 +104,8 @@ func update_playback_button(state: bool):
 		animation.set_speed_scale(1)
 
 func _input(event):
-	if animation.current_animation != "Scene1-Beat1":
+	if animation.current_animation == "Scene1_Ending":
+		print("Animation is not Scene1-Beat1")
 		return
 
 	if Input.is_action_just_pressed("ui_playback"):
@@ -150,7 +162,7 @@ func _on_paused(state: bool):
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
 		for node in get_tree().get_nodes_in_group("grayscale"):
 			# WARNING: the node has to have the shader material "gray_filter" attached to it
-			node.material.set_shader_parameter("activate", true) 
+			node.material.set_shader_parameter("activate", true)
 
 		animation.set_speed_scale(0)
 
@@ -235,3 +247,7 @@ func enable_normal_animation(new_animation_name: String):
 	animation_camera.enabled = true
 	movement_camera.enabled = false
 	player_movement_character.hide_player()
+
+func set_shader_strength(strength: float):
+	for node in get_tree().get_nodes_in_group("grayscale"):
+		node.material.set_shader_parameter("strength", strength)

@@ -32,7 +32,7 @@ vec4 getCol(vec2 pos) {
     c1 = mix(vec4(1, 1, 1, 0), c1, e.x * e.y * e.z * e.w);
 
     // Calculate light intensity (dot product with a specific vector for shading)
-    float d = clamp(dot(c1.xyz, vec3(1.0, -0.5, -0.5)), 0.0, 1.0);
+    float d = clamp(dot(c1.xyz, vec3(1.0, 0.3, -0.5)), 0.0, 1.0);
 
     // Blend with a flat gray color to simulate hand-drawn shading
     vec4 c2 = vec4(0.5);
