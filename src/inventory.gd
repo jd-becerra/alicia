@@ -5,6 +5,7 @@ signal inventory_interact(inventory_data: Inventory, item: Item, index: int, but
 signal inventory_changed(inventory_data: Inventory)
 
 @export var items: Array[Item] = []
+var ITEMS_SIZE = 0
 
 func initialize_indices() -> void:
 	if items.size() == 0:
@@ -33,8 +34,9 @@ func add_item(index: int, new_item: Item) -> void:
 
 	var insert_pos = 0
 	# Find the correct position to insert the new item
-	while insert_pos < items.size() and items[insert_pos].index < index:
+	while insert_pos < ITEMS_SIZE and items[insert_pos].index < index:
 		insert_pos += 1
+		
 	print("Inserting at position %s" % insert_pos)
 
 	# Insert the item at the correct position
@@ -48,9 +50,7 @@ func add_item(index: int, new_item: Item) -> void:
 			items[i + 1] = items[i]
 		items[insert_pos] = new_item
 
-	# Print the result
-	for it in items:
-		print(it.name)
+	ITEMS_SIZE += 1
 
 	inventory_changed.emit(items)
 
@@ -65,7 +65,8 @@ func remove_item(index: int) -> void:
 	# Rearrange the items starting from the index to the end
 	for i in range(index, items.size() - 1):
 		items[i] = items[i + 1]
-	items[items.size() - 1] = null
+	items[ITEMS_SIZE - 1] = null
+	ITEMS_SIZE -= 1
 
 	inventory_changed.emit(items)
 	print("We now have %s items" % items.size())

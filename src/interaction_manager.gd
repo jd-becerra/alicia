@@ -71,6 +71,8 @@ func add_item_to_inventory(item: Item) -> void:
 		player_inventory.add_item(item_index, item)
 
 func remove_item_from_inventory(item: Item) -> void:
+	# Await for the item to return to the inventory
+	await get_tree().create_timer(0.5).timeout
 	var item_index = get_item_index(item.name)
 	print("Item index: ", item_index)
 

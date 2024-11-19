@@ -5,7 +5,10 @@ Alicia: No creí que volvería a ver esta casa nunca más.
 ~ piano
 if game_states.piano_open:
 	Alicia: ¡El piano de mi madre!
-	Alicia: Me pregunto si todavía podré tocarlo...
+	if game_states.piano_has_sheet_music:
+		Alicia: Creo que todavía recuerdo la canción que me enseñó mi madre.
+	else:
+		Alicia: Me pregunto si todavía podré tocarlo...
 	Alicia: ...
 do play_character_animation("Alicia_Adulta", "Sad", false)
 Alicia: Hay tantas memorias que tengo de este lugar.

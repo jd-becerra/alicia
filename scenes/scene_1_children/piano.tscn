@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://vqqc2ili0ds0"]
+[gd_scene load_steps=21 format=3 uid="uid://vqqc2ili0ds0"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_ivkd7"]
 [ext_resource type="Texture2D" uid="uid://cjcuf7dhl2bfl" path="res://scenes/scene_1_children/piano.png" id="1_nu6j0"]
@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [44]
+"values": [50]
 }
 
 [sub_resource type="Animation" id="Animation_8pe7y"]
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [42]
+"values": [48]
 }
 
 [sub_resource type="Animation" id="Animation_e8oxr"]
@@ -65,7 +65,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [34, 35, 36, 37]
+"values": [40, 41, 42, 43]
 }
 
 [sub_resource type="Animation" id="Animation_j4147"]
@@ -85,8 +85,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_w47yv"]
-length = 4.0
-loop_mode = 1
+length = 14.046
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -94,10 +93,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 3, 5, 7, 9, 9.799, 10.582, 11.526, 12.631),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [31, 32, 33]
+"values": [32, 33, 34, 33, 35, 36, 37, 38, 39]
 }
 
 [sub_resource type="Animation" id="Animation_6o2r0"]
@@ -113,7 +112,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [38, 39, 40, 41]
+"values": [44, 45, 46, 47]
 }
 
 [sub_resource type="Animation" id="Animation_2st5n"]
@@ -129,7 +128,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [43]
+"values": [49]
 }
 
 [sub_resource type="Animation" id="Animation_basot"]
@@ -145,7 +144,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [24]
+"values": [25]
 }
 
 [sub_resource type="Animation" id="Animation_omlan"]
@@ -160,12 +159,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [25, 26, 27, 28, 29]
+"values": [26, 27, 28, 29, 30]
 }
 
 [sub_resource type="Animation" id="Animation_4ociv"]
 length = 4.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -176,7 +174,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.65, 0.8, 0.95, 1.1, 1.25, 1.4, 1.65, 1.9, 2.15, 2.4, 3.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24]
+"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25]
 }
 
 [sub_resource type="Animation" id="Animation_iwohx"]
@@ -223,7 +221,39 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [30]
+"values": [31]
+}
+
+[sub_resource type="Animation" id="Animation_j4qah"]
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [32]
+}
+
+[sub_resource type="Animation" id="Animation_f5wkl"]
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7qun8"]
@@ -234,12 +264,14 @@ _data = {
 "Alicia_Playing_Left_Hand": SubResource("Animation_dbpjv"),
 "Alicia_Playing_Normal": SubResource("Animation_j4147"),
 "Alicia_Playing_Starts": SubResource("Animation_w47yv"),
+"Alicia_Sits_Down": SubResource("Animation_j4qah"),
 "Alicia_Slows_Down": SubResource("Animation_6o2r0"),
 "Alicia_Surprised": SubResource("Animation_2st5n"),
 "Almost closing": SubResource("Animation_basot"),
 "Close": SubResource("Animation_omlan"),
 "Leaf falls": SubResource("Animation_4ociv"),
 "Open": SubResource("Animation_iwohx"),
+"Open_with_Sheet": SubResource("Animation_f5wkl"),
 "RESET": SubResource("Animation_gvld3"),
 "Stuck": SubResource("Animation_2kwr3")
 }
@@ -247,7 +279,6 @@ _data = {
 [node name="Piano" type="Node2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_ivkd7")
-animation_name = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -258,7 +289,7 @@ libraries = {
 texture_filter = 1
 material = ExtResource("2_p7waf")
 texture = ExtResource("1_nu6j0")
-hframes = 7
+hframes = 8
 vframes = 7
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
@@ -272,4 +303,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://assets/objects/scene-1/piano.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ce9f4514897a880f2e0c80528e375bf0"
+metadata/_aseprite_wizard_source_file_hash_ = "edd39837e200b8a2392106e7214961b9"
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}

@@ -35,7 +35,7 @@ func _physics_process(_delta):
 		if valid_play():
 
 			# Override the animation name if needed
-			if self.name == "Piano" and game_states.piano_open:
+			if self.name == "Piano" and game_states.piano_open and not game_states.puzzle_solved:
 				animation_name = "Open"
 			if self.name == "FlowerPot" and game_states.piano_open:
 				animation_name = "No_Leaf"

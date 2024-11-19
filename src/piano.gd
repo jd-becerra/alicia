@@ -7,6 +7,7 @@ extends Control
 @onready var music_note: PackedScene = preload("res://scenes/music_note.tscn")
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var redo_btn: Button = %RedoBtn
+@onready var game_states: Node = get_node("/root/MainScene/States")
 
 # Constants
 const KEYS = ["G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5"]
@@ -90,6 +91,7 @@ func print_note(button: Button) -> void:
 	if player_sequence.size() == MAX_NOTES:
 		if player_sequence == CORRECT_SEQUENCE:
 			print("Congratulations! You played the correct sequence.")
+			game_states.puzzle_solved = true
 			var main_scene = get_node("/root/MainScene")
 			self.hide()
 			get_tree().paused = false
@@ -121,22 +123,19 @@ func clear_notes() -> void:
 	printed_notes.clear()  # Clear the array after freeing the notes
 
 func show_use_node():
-	if get_node("/root/MainScene/Objects/Piano/AnimationPlayer").current_animation == "Stuck":
-		print("Piano is stuck, can't play it.")
-		return
-
 	game_ui.hide()
 	self.show()
 	get_tree().paused = true
 
 	# If player has Partitura item (with index 2), show the PartituraCorrecta node
-	if check_has_partitura():
+	if game_states.piano_has_sheet_music:
 		%PartituraCorrecta.show()
 
-func check_has_partitura() -> bool:
+func player_has_item(item_name: String) -> bool:
 	var items = get_node("/root/MainScene/Player").inventory_data.items
 	for item in items:
-		if item.index == 2:
-			return true
+		if item:
+			if item.name == item_name:
+				return true
 
 	return false

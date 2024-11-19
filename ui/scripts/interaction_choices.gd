@@ -232,15 +232,19 @@ func on_pick_up() -> void:
 		return
 
 	disable_action("Pick Up")
-	# For now, just add the item to the player's inventory
+	# Add the item to the player's inventory
 	interaction_manager.add_item_to_inventory(item_to_pick_up)
 
-
 	if not game_ui.get_node("%Inventory").visible:
+		# Disable mouse to avoid grabbing items on animation
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		game_ui.get_node("%Animations").play("Open_Inventory")
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.8).timeout
 		game_ui.get_node("%Animations").play("Close_Inventory")
-	
+		# Await animation finished
+		await game_ui.get_node("%Animations").animation_finished
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	# If item is "Partitura", force_disable the menu and hide that object from the scene
 	if item_to_pick_up.name == "Partitura":
 		force_disable = true
@@ -251,11 +255,26 @@ func on_use() -> void:
 	hide_choices()
 
 	if use_node:
-		if object_name == "Piano_Interaction" and not game_states.piano_open:
-			print("Piano is closed, can't use it")
-			# Here we should make a dialogue when Piano is closed
-			# show_interaction_dialogue(dialogue, "Piano_Closed")
-			return
+		if object_name == "Piano_Interaction":
+			if not game_states.piano_open:
+				var piano_anim_player = get_node("/root/MainScene/Objects/Piano/AnimationPlayer")
+				# Here we should make a dialogue when Piano is closed
+				# show_interaction_dialogue(dialogue, "Piano_Closed")
+
+				# There are two reasions why the piano can't be played:
+				# 1. The piano is stuck (closed)
+				# 2. The player hasn't put the Batuta item on the piano to keep it from closing
+				if piano_anim_player.current_animation == "Stuck":
+					print("Piano is stuck, can't play it.")
+				else:
+					print("Alicia won't play the piano unless she is sure it won't close.")
+				return
+			if not game_states.piano_has_sheet_music:
+				# Here we should make a dialogue when Piano has no sheet music
+				# show_interaction_dialogue(dialogue, "Piano_No_Sheet_Music")
+				print("Alicia won't know what to play without the sheet music.")
+				return
+
 		use_node.show_use_node()
 
 func disable_action(action_name: String) -> void:
@@ -314,8 +333,10 @@ func check_grabbed_slot() -> void:
 func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 	print("Released %s item on %s object" % [grabbed_item.name, object_under.name])
 	if grabbed_item.name == "Partitura" and object_under.name == "Piano_Interaction":
-		# Here we should make partitura on piano visible when USE
-		pass
+		game_states.piano_has_sheet_music = true
+		interaction_manager.remove_item_from_inventory(grabbed_item)
+		lock_mouse()
+
 	if grabbed_item.name == "Batuta" and object_under.name == "Piano_Interaction":
 		var piano_anim_player = main_scene.get_node("Objects/Piano/AnimationPlayer")
 		var flowerpot_anim_player = main_scene.get_node("Objects/FlowerPot/AnimationPlayer")
@@ -326,12 +347,16 @@ func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 			piano_anim_player.play("Open")
 			flowerpot_anim_player.play("No_Leaf")
 			
-			# Await for the item to return to the inventory
-			await get_tree().create_timer(0.5).timeout
 			interaction_manager.remove_item_from_inventory(grabbed_item)
+			lock_mouse()
 		else:
 			# Here we should make a dialogue when Piano can't be opened
 			print("Piano can't be opened")
 	else:
 		# If the items don't match, start a dialogue for the interaction
 		pass
+
+func lock_mouse() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	await get_tree().create_timer(1.0).timeout
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

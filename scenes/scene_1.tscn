@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=53 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Texture2D" uid="uid://cjoub15adxvx1" path="res://assets/objects/scene-1/window_glasses_close.png" id="3_0tvtj"]
@@ -36,6 +36,7 @@
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="30_e1tkr"]
 [ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="31_bcrex"]
 [ext_resource type="Script" path="res://src/states.gd" id="34_m4xoq"]
+[ext_resource type="AudioStream" uid="uid://djwyae6dgx35d" path="res://music/main_theme_scene1.wav" id="37_xdk48"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -218,6 +219,18 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.8, 0.8)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("MainAudio:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
@@ -418,7 +431,7 @@ tracks/15/keys = {
 
 [sub_resource type="Animation" id="Animation_sb77p"]
 resource_name = "Scene1_Ending"
-length = 20.0
+length = 150.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -426,7 +439,7 @@ tracks/0/path = NodePath("MainCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4.1),
+"times": PackedFloat32Array(0, 10.5333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1392, 328), Vector2(1392, 385)]
@@ -438,7 +451,7 @@ tracks/1/path = NodePath("MainCamera:zoom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 4.1),
+"times": PackedFloat32Array(1, 10.5333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.8, 0.8), Vector2(1.7, 1.7)]
@@ -447,13 +460,25 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Objects/Piano:animation_name")
-tracks/2/interp = 1
+tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.133333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 5, 24.1, 36.9, 46.563),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": ["Alicia_Playing_Starts"]
+"values": ["Alicia_Sits_Down", "Alicia_Playing_Starts", "Alicia_Playing_Left_Hand", "Alicia_Playing_Normal", "Alicia_Playing_Happy"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 13.9667, 14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -494,10 +519,10 @@ shader_parameter/iChannel1 = SubResource("NoiseTexture2D_gbnau")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_swedw"]
 shader = ExtResource("31_bcrex")
-shader_parameter/overlay = true
+shader_parameter/overlay = false
 shader_parameter/scanlines_opacity = 0.0
 shader_parameter/scanlines_width = 0.0
-shader_parameter/grille_opacity = 0.3
+shader_parameter/grille_opacity = 0.037
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = false
@@ -509,8 +534,8 @@ shader_parameter/noise_opacity = 0.4
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.06
 shader_parameter/aberration = -0.026
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = true
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
@@ -610,6 +635,7 @@ position = Vector2(2200, 280)
 animation_name = "RESET"
 
 [node name="FlowerPot" parent="Objects" instance=ExtResource("11_pirte")]
+z_index = -1
 material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
 animation_name = "RESET"
@@ -626,7 +652,7 @@ animation_name = "RESET"
 
 [node name="Box" type="Sprite2D" parent="Objects"]
 material = ExtResource("12_j5l1c")
-position = Vector2(1784, 448)
+position = Vector2(455.996, 464)
 scale = Vector2(3, 3)
 texture = ExtResource("18_qv5mr")
 
@@ -673,10 +699,10 @@ anchor_left = 0.107
 anchor_top = -0.104
 anchor_right = 0.92
 anchor_bottom = 1.033
-offset_left = 1500.74
-offset_top = 395.392
-offset_right = 868.156
-offset_bottom = -66.384
+offset_left = 172.736
+offset_top = 411.392
+offset_right = -459.848
+offset_bottom = -50.384
 object_name = "Batuta_Interaction"
 dialogue = ExtResource("15_aga7y")
 inspect = true
@@ -792,3 +818,8 @@ full_inventory = ExtResource("23_ki66i")
 [node name="States" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("34_m4xoq")
+
+[node name="MainAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("37_xdk48")
+volume_db = 20.0
