@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cjcuf7dhl2bfl" path="res://scenes/scene_1_children/piano.png" id="1_nu6j0"]
 [ext_resource type="Material" uid="uid://b0i2bqx4jie3y" path="res://shaders/wobbly_effect.tres" id="2_p7waf"]
 
-[sub_resource type="Animation" id="Animation_xgyr6"]
+[sub_resource type="Animation" id="Animation_c7ja0"]
 length = 0.001
 loop_mode = 1
 tracks/0/type = "value"
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [50]
 }
 
-[sub_resource type="Animation" id="Animation_8pe7y"]
+[sub_resource type="Animation" id="Animation_ghnya"]
 length = 0.001
 loop_mode = 1
 tracks/0/type = "value"
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "values": [48]
 }
 
-[sub_resource type="Animation" id="Animation_e8oxr"]
+[sub_resource type="Animation" id="Animation_ox3qp"]
 length = 5.1
 loop_mode = 1
 tracks/0/type = "value"
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 }
 
-[sub_resource type="Animation" id="Animation_dbpjv"]
+[sub_resource type="Animation" id="Animation_1qft4"]
 length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
@@ -68,7 +68,7 @@ tracks/0/keys = {
 "values": [40, 41, 42, 43]
 }
 
-[sub_resource type="Animation" id="Animation_j4147"]
+[sub_resource type="Animation" id="Animation_kpsy3"]
 length = 1.5
 loop_mode = 1
 tracks/0/type = "value"
@@ -84,7 +84,7 @@ tracks/0/keys = {
 "values": [18, 19, 20, 21, 22]
 }
 
-[sub_resource type="Animation" id="Animation_w47yv"]
+[sub_resource type="Animation" id="Animation_7dwik"]
 length = 14.046
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "values": [32, 33, 34, 33, 35, 36, 37, 38, 39]
 }
 
-[sub_resource type="Animation" id="Animation_j4qah"]
+[sub_resource type="Animation" id="Animation_3ohup"]
 length = 3.0
 loop_mode = 1
 tracks/0/type = "value"
@@ -115,7 +115,7 @@ tracks/0/keys = {
 "values": [32]
 }
 
-[sub_resource type="Animation" id="Animation_6o2r0"]
+[sub_resource type="Animation" id="Animation_iru1u"]
 length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
@@ -131,7 +131,7 @@ tracks/0/keys = {
 "values": [44, 45, 46, 47]
 }
 
-[sub_resource type="Animation" id="Animation_2st5n"]
+[sub_resource type="Animation" id="Animation_68txh"]
 length = 0.001
 loop_mode = 1
 tracks/0/type = "value"
@@ -147,7 +147,7 @@ tracks/0/keys = {
 "values": [49]
 }
 
-[sub_resource type="Animation" id="Animation_basot"]
+[sub_resource type="Animation" id="Animation_k3fnv"]
 length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
@@ -163,7 +163,7 @@ tracks/0/keys = {
 "values": [25]
 }
 
-[sub_resource type="Animation" id="Animation_omlan"]
+[sub_resource type="Animation" id="Animation_sosek"]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -178,7 +178,7 @@ tracks/0/keys = {
 "values": [26, 27, 28, 29, 30]
 }
 
-[sub_resource type="Animation" id="Animation_4ociv"]
+[sub_resource type="Animation" id="Animation_m42qo"]
 length = 4.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -193,7 +193,7 @@ tracks/0/keys = {
 "values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25]
 }
 
-[sub_resource type="Animation" id="Animation_iwohx"]
+[sub_resource type="Animation" id="Animation_3cn1c"]
 length = 0.3
 loop_mode = 1
 tracks/0/type = "value"
@@ -209,7 +209,7 @@ tracks/0/keys = {
 "values": [23]
 }
 
-[sub_resource type="Animation" id="Animation_f5wkl"]
+[sub_resource type="Animation" id="Animation_abnxc"]
 length = 0.3
 loop_mode = 1
 tracks/0/type = "value"
@@ -241,7 +241,7 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_2kwr3"]
+[sub_resource type="Animation" id="Animation_lpoe0"]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -258,22 +258,22 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7qun8"]
 _data = {
-"Alicia_Looks_Down_Normal": SubResource("Animation_xgyr6"),
-"Alicia_Looks_Down_Suprised": SubResource("Animation_8pe7y"),
-"Alicia_Playing_Happy": SubResource("Animation_e8oxr"),
-"Alicia_Playing_Left_Hand": SubResource("Animation_dbpjv"),
-"Alicia_Playing_Normal": SubResource("Animation_j4147"),
-"Alicia_Playing_Starts": SubResource("Animation_w47yv"),
-"Alicia_Sits_Down": SubResource("Animation_j4qah"),
-"Alicia_Slows_Down": SubResource("Animation_6o2r0"),
-"Alicia_Surprised": SubResource("Animation_2st5n"),
-"Almost closing": SubResource("Animation_basot"),
-"Close": SubResource("Animation_omlan"),
-"Leaf falls": SubResource("Animation_4ociv"),
-"Open": SubResource("Animation_iwohx"),
-"Open_with_Sheet": SubResource("Animation_f5wkl"),
+"Alicia_Looks_Down_Normal": SubResource("Animation_c7ja0"),
+"Alicia_Looks_Down_Suprised": SubResource("Animation_ghnya"),
+"Alicia_Playing_Happy": SubResource("Animation_ox3qp"),
+"Alicia_Playing_Left_Hand": SubResource("Animation_1qft4"),
+"Alicia_Playing_Normal": SubResource("Animation_kpsy3"),
+"Alicia_Playing_Starts": SubResource("Animation_7dwik"),
+"Alicia_Sits_Down": SubResource("Animation_3ohup"),
+"Alicia_Slows_Down": SubResource("Animation_iru1u"),
+"Alicia_Surprised": SubResource("Animation_68txh"),
+"Almost closing": SubResource("Animation_k3fnv"),
+"Close": SubResource("Animation_sosek"),
+"Leaf falls": SubResource("Animation_m42qo"),
+"Open": SubResource("Animation_3cn1c"),
+"Open_with_Sheet": SubResource("Animation_abnxc"),
 "RESET": SubResource("Animation_gvld3"),
-"Stuck": SubResource("Animation_2kwr3")
+"Stuck": SubResource("Animation_lpoe0")
 }
 
 [node name="Piano" type="Node2D"]

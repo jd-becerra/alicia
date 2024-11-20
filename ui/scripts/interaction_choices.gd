@@ -336,6 +336,9 @@ func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 		game_states.piano_has_sheet_music = true
 		interaction_manager.remove_item_from_inventory(grabbed_item)
 		lock_mouse()
+		if not game_states.piano_open:
+			get_node("/root/MainScene/Objects/PartituraExtraSmall").show()
+			
 
 	if grabbed_item.name == "Batuta" and object_under.name == "Piano_Interaction":
 		var piano_anim_player = main_scene.get_node("Objects/Piano/AnimationPlayer")

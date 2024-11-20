@@ -58,13 +58,12 @@ func _ready():
 		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
 func _on_animation_finished(anim_name: String):
+	print("Animation finished: ", anim_name)
 	if not animation_finished and anim_name == "Scene1-Beat1":
 		animation_finished = true
 		update_playback_button(true)
 
 func _process(_delta):
-	print("Animation finished: ", animation_finished)
-
 	if animation.current_animation != "Scene1-Beat1":
 		return
 
@@ -105,7 +104,6 @@ func update_playback_button(state: bool):
 
 func _input(event):
 	if animation.current_animation == "Scene1_Ending":
-		print("Animation is not Scene1-Beat1")
 		return
 
 	if Input.is_action_just_pressed("ui_playback"):
@@ -148,7 +146,6 @@ func _input(event):
 		emit_signal("enable_dialogue", false)
 
 func on_dialogue_triggered(is_active: bool):
-	print("Dialogue triggered: ", is_active)
 	is_dialogue_triggered = is_active
 
 	if is_active:

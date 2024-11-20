@@ -33,11 +33,15 @@ func _ready():
 func _physics_process(_delta):
 	if not dialogue_triggered and not interaction_manager.current_animation_player:
 		if valid_play():
-
 			# Override the animation name if needed
-			if self.name == "Piano" and game_states.piano_open and not game_states.puzzle_solved:
-				animation_name = "Open"
-			if self.name == "FlowerPot" and game_states.piano_open:
+			if self.name == "Piano":
+				if game_states.piano_open and not game_states.puzzle_solved:
+					get_node("/root/MainScene/Objects/PartituraExtraSmall").hide()
+					if not game_states.piano_has_sheet_music:
+						animation_name = "Open"
+					else:
+						animation_name = "Open_with_Sheet"
+			if self.name == "FlowerPot" and game_states.piano_open and game_states.puzzle_solved:
 				animation_name = "No_Leaf"
 
 			anim.play(String(animation_name))

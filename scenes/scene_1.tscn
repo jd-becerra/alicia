@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=56 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Texture2D" uid="uid://cjoub15adxvx1" path="res://assets/objects/scene-1/window_glasses_close.png" id="3_0tvtj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/player_animation.gd" id="6_f624h"]
 [ext_resource type="AudioStream" uid="uid://bx0poe5ot2qy4" path="res://sounds/footsteps.mp3" id="7_ntmog"]
 [ext_resource type="PackedScene" uid="uid://b4jni2b00pjm8" path="res://assets/objects/scene-1/door-left.tscn" id="7_p5sea"]
+[ext_resource type="PackedScene" uid="uid://dslrx0w2cdame" path="res://scenes/señor_abrazos.tscn" id="7_tvx1t"]
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="8_od0cd"]
 [ext_resource type="PackedScene" uid="uid://vqqc2ili0ds0" path="res://scenes/scene_1_children/piano.tscn" id="9_5ut8m"]
 [ext_resource type="PackedScene" uid="uid://wvf46r8j6hqf" path="res://scenes/player.tscn" id="9_f76i4"]
@@ -33,10 +34,12 @@
 [ext_resource type="PackedScene" uid="uid://bj3cboqxul38a" path="res://scenes/piano_keyboard.tscn" id="23_g4shp"]
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
+[ext_resource type="Texture2D" uid="uid://cuwxi5cct3lv1" path="res://assets/objects/scene-1/partitura_extra_small.png" id="26_l7fhu"]
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="30_e1tkr"]
 [ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="31_bcrex"]
 [ext_resource type="Script" path="res://src/states.gd" id="34_m4xoq"]
 [ext_resource type="AudioStream" uid="uid://djwyae6dgx35d" path="res://music/main_theme_scene1.wav" id="37_xdk48"]
+[ext_resource type="Texture2D" uid="uid://pkpum0211ebk" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="40_61m6c"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -232,6 +235,54 @@ tracks/15/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Characters/SeñorAbrazos:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Characters/SeñorAbrazos:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1992, 464)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Objects/FlowerPot:z_index")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Characters/SeñorAbrazos:animation_name")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Look_Up"]
+}
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
 resource_name = "Scene1-Beat1"
@@ -243,7 +294,7 @@ tracks/0/path = NodePath("Characters/Alicia_Adulta:animation_name")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 22.2333, 25.1333, 25.2667, 27.1666, 27.2, 31.2, 31.2333, 32.1, 34.5667, 35, 39.1667, 41.5, 43.3334),
+"times": PackedFloat32Array(0, 22.2333, 25.1333, 25.2667, 27.1666, 27.2, 31.2, 31.2333, 32.1, 36.1666, 36.7333, 40.9, 43.2333, 45.0667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": ["Idle", "Walk", "Walk", "Idle", "Idle", "Walk", "Idle", "Idle", "Walk", "Idle", "Back", "Back_Arms_Raised", "Back_Still", "Idle"]
@@ -255,7 +306,7 @@ tracks/1/path = NodePath("Characters/Alicia_Adulta:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 22.2, 25.2333, 27.2, 29.8, 31.2, 32.1333, 34.5667),
+"times": PackedFloat32Array(0, 22.2, 25.2333, 27.2, 29.8, 31.2, 32.1333, 36.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-300, 472), Vector2(-300, 472), Vector2(616, 472), Vector2(616, 472), Vector2(1064, 472), Vector2(1280, 424), Vector2(1280, 424), Vector2(2200, 472)]
@@ -303,7 +354,7 @@ tracks/5/path = NodePath("MainCamera:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 11.9333, 13.8333, 18.7, 21.0666, 26.8666, 31.8333, 32.1333, 34.5667),
+"times": PackedFloat32Array(0, 11.9333, 13.8333, 18.7, 21.0666, 26.8666, 31.8333, 32.1333, 36.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(2192, 328), Vector2(2192, 328), Vector2(1360.03, 328), Vector2(1360.03, 328), Vector2(616, 328), Vector2(616, 328), Vector2(1360.03, 328), Vector2(1360.03, 328), Vector2(2200, 328)]
@@ -315,7 +366,7 @@ tracks/6/path = NodePath("DialogueTriggers/Dialogue1:enable_dialogue")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 26.8333, 26.8666, 32.1, 32.1333, 43.3334, 43.3667),
+"times": PackedFloat32Array(0, 26.8333, 26.8666, 32.1, 32.1333, 45.0667, 45.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, true, false]
@@ -360,10 +411,10 @@ tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/path = NodePath("Objects/Piano:animation_name")
-tracks/10/interp = 1
+tracks/10/interp = 0
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 13.9, 18.2666, 32.1),
+"times": PackedFloat32Array(0, 13.9, 18.4, 32.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["RESET", "Leaf falls", "Almost closing", "Stuck"]
@@ -375,7 +426,7 @@ tracks/11/path = NodePath("Objects/Cortinas:animation_name")
 tracks/11/interp = 0
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 4, 8.33333, 8.5, 39.1333, 39.1667),
+"times": PackedFloat32Array(0, 3.7, 8.33333, 8.5, 40.8666, 40.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": ["RESET", "Flap", "Transition", "Windy", "Windy", "RESET"]
@@ -387,7 +438,7 @@ tracks/12/path = NodePath("DialogueTriggers/Dialogue1:dialogue_name")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(26.8333, 32.1, 43.3334),
+"times": PackedFloat32Array(26.8333, 32.1, 45.0667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": ["start", "piano", "escritorio"]
@@ -396,7 +447,7 @@ tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/path = NodePath("Objects/FlowerPot:animation_name")
-tracks/13/interp = 1
+tracks/13/interp = 0
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0, 13.9, 18.2667, 32.0667),
@@ -423,10 +474,22 @@ tracks/15/path = NodePath("Objects/WindowGlasses:texture")
 tracks/15/interp = 0
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 39.1667, 39.2),
+"times": PackedFloat32Array(0, 39.1667, 40.9333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("11_n4vk4"), ExtResource("11_n4vk4"), ExtResource("3_0tvtj")]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Objects/FlowerPot:z_index")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_sb77p"]
@@ -439,10 +502,10 @@ tracks/0/path = NodePath("MainCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10.5333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 10.4, 77.9333, 81.8667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1392, 328), Vector2(1392, 385)]
+"values": [Vector2(1392, 328), Vector2(1392, 385), Vector2(1392, 385), Vector2(1480, 384)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -451,10 +514,10 @@ tracks/1/path = NodePath("MainCamera:zoom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 10.5333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1, 10.5333, 67.2, 92.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.8, 0.8), Vector2(1.7, 1.7)]
+"values": [Vector2(0.8, 0.8), Vector2(1.7, 1.7), Vector2(1.7, 1.7), Vector2(0.8, 0.8)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -463,10 +526,10 @@ tracks/2/path = NodePath("Objects/Piano:animation_name")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 5, 24.1, 36.9, 46.563),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 5, 19.085, 24.1, 36.9, 48.8, 105.4, 112.467, 114.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["Alicia_Sits_Down", "Alicia_Playing_Starts", "Alicia_Playing_Left_Hand", "Alicia_Playing_Normal", "Alicia_Playing_Happy"]
+"values": ["Alicia_Sits_Down", "Alicia_Playing_Starts", "Alicia_Sits_Down", "Alicia_Playing_Left_Hand", "Alicia_Playing_Normal", "Alicia_Playing_Happy", "Alicia_Slows_Down", "Alicia_Looks_Down_Suprised", "Alicia_Surprised"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -479,6 +542,54 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Characters/SeñorAbrazos:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 81.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Characters/SeñorAbrazos:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(81.1, 91.7825),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1992, 464), Vector2(1632, 464)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Objects/FlowerPot:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Characters/SeñorAbrazos:animation_name")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(80.7333, 91.7825, 95.8, 99.5667, 112.533),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Walk", "Look_Up", "RESET", "Dance", "Look_Up"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -610,6 +721,13 @@ animation_name = "RESET"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Characters/Alicia_Adulta"]
 stream = ExtResource("7_ntmog")
+volume_db = 10.792
+
+[node name="SeñorAbrazos" parent="Characters" instance=ExtResource("7_tvx1t")]
+visible = false
+material = ExtResource("12_j5l1c")
+position = Vector2(1992, 464)
+animation_name = "Look_Up"
 
 [node name="Objects" type="Node" parent="."]
 
@@ -641,6 +759,7 @@ position = Vector2(1432, 384)
 animation_name = "RESET"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
+texture_filter = 1
 material = ExtResource("12_j5l1c")
 position = Vector2(2216, 416)
 texture = ExtResource("10_dbg4j")
@@ -649,6 +768,13 @@ texture = ExtResource("10_dbg4j")
 material = ExtResource("12_j5l1c")
 position = Vector2(2208, 320)
 animation_name = "RESET"
+
+[node name="PartituraExtraSmall" type="Sprite2D" parent="Objects"]
+visible = false
+material = ExtResource("12_j5l1c")
+position = Vector2(1384, 360)
+scale = Vector2(1, 0.763364)
+texture = ExtResource("26_l7fhu")
 
 [node name="Box" type="Sprite2D" parent="Objects"]
 material = ExtResource("12_j5l1c")
@@ -780,7 +906,18 @@ mouse_filter = 2
 visible = false
 z_index = 98
 
+[node name="White" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.490196)
+
 [node name="NotebookEffect" type="ColorRect" parent="UI"]
+z_index = 1
 material = SubResource("ShaderMaterial_rre2d")
 anchors_preset = 15
 anchor_right = 1.0
@@ -823,3 +960,16 @@ script = ExtResource("34_m4xoq")
 unique_name_in_owner = true
 stream = ExtResource("37_xdk48")
 volume_db = 20.0
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(2192, 304)
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("40_61m6c")
+texture_scale = 2.6
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.733005, 0.733005, 0.733005, 1)
