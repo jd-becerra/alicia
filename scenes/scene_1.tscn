@@ -502,10 +502,10 @@ tracks/0/path = NodePath("MainCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10.4, 77.9333, 81.8667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 110.333, 110.4),
+"transitions": PackedFloat32Array(1, 1, 0.1),
 "update": 0,
-"values": [Vector2(1392, 328), Vector2(1392, 385), Vector2(1392, 385), Vector2(1480, 384)]
+"values": [Vector2(1392, 385), Vector2(1392, 385), Vector2(1480, 384)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -514,10 +514,10 @@ tracks/1/path = NodePath("MainCamera:zoom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 10.5333, 67.2, 92.5667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 41.8667, 98.7667),
+"transitions": PackedFloat32Array(1, 1, 1.56917),
 "update": 0,
-"values": [Vector2(0.8, 0.8), Vector2(1.7, 1.7), Vector2(1.7, 1.7), Vector2(0.8, 0.8)]
+"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(1.7, 1.7)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -526,10 +526,10 @@ tracks/2/path = NodePath("Objects/Piano:animation_name")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 5, 19.085, 24.1, 36.9, 48.8, 105.4, 112.467, 114.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2.86667, 16.9517, 21.9667, 34.7667, 46.6667, 103.267, 110.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["Alicia_Sits_Down", "Alicia_Playing_Starts", "Alicia_Sits_Down", "Alicia_Playing_Left_Hand", "Alicia_Playing_Normal", "Alicia_Playing_Happy", "Alicia_Slows_Down", "Alicia_Looks_Down_Suprised", "Alicia_Surprised"]
+"values": ["Alicia_Sits_Down", "Alicia_Playing_Starts", "Alicia_Sits_Down", "Alicia_Playing_Left_Hand", "Alicia_Playing_Normal", "Alicia_Playing_Happy", "Alicia_Slows_Down", "Alicia_Looks_Down_Suprised"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -538,7 +538,7 @@ tracks/3/path = NodePath("MainAudio:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 13.9667, 14),
+"times": PackedFloat32Array(-2.13333, 11.8334, 11.8667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
@@ -550,7 +550,7 @@ tracks/4/path = NodePath("Characters/SeñorAbrazos:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 81.6),
+"times": PackedFloat32Array(0, 80.9667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -562,7 +562,7 @@ tracks/5/path = NodePath("Characters/SeñorAbrazos:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(81.1, 91.7825),
+"times": PackedFloat32Array(80.4667, 98.6159),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1992, 464), Vector2(1632, 464)]
@@ -586,10 +586,46 @@ tracks/7/path = NodePath("Characters/SeñorAbrazos:animation_name")
 tracks/7/interp = 0
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(80.7333, 91.7825, 95.8, 99.5667, 112.533),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(80.4667, 98.4, 110.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": ["Walk", "Look_Up", "RESET", "Dance", "Look_Up"]
+"values": ["Dance_Walk", "Dance", "Look_Up"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Objects/WindowGlasses:texture")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_0tvtj")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Objects/FlowerPot:animation_name")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["No_Leaf"]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Objects/Cortinas:animation_name")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["RESET"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -756,7 +792,7 @@ animation_name = "RESET"
 z_index = -1
 material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
-animation_name = "RESET"
+animation_name = "No_Leaf"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
 texture_filter = 1
@@ -820,6 +856,7 @@ pick_up = true
 use = true
 
 [node name="Choices-Batuta" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+visible = false
 anchors_preset = -1
 anchor_left = 0.107
 anchor_top = -0.104

@@ -232,6 +232,16 @@ func on_pick_up() -> void:
 		return
 
 	disable_action("Pick Up")
+
+	# If item is "Partitura", force_disable the menu and hide that object from the scene
+	if item_to_pick_up.name == "Partitura":
+		force_disable = true
+		main_scene.get_node("Objects/Partitura").hide()
+	
+	if item_to_pick_up.name == "Batuta":
+		var box = main_scene.get_node("Objects/Box")
+		box.texture = load("res://assets/objects/scene-1/box_empty.png")
+
 	# Add the item to the player's inventory
 	interaction_manager.add_item_to_inventory(item_to_pick_up)
 
@@ -244,11 +254,6 @@ func on_pick_up() -> void:
 		# Await animation finished
 		await game_ui.get_node("%Animations").animation_finished
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-	# If item is "Partitura", force_disable the menu and hide that object from the scene
-	if item_to_pick_up.name == "Partitura":
-		force_disable = true
-		main_scene.get_node("Objects/Partitura").hide()
 
 func on_use() -> void:
 	emit_signal("clicked_interaction_button", true)
