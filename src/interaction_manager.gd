@@ -13,6 +13,7 @@ var active_menu = null
 var current_animation_player = null
 var is_initialized = false
 
+
 func _process(_delta: float) -> void:
 	if not get_tree().current_scene:
 		return
@@ -43,7 +44,7 @@ func play_object_animation(object: String, animation_name: String, play_over_dia
 	var route = "/root/MainScene/Objects/" + object
 	await play_animation(route, animation_name, play_over_dialogue)
 
-func play_animation(controller_route: String, animation_name: String, play_over_dialogue) -> void:
+func play_animation(controller_route: String, animation_name: String, play_over_dialogue) -> void:	
 	var controller = get_node(controller_route)
 	var anim_player: AnimationPlayer = controller.get_node("AnimationPlayer")
 	current_animation_player = anim_player

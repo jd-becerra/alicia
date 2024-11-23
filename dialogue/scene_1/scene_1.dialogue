@@ -27,3 +27,31 @@ Alicia: Si pudiera regresar en el tiempo...
 Alicia: Hay muchas cosas que habría cambiado.
 do play_character_animation("Alicia_Adulta", "Sad_Sigh")
 => END
+~ final
+do play_object_animation("Piano", "Alicia_Surprised")
+do play_character_animation("Senor_Abrazos", "Happy")
+Señor Abrazos: ¡Alicia!
+Señor Abrazos: Hace años que no te escuchaba tocar esa melodía.
+Alicia: ...
+do play_character_animation("Senor_Abrazos", "RESET")
+do play_object_animation("Piano", "Alicia_Looks_Down_Normal", false)
+Señor Abrazos: No después de que te fuiste.
+do play_character_animation("Senor_Abrazos", "Sad")
+Señor Abrazos: Dejaste a Julia devastada, ¿sabes?
+Señor Abrazos: Sé que ella fue muy dura contigo, pero... desearía que las cosas no hubieran terminado así.
+do play_character_animation("Senor_Abrazos", "Happy")
+Señor Abrazos: ¡Pero lo bueno es que has vuelto!
+do play_character_animation("Senor_Abrazos", "Curious")
+Señor Abrazos: Pero... ¿porqué has regresado?
+do play_character_animation("Senor_Abrazos", "Normal")
+Señor Abrazos: No me digas que vas a regresar... 
+Señor Abrazos: Alicia, no hay nada bueno para ti en el pasado.
+Señor Abrazos: Si regresas... podrás no ser la misma.
+do play_object_animation("Piano", "Alicia_Determined", false)
+Alicia: ...
+Alicia: Tengo que hacerlo.
+do play_character_animation("Senor_Abrazos", "Sad")
+Señor Abrazos: Muy bien, Alicia. Lo entiendo.
+do play_character_animation("Senor_Abrazos", "Happy")
+Señor Abrazos: ¡Sígueme!
+=> END

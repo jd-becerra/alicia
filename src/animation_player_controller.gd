@@ -34,6 +34,11 @@ signal enable_dialogue(is_active: bool)
 signal dragging_enabled(dragging_state: bool)
 
 func _ready():
+	# FOR TESTING: DELETE THIS LINE
+	animation.play("Scene1_Ending")
+	animation.seek(107, true)
+	return
+
 	# Make animation_name the current animation
 	animation.play(animation_name)
 	last_time = animation.current_animation_position

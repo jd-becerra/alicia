@@ -1,12 +1,41 @@
-[gd_scene load_steps=22 format=3 uid="uid://vqqc2ili0ds0"]
+[gd_scene load_steps=23 format=3 uid="uid://vqqc2ili0ds0"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_ivkd7"]
 [ext_resource type="Texture2D" uid="uid://cjcuf7dhl2bfl" path="res://scenes/scene_1_children/piano.png" id="1_nu6j0"]
 [ext_resource type="Material" uid="uid://b0i2bqx4jie3y" path="res://shaders/wobbly_effect.tres" id="2_p7waf"]
 
+[sub_resource type="Animation" id="Animation_jpl3j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+
+[sub_resource type="Animation" id="Animation_ohlhv"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [52]
+}
+
 [sub_resource type="Animation" id="Animation_c7ja0"]
 length = 0.001
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,9 +49,8 @@ tracks/0/keys = {
 "values": [51]
 }
 
-[sub_resource type="Animation" id="Animation_ghnya"]
+[sub_resource type="Animation" id="Animation_k8l3p"]
 length = 0.001
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -133,7 +161,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_68txh"]
 length = 0.001
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -256,27 +283,12 @@ tracks/0/keys = {
 "values": [31]
 }
 
-[sub_resource type="Animation" id="Animation_jpl3j"]
-length = 0.001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [50]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7qun8"]
 _data = {
 "Alicia_Cries": SubResource("Animation_jpl3j"),
+"Alicia_Determined": SubResource("Animation_ohlhv"),
 "Alicia_Looks_Down_Normal": SubResource("Animation_c7ja0"),
-"Alicia_Looks_Down_Suprised": SubResource("Animation_ghnya"),
+"Alicia_Looks_Down_Surprised": SubResource("Animation_k8l3p"),
 "Alicia_Playing_Happy": SubResource("Animation_ox3qp"),
 "Alicia_Playing_Left_Hand": SubResource("Animation_1qft4"),
 "Alicia_Playing_Normal": SubResource("Animation_kpsy3"),
@@ -320,7 +332,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://assets/objects/scene-1/piano.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "674d1e5855055728d4e7378ddae23886"
+metadata/_aseprite_wizard_source_file_hash_ = "638794521721edc31135e1baec92f620"
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true
 }

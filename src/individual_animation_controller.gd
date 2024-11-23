@@ -78,4 +78,4 @@ func _on_change_animation_direction(state: bool):
 		anim.speed_scale = -1
 
 func valid_play() -> bool:
-	return (anim and animation_name != anim.current_animation and animation_name != "")
+	return (anim and animation_name != anim.current_animation and animation_name != "") 

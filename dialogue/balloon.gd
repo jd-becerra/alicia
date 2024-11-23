@@ -32,7 +32,7 @@ var characters = {
 	# sky blue
 	"Alicia" : convert_rgb_to_color(7, 118, 136),
 	# Brown
-	"Osito" : convert_rgb_to_color(99, 84, 0),
+	"Señor Abrazos" : convert_rgb_to_color(99, 84, 0),
 	# Black
 	"Padre" : Color(0.0, 0.0, 0.0),
 	# Gray
@@ -152,7 +152,6 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 ## Go to the next line
 func next(next_id: String) -> void:
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
-
 
 func convert_rgb_to_color(r: float, g: float, b: float) -> Color:
 	return Color(r / 255, g / 255, b / 255)
