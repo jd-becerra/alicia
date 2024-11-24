@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=61 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Texture2D" uid="uid://cjoub15adxvx1" path="res://assets/objects/scene-1/window_glasses_close.png" id="3_0tvtj"]
@@ -30,6 +30,7 @@
 [ext_resource type="Resource" uid="uid://csmjw1oymgd5u" path="res://ui/inventory/items/batuta.tres" id="15_psqa6"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="Resource" uid="uid://3s6bb82rc5op" path="res://ui/inventory/items/partitura.tres" id="17_ygw7t"]
+[ext_resource type="Texture2D" uid="uid://macule0qyaw4" path="res://assets/objects/scene-1/box.png" id="18_qv5mr"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
 [ext_resource type="PackedScene" uid="uid://bj3cboqxul38a" path="res://scenes/piano_keyboard.tscn" id="23_g4shp"]
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
@@ -966,7 +967,7 @@ unique_name_in_owner = true
 material = ExtResource("12_j5l1c")
 position = Vector2(455.996, 464)
 scale = Vector2(3, 3)
-texture = ExtResource("4_df24n")
+texture = ExtResource("18_qv5mr")
 
 [node name="InteractionMenus" type="Node" parent="Objects"]
 
@@ -1046,6 +1047,7 @@ item_to_pick_up = ExtResource("17_ygw7t")
 [node name="Player" parent="." node_paths=PackedStringArray("camera") groups=["player"] instance=ExtResource("9_f76i4")]
 unique_name_in_owner = true
 visible = false
+z_index = 6
 material = ExtResource("12_j5l1c")
 position = Vector2(1496, 472)
 speed = 10000.0
@@ -1068,6 +1070,7 @@ layer = 2
 
 [node name="EndingMenu" parent="UI" instance=ExtResource("30_2nm2o")]
 unique_name_in_owner = true
+process_mode = 3
 visible = false
 mouse_filter = 2
 
