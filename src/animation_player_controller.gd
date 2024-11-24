@@ -35,8 +35,7 @@ signal dragging_enabled(dragging_state: bool)
 
 func _ready():
 	# FOR TESTING: DELETE THIS LINE
-	animation.play("Scene1_Ending")
-	animation.seek(107, true)
+	enable_normal_animation("Scene1_Ending")
 	return
 
 	# Make animation_name the current animation
@@ -238,6 +237,9 @@ func add_dialogue_indicators():
 		container.add_child(indicator)
 
 func enable_normal_animation(new_animation_name: String):
+	var game_ui = main_scene.get_node("%GameUI")
+	game_ui.hide()
+
 	is_paused = false
 	update_playback_button(false)
 	# Reset everything to normal state
@@ -245,11 +247,50 @@ func enable_normal_animation(new_animation_name: String):
 		node.material.set_shader_parameter("activate", false)	
 
 	animation.play(new_animation_name)
+	
+	# FOR TESTING: DELETE THIS LINE
+	animation.seek(118, true)
+	
 	animation_finished = false
 	animation_camera.enabled = true
 	movement_camera.enabled = false
 	player_movement_character.hide_player()
 
+	animation.animation_finished.connect(on_ending_animation_finished)
+
+
+func on_ending_animation_finished(anim_name: String):
+	# Show the player and allow movement
+	if anim_name != "Scene1_Ending":
+		return
+
+	var make_gray_nodes = [
+		main_scene.get_node("%Piano"),
+		main_scene.get_node("%Box"),
+		main_scene.get_node("%Desk"),
+	]
+
+	for node in make_gray_nodes:
+		node.material = load("res://shaders/wobbly_w_grayscale.tres")
+		node.material.set_shader_parameter("activate", true)
+	for node in get_tree().get_nodes_in_group("grayscale"):
+		node.material.set_shader_parameter("activate", true)
+
+	movement_camera.global_position = animation_camera.global_position
+	movement_camera.enabled = true
+	animation_camera.enabled = false
+
+	var new_pos = Vector2(1492, 472)
+	var new_dir = false
+	player_movement_character.instantiate(new_pos, new_dir)
+
 func set_shader_strength(strength: float):
 	for node in get_tree().get_nodes_in_group("grayscale"):
 		node.material.set_shader_parameter("strength", strength)
+
+
+func _on_end_trigger_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("Ending reached")
+		main_scene.get_node("%EndingMenu").show()
+		get_tree().paused = true

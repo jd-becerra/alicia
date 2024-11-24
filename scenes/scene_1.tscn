@@ -1,8 +1,9 @@
-[gd_scene load_steps=56 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=60 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Texture2D" uid="uid://cjoub15adxvx1" path="res://assets/objects/scene-1/window_glasses_close.png" id="3_0tvtj"]
 [ext_resource type="Texture2D" uid="uid://d15hx26j84xbp" path="res://assets/backgrounds/background_scene_1.png" id="3_wgbc6"]
+[ext_resource type="Texture2D" uid="uid://c7l4asv56weg0" path="res://assets/objects/scene-1/box_empty.png" id="4_df24n"]
 [ext_resource type="Texture2D" uid="uid://6i00iimpjyra" path="res://assets/objects/scene-1/wall-left.png" id="4_vprv8"]
 [ext_resource type="PackedScene" uid="uid://c2gg6xbyb7lch" path="res://scenes/characters/alicia/adulta.tscn" id="5_fmidb"]
 [ext_resource type="Script" path="res://src/player_animation.gd" id="6_f624h"]
@@ -29,17 +30,19 @@
 [ext_resource type="Resource" uid="uid://csmjw1oymgd5u" path="res://ui/inventory/items/batuta.tres" id="15_psqa6"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="Resource" uid="uid://3s6bb82rc5op" path="res://ui/inventory/items/partitura.tres" id="17_ygw7t"]
-[ext_resource type="Texture2D" uid="uid://macule0qyaw4" path="res://assets/objects/scene-1/box.png" id="18_qv5mr"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
 [ext_resource type="PackedScene" uid="uid://bj3cboqxul38a" path="res://scenes/piano_keyboard.tscn" id="23_g4shp"]
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
 [ext_resource type="Texture2D" uid="uid://cuwxi5cct3lv1" path="res://assets/objects/scene-1/partitura_extra_small.png" id="26_l7fhu"]
+[ext_resource type="Texture2D" uid="uid://crejwl6bsxyh4" path="res://assets/objects/scene-1/portal.png" id="27_l0b7i"]
+[ext_resource type="PackedScene" uid="uid://baeqrnvvmfywm" path="res://ui/ending_menu.tscn" id="30_2nm2o"]
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="30_e1tkr"]
 [ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="31_bcrex"]
 [ext_resource type="Script" path="res://src/states.gd" id="34_m4xoq"]
 [ext_resource type="AudioStream" uid="uid://djwyae6dgx35d" path="res://music/main_theme_scene1.wav" id="37_xdk48"]
 [ext_resource type="Texture2D" uid="uid://pkpum0211ebk" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="40_61m6c"]
+[ext_resource type="Texture2D" uid="uid://bce5ymbck5x87" path="res://assets/objects/scene-1/wall-right.png" id="42_mk82o"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -307,6 +310,18 @@ tracks/21/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Objects/Door-right:animation_name")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Closed"]
+}
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
 resource_name = "Scene1-Beat1"
@@ -518,7 +533,7 @@ tracks/16/keys = {
 
 [sub_resource type="Animation" id="Animation_sb77p"]
 resource_name = "Scene1_Ending"
-length = 150.0
+length = 120.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -526,10 +541,10 @@ tracks/0/path = NodePath("MainCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 110.333, 110.4),
-"transitions": PackedFloat32Array(1, 1, 0.1),
+"times": PackedFloat32Array(0, 110.333, 110.4, 112.467, 115.767, 116.4, 118.367),
+"transitions": PackedFloat32Array(1, 1, 0.1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1392, 385), Vector2(1392, 385), Vector2(1480, 384)]
+"values": [Vector2(1392, 385), Vector2(1392, 385), Vector2(1480, 384), Vector2(1480, 384), Vector2(2336, 384), Vector2(2336, 384), Vector2(1480, 384)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -538,7 +553,7 @@ tracks/1/path = NodePath("MainCamera:zoom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 41.8667, 98.7667, 115.733, 116.767),
+"times": PackedFloat32Array(0, 41.8667, 98.7667, 111.933, 112.467),
 "transitions": PackedFloat32Array(1, 1, 1.56917, 1, 1),
 "update": 0,
 "values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(1.7, 1.7), Vector2(1.7, 1.7), Vector2(0.8, 0.8)]
@@ -550,10 +565,10 @@ tracks/2/path = NodePath("Objects/Piano:animation_name")
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.86667, 16.9517, 21.9667, 34.7667, 46.6667, 103.267, 110.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2.86667, 16.9517, 21.9667, 34.7667, 46.6667, 103.267, 110.4, 111.933, 120),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["Alicia_Sits_Down", "Alicia_Playing_Starts", "Alicia_Sits_Down", "Alicia_Playing_Left_Hand", "Alicia_Playing_Normal", "Alicia_Playing_Happy", "Alicia_Slows_Down", "Alicia_Looks_Down_Surprised"]
+"values": ["Alicia_Sits_Down", "Alicia_Playing_Starts", "Alicia_Sits_Down", "Alicia_Playing_Left_Hand", "Alicia_Playing_Normal", "Alicia_Playing_Happy", "Alicia_Slows_Down", "Alicia_Looks_Down_Surprised", "Alicia_Looks_Down_Normal", "Open_with_Sheet"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -574,7 +589,7 @@ tracks/4/path = NodePath("Characters/Senor_Abrazos:visible")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 80.9667, 115.834, 115.867),
+"times": PackedFloat32Array(0, 80.9667, 115.867, 115.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -586,10 +601,10 @@ tracks/5/path = NodePath("Characters/Senor_Abrazos:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(80.4667, 98.6159, 111.933, 118.267),
+"times": PackedFloat32Array(80.4667, 98.6159, 111.933, 115.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1992, 464), Vector2(1632, 464), Vector2(1632, 464), Vector2(2712, 464)]
+"values": [Vector2(1992, 464), Vector2(1632, 464), Vector2(1632, 464), Vector2(2824, 464)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -658,7 +673,7 @@ tracks/11/path = NodePath("DialogueTriggers/Dialogue1:force_start_dialogue")
 tracks/11/interp = 0
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 111.9, 112.1),
+"times": PackedFloat32Array(0, 111.9, 111.933),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -686,6 +701,42 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Objects/Box:texture")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_df24n")]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Objects/Partitura:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Objects/Door-right:animation_name")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Portal"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -752,6 +803,10 @@ shader_parameter/vignette_opacity = 0.5
 radius = 56.0
 height = 224.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dwtug"]
+radius = 96.0
+height = 384.0
+
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animation", "player_animation_character", "player_movement_character", "animation_camera", "movement_camera")]
 script = ExtResource("1_c62u0")
 animation = NodePath("AnimationPlayer")
@@ -803,6 +858,16 @@ material = ExtResource("9_h460a")
 position = Vector2(54.5, 355)
 texture = ExtResource("4_vprv8")
 
+[node name="Wall-right" type="Sprite2D" parent="Background"]
+unique_name_in_owner = true
+visible = false
+z_index = 12
+material = ExtResource("9_h460a")
+position = Vector2(2896, 360)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("42_mk82o")
+
 [node name="Characters" type="Node" parent="."]
 
 [node name="Alicia_Adulta" parent="Characters" groups=["character", "dialogue_starter", "grayscale"] instance=ExtResource("5_fmidb")]
@@ -820,7 +885,9 @@ stream = ExtResource("7_ntmog")
 volume_db = 10.792
 
 [node name="Senor_Abrazos" parent="Characters" instance=ExtResource("7_tvx1t")]
+unique_name_in_owner = true
 visible = false
+z_index = 11
 material = ExtResource("12_j5l1c")
 position = Vector2(1992, 464)
 animation_name = "Look_Up"
@@ -828,13 +895,34 @@ animation_name = "Look_Up"
 [node name="Objects" type="Node" parent="."]
 
 [node name="Door-left" parent="Objects" groups=["grayscale"] instance=ExtResource("7_p5sea")]
+unique_name_in_owner = true
 z_index = 10
 material = ExtResource("9_h460a")
 position = Vector2(159, 415)
 script = ExtResource("8_od0cd")
 animation_name = "Closed"
 
+[node name="Door-right" parent="Objects" groups=["grayscale"] instance=ExtResource("7_p5sea")]
+unique_name_in_owner = true
+z_index = 10
+material = ExtResource("9_h460a")
+position = Vector2(2792, 424)
+scale = Vector2(-5, 5)
+script = ExtResource("8_od0cd")
+animation_name = "Closed"
+
+[node name="Portal" type="Sprite2D" parent="Objects/Door-right"]
+visible = false
+z_index = 11
+material = ExtResource("9_h460a")
+position = Vector2(-10.2386, -3.2)
+rotation = 3.14159
+scale = Vector2(1.04873, -1)
+texture = ExtResource("27_l0b7i")
+
 [node name="Piano" parent="Objects" instance=ExtResource("9_5ut8m")]
+unique_name_in_owner = true
+material = ExtResource("12_j5l1c")
 position = Vector2(1384, 384)
 animation_name = "RESET"
 
@@ -855,6 +943,7 @@ position = Vector2(1432, 384)
 animation_name = "No_Leaf"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
+unique_name_in_owner = true
 texture_filter = 1
 material = ExtResource("12_j5l1c")
 position = Vector2(2216, 416)
@@ -873,10 +962,11 @@ scale = Vector2(1, 0.763364)
 texture = ExtResource("26_l7fhu")
 
 [node name="Box" type="Sprite2D" parent="Objects"]
+unique_name_in_owner = true
 material = ExtResource("12_j5l1c")
 position = Vector2(455.996, 464)
 scale = Vector2(3, 3)
-texture = ExtResource("18_qv5mr")
+texture = ExtResource("4_df24n")
 
 [node name="InteractionMenus" type="Node" parent="Objects"]
 
@@ -956,9 +1046,8 @@ item_to_pick_up = ExtResource("17_ygw7t")
 [node name="Player" parent="." node_paths=PackedStringArray("camera") groups=["player"] instance=ExtResource("9_f76i4")]
 unique_name_in_owner = true
 visible = false
-z_index = 6
 material = ExtResource("12_j5l1c")
-position = Vector2(-1040, 472)
+position = Vector2(1496, 472)
 speed = 10000.0
 camera = NodePath("../PlayerCamera")
 
@@ -976,6 +1065,10 @@ zoom = Vector2(0.8, 0.8)
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 2
+
+[node name="EndingMenu" parent="UI" instance=ExtResource("30_2nm2o")]
+unique_name_in_owner = true
+visible = false
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("10_2h2bc")]
 process_mode = 3
@@ -1070,3 +1163,13 @@ texture_scale = 2.6
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.733005, 0.733005, 0.733005, 1)
+
+[node name="EndTrigger" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndTrigger"]
+position = Vector2(2976, 464)
+shape = SubResource("CapsuleShape2D_dwtug")
+
+[connection signal="body_entered" from="EndTrigger" to="." method="_on_end_trigger_body_entered"]

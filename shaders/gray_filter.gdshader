@@ -45,7 +45,7 @@ void fragment() {
             vec3(0.299 * baseColor.r + 0.587 * baseColor.g + 0.114 * baseColor.b),  // Weighted grayscale
             float(weighted)
         );
-		
+
 		// Make grayscale brighter
 		gray *= 1.2;
 

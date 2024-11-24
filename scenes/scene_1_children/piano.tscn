@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://vqqc2ili0ds0"]
+[gd_scene load_steps=22 format=3 uid="uid://vqqc2ili0ds0"]
 
 [ext_resource type="Script" path="res://src/individual_animation_controller.gd" id="1_ivkd7"]
 [ext_resource type="Texture2D" uid="uid://cjcuf7dhl2bfl" path="res://scenes/scene_1_children/piano.png" id="1_nu6j0"]
-[ext_resource type="Material" uid="uid://b0i2bqx4jie3y" path="res://shaders/wobbly_effect.tres" id="2_p7waf"]
 
 [sub_resource type="Animation" id="Animation_jpl3j"]
 length = 0.001
@@ -316,7 +315,7 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-material = ExtResource("2_p7waf")
+use_parent_material = true
 texture = ExtResource("1_nu6j0")
 hframes = 8
 vframes = 7
