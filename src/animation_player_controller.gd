@@ -264,6 +264,9 @@ func on_ending_animation_finished(anim_name: String):
 	if anim_name != "Scene1_Ending":
 		return
 
+	var right_bg_collision = main_scene.get_node("Background/Right")
+	right_bg_collision.position.x = 3300
+
 	var make_gray_nodes = [
 		main_scene.get_node("%Piano"),
 		main_scene.get_node("%Box"),
@@ -275,6 +278,9 @@ func on_ending_animation_finished(anim_name: String):
 		node.material.set_shader_parameter("activate", true)
 	for node in get_tree().get_nodes_in_group("grayscale"):
 		node.material.set_shader_parameter("activate", true)
+	
+	main_scene.get_node("%Wall-right").show()
+	main_scene.get_node("%Door-right/Portal").show()
 
 	movement_camera.global_position = animation_camera.global_position
 	movement_camera.enabled = true
@@ -282,7 +288,8 @@ func on_ending_animation_finished(anim_name: String):
 
 	var new_pos = Vector2(1492, 472)
 	var new_dir = false
-	player_movement_character.instantiate(new_pos, new_dir)
+	player_movement_character.initialize(new_pos, new_dir)
+	player_movement_character.z_index = 11
 
 func set_shader_strength(strength: float):
 	for node in get_tree().get_nodes_in_group("grayscale"):
@@ -291,6 +298,9 @@ func set_shader_strength(strength: float):
 
 func _on_end_trigger_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Ending reached")
+		player_movement_character.hide_player()
+		await get_tree().create_timer(1.0).timeout
+
+		main_scene.get_node("%NotebookEffect").hide()
 		main_scene.get_node("%EndingMenu").show()
 		get_tree().paused = true

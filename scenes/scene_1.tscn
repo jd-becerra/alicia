@@ -804,7 +804,7 @@ radius = 56.0
 height = 224.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dwtug"]
-radius = 96.0
+radius = 72.0
 height = 384.0
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("animation", "player_animation_character", "player_movement_character", "animation_camera", "movement_camera")]
@@ -1069,6 +1069,7 @@ layer = 2
 [node name="EndingMenu" parent="UI" instance=ExtResource("30_2nm2o")]
 unique_name_in_owner = true
 visible = false
+mouse_filter = 2
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("10_2h2bc")]
 process_mode = 3
@@ -1107,6 +1108,7 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0.490196)
 
 [node name="NotebookEffect" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
 z_index = 1
 material = SubResource("ShaderMaterial_rre2d")
 anchors_preset = 15
@@ -1169,7 +1171,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndTrigger"]
-position = Vector2(2976, 464)
+position = Vector2(3016, 456)
 shape = SubResource("CapsuleShape2D_dwtug")
 
 [connection signal="body_entered" from="EndTrigger" to="." method="_on_end_trigger_body_entered"]
