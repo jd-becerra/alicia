@@ -94,9 +94,13 @@ func print_note(button: Button) -> void:
 	if player_sequence.size() == MAX_NOTES:
 		if player_sequence == CORRECT_SEQUENCE:
 			print("Congratulations! You played the correct sequence.")
+			start_dialogue("Correct_Sequence")
+			await DialogueManager.dialogue_ended
 			game_states.puzzle_solved = true
 			var main_scene = get_node("/root/MainScene")
+			main_scene.get_node("%Player").hide()
 			self.hide()
+			game_ui.hide()
 			get_tree().paused = false
 			main_scene.enable_normal_animation("Scene1_Ending")
 		else:

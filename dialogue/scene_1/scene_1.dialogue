@@ -51,7 +51,6 @@ Señor Abrazos: No me digas que quieres regresar a esas memorias...
 Señor Abrazos: Alicia, no hay nada bueno para ti en el pasado. Sólo dolor y miseria.
 Señor Abrazos: Si regresas...no serás la misma.
 do play_object_animation("Piano", "Alicia_Determined", false)
-Alicia: ...
 Alicia: Tengo que hacerlo.
 do play_character_animation("Senor_Abrazos", "Sad")
 Señor Abrazos: Muy bien, Alicia. No es algo que me guste, pero no voy a discutir.

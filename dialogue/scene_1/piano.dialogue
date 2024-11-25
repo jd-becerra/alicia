@@ -38,10 +38,8 @@ Alicia: La batuta no me servirá de nada de esta manera.
 ~ Partitura_Piano_Stuck
 Alicia: ¡Bien!
 Alicia: Ya tengo una melodía que puedo tocar.
-Alicia: Ahora sólo necesito abrir el piano.
+Alicia: Ahora sólo necesito asegurarme de que el piano no se cierre. 
 => END
-
-
 
 ~ Testamento_Piano_Interaction
 Alicia: Esta hoja no me sirve de nada aquí... 
@@ -51,4 +49,8 @@ Alicia: A menos que tenga música que pueda tocar.
 ~ Cartas_Piano_Interaction
 Alicia: Estas hojas no me sirven de nada aquí...
 Alicia: A menos que tengan música que pueda tocar.
+=> END
+
+~ Correct_Sequence
+Alicia: ¡Sí, esa es la canción!
 => END

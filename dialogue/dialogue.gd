@@ -34,5 +34,7 @@ func show_dialogue(starting_point: String) -> Node:
 
 func _on_dialogue_finished(_resource: DialogueResource) -> void:
     emit_signal("dialogue_triggered", false)
-    if start_point != "Zoom":
+    if start_point != "Zoom" or \
+            start_point != "Correct_Sequence" or \
+            start_point != "final":
         game_gui.show()

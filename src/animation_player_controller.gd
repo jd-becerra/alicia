@@ -26,6 +26,7 @@ var tolerance: float = 0.01  # Tolerance for animation end comparison
 var animation_finished = false
 var is_dialogue_triggered = false
 var animation_played_first_time = true
+var reload_scene = false
 
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
@@ -259,6 +260,7 @@ func on_ending_animation_finished(anim_name: String):
 	if anim_name != "Scene1_Ending":
 		return
 
+	main_scene.get_node("%GameUI").hide()
 	var right_bg_collision = main_scene.get_node("Background/Right")
 	right_bg_collision.position.x = 3300
 
