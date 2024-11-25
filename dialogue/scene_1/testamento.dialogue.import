@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://djx25bkhy7o5c"
+path="res://.godot/imported/testamento.dialogue-ba00b5789822726b3627f17b45e54ba3.tres"
+
+[deps]
+
+source_file="res://dialogue/scene_1/testamento.dialogue"
+dest_files=["res://.godot/imported/testamento.dialogue-ba00b5789822726b3627f17b45e54ba3.tres"]
+
+[params]
+
+defaults=true

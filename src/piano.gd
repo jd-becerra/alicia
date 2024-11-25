@@ -38,12 +38,15 @@ const note_y_positions = {
 
 
 const CORRECT_SEQUENCE = ["G4", "A4", "B4", "E5", "D5"]  # If player plays this sequence, they win
+
+var dialogue = load("res://dialogue/scene_1/piano.dialogue")
 var player_sequence = []  # Player's current sequence
 var printed_notes = []  # Notes that have been printed on the pentagram
 
 var original_x: float
 var original_y: float
 var current_x: float
+
 
 func _ready() -> void:
 	# Search for the buttons in the scene (path: WhiteKeys/KEY)
@@ -97,7 +100,7 @@ func print_note(button: Button) -> void:
 			get_tree().paused = false
 			main_scene.enable_normal_animation("Scene1_Ending")
 		else:
-			print("Incorrect sequence. Try again.")
+			start_dialogue("Incorrect_Sequence")
 			
 			# Make printed notes red
 			for note in printed_notes:
@@ -137,5 +140,10 @@ func player_has_item(item_name: String) -> bool:
 		if item:
 			if item.name == item_name:
 				return true
-
 	return false
+
+func start_dialogue(starting_point: String) -> void:
+	var balloon = load("res://dialogue/balloon.tscn").instantiate()
+	# get_current_scene().add_child(balloon)
+	get_tree().get_root().add_child(balloon)
+	balloon.start(dialogue, starting_point, [])

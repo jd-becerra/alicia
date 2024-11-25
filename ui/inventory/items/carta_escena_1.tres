@@ -1,19 +1,18 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://br274dhsbose7"]
 
 [ext_resource type="Script" path="res://src/item.gd" id="1_2ok3n"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kc4w1"]
-load_path = "res://.godot/imported/inventory_scene_1.png-62898f728ca80573ae44b068aa40bc80.ctex"
+[ext_resource type="Texture2D" uid="uid://dm2byrdg7jmq4" path="res://ui/inventory/inventory_scene_1.png" id="2_l82oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_te34w"]
-atlas = SubResource("CompressedTexture2D_kc4w1")
+atlas = ExtResource("2_l82oa")
 region = Rect2(192, 0, 96, 96)
 
 [resource]
 script = ExtResource("1_2ok3n")
-name = "Carta_Escena_1"
-description = "Es la carta que me envió mi tía hace un mes. Dice que mi madre... falleció."
+name = "Cartas"
+description = "La carta que mi padre le envió a mi mamá hace unos años. Parece que mi madre quizo responder, pero decidió no hacerlo."
 texture = SubResource("AtlasTexture_te34w")
-default = true
-pairs_with = ""
+default = false
+is_document = true
+document_path = "res://docs/cartas.jpg"
 incompatible_dialogue = Array[String]([])

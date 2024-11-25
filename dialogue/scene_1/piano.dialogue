@@ -4,21 +4,51 @@ Alicia: Mi mamá solía tocarlo todo el día.
 Alicia: Artistas de todo el mundo llegaban y se sentaban con mi madre a discutir sobre todo tipo de cosas.
 => END
 
-~ pick_up
-Alicia: No puedo levantar esto. Es demasiado pesado.
+~ No_Pick_Up
+Alicia: ¡No puedo abrir la tapa del piano!
+Alicia: Este instrumento es muy viejo, y su mecanismo está claramente atascado.
 => END
 
-~ piano_stuck
-Alicia: Este instrumento es muy viejo.
-Alicia: No puedo levantar la tapa. Parece que está atorada.
+~ Piano_Stuck
+Alicia: ¡No puedo abrir la tapa del piano!
+Alicia: Este instrumento es muy viejo, y su mecanismo está claramente atascado.
 => END
 
-~ piano_closing
+~ Piano_Closing
 Alicia: ¡No voy a arriesgar el poner mis manos ahí!
-Alicia: La tapa podría caerse en cualquier momento.
+Alicia: Este instrumento es muy viejo, y la tapa podría caerse en cualquier momento.
 Alicia: Necesito algo con lo que detenerla.
 => END
 
-~ default
-Alicia: El piano de mi madre.
+~ Piano_No_Sheet_Music
+Alicia: No me siento con ganas de improvisar ninguna melodía.
+Alicia: A menos que tenga alguna canción escrita, no quiero tocar nada.
+=> END
+
+~ Incorrect_Sequence
+Alicia: No, esa melodía no me suena.
+Alicia: Debo intentar con otra.
+=> END
+
+~ Batuta_Piano_Stuck
+Alicia: ¡El piano está atorado!
+Alicia: La batuta no me servirá de nada de esta manera.
+=> END
+
+~ Partitura_Piano_Stuck
+Alicia: ¡Bien!
+Alicia: Ya tengo una melodía que puedo tocar.
+Alicia: Ahora sólo necesito abrir el piano.
+=> END
+
+
+
+~ Testamento_Piano_Interaction
+Alicia: Esta hoja no me sirve de nada aquí... 
+Alicia: A menos que tenga música que pueda tocar.
+=> END
+
+~ Cartas_Piano_Interaction
+Alicia: Estas hojas no me sirven de nada aquí...
+Alicia: A menos que tengan música que pueda tocar.
 => END

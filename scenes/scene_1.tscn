@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=63 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Texture2D" uid="uid://cjoub15adxvx1" path="res://assets/objects/scene-1/window_glasses_close.png" id="3_0tvtj"]
@@ -37,6 +37,8 @@
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
 [ext_resource type="Texture2D" uid="uid://cuwxi5cct3lv1" path="res://assets/objects/scene-1/partitura_extra_small.png" id="26_l7fhu"]
 [ext_resource type="Texture2D" uid="uid://crejwl6bsxyh4" path="res://assets/objects/scene-1/portal.png" id="27_l0b7i"]
+[ext_resource type="Resource" uid="uid://br274dhsbose7" path="res://ui/inventory/items/carta_escena_1.tres" id="27_mko66"]
+[ext_resource type="Resource" uid="uid://c651jp23uuyx4" path="res://dialogue/scene_1/caja.dialogue" id="28_7yhqn"]
 [ext_resource type="PackedScene" uid="uid://baeqrnvvmfywm" path="res://ui/ending_menu.tscn" id="30_2nm2o"]
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="30_e1tkr"]
 [ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="31_bcrex"]
@@ -941,7 +943,7 @@ animation_name = "RESET"
 z_index = -1
 material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
-animation_name = "No_Leaf"
+animation_name = "RESET"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
 unique_name_in_owner = true
@@ -970,6 +972,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("18_qv5mr")
 
 [node name="InteractionMenus" type="Node" parent="Objects"]
+unique_name_in_owner = true
 
 [node name="Choices-Piano" parent="Objects/InteractionMenus" node_paths=PackedStringArray("use_node") instance=ExtResource("19_qww40")]
 visible = false
@@ -989,7 +992,7 @@ pick_up = true
 use = true
 use_node = NodePath("../../../UI/PianoUI")
 
-[node name="Choices-Escritorio" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
+[node name="Choices-Papeles" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
 visible = false
 anchors_preset = -1
 anchor_left = 0.107
@@ -1003,8 +1006,10 @@ offset_bottom = -138.384
 object_name = "Escritorio_Interaction"
 dialogue = ExtResource("15_aga7y")
 inspect = true
+zoom = true
 pick_up = true
-use = true
+zoom_object_path = "res://docs/cartas.jpg"
+item_to_pick_up = ExtResource("27_mko66")
 
 [node name="Choices-Batuta" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
 visible = false
@@ -1018,7 +1023,7 @@ offset_top = 411.392
 offset_right = -459.848
 offset_bottom = -50.384
 object_name = "Batuta_Interaction"
-dialogue = ExtResource("15_aga7y")
+dialogue = ExtResource("28_7yhqn")
 inspect = true
 pick_up = true
 use = true

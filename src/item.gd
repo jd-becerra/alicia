@@ -8,8 +8,8 @@ class_name Item
 ## If the item is a default item and is present on the inventory at the start of the game
 @export var default: bool = false
 
-## The object that this item pairs with (could be Item or InteractionObject)
-@export var pairs_with: String = ""
+@export var is_document: bool = false
+@export var document_path: String = ""
 
 ## Dictionary to store dialogue for incompatible items (key: item name, value: dialogue start name). Key: String, Value: String
 @export var incompatible_dialogue: Array[String]

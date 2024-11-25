@@ -10,11 +10,14 @@ var enable_dialogue: bool = true
 var is_paused: bool = false
 var dialogue_was_triggered: bool = false
 var scene: PackedScene
+var start_point = ""
 
 @warning_ignore("unused_signal")
 signal dialogue_triggered(is_active: bool)
 
 func start_dialogue(starting_point: String) -> void:
+    start_point = starting_point
+
     game_gui.hide()
 
     show_dialogue(starting_point)
@@ -31,4 +34,5 @@ func show_dialogue(starting_point: String) -> Node:
 
 func _on_dialogue_finished(_resource: DialogueResource) -> void:
     emit_signal("dialogue_triggered", false)
-    game_gui.show()
+    if start_point != "Zoom":
+        game_gui.show()

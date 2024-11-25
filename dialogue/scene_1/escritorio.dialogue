@@ -1,4 +1,28 @@
 ~ Inspect
-Alicia: Un escritorio viejo. 
-Alicia: Hay varios documentos esparcidos.
+Alicia: Hay varios documentos esparcidos en el escritorio.
+Alicia: Podría encontrar algo interesante.
+=> END
+
+~ Zoom
+Alicia: Parece ser una carta que le envió mi padre a mi madre hace unos años.
+Alicia: Ellos llevaban divorciados un tiempo, cuando mi padre se fue sin decir nada.
+Alicia: Mi madre no quería ni verle la cara después.
+Alicia: Mi padre y yo hemos hablado, y con el tiempo nos hemos reconciliado. Pero mi madre...
+Alicia: Ella no es el tipo de persona que sabe perdonar.
+=> END
+
+~ Testamento_Escritorio_Interaction
+Alicia: Este testamento no me sirve de nada aquí.
+=> END
+
+~ Partitura_Escritorio_Interaction
+Alicia: Acabo de recoger esta partitura del escritorio. No necesito regresarla.
+=> END
+
+~ Cartas_Escritorio_Interaction
+Alicia: Acabo de recoger estas cartas del escritorio. No necesito regresarlas. 
+=> END
+
+~ Batuta_Escritorio_Interaction
+Alicia: ¿Porqué pondría la batuta de mi madre aquí? La necesito.
 => END

@@ -99,6 +99,13 @@ func on_inventory_interact(inv: Inventory, item: Item, index: int, button_action
 		grabbed_item = null
 		update_grab_slot()
 	elif button_action == 2:
+		if inv.items[index]:
+			if inv.items[index].is_document:
+				zoom_document(inv.items[index].document_path)
+			else:
+				# Start dialogue about the item
+				pass
+
 		# This action is to USE, INSPECT or ZOOM IN the item on the inventory (depending on the item)
 		print("Right click on item %s" % item.name)
 
@@ -108,3 +115,21 @@ func update_grab_slot() -> void:
 		grabbed_slot.show()
 	else:
 		grabbed_slot.hide()
+
+func zoom_document(document_path: String = "") -> void:
+	
+	var dialogue = null
+	if document_path == "res://docs/cartas.jpg":
+		dialogue = load("res://dialogue/scene_1/escritorio.dialogue")
+	if document_path == "res://assets/objects/scene-1/partitura_wide.png":
+		dialogue = load("res://dialogue/scene_1/partitura.dialogue")
+	if document_path == "res://docs/testamento.jpg":
+		dialogue = load("res://dialogue/scene_1/testamento.dialogue")
+	
+	var balloon = load("res://dialogue/balloon.tscn").instantiate()
+	# get_current_scene().add_child(balloon)
+	get_tree().get_root().add_child(balloon)
+	balloon.start(dialogue, "Zoom", [])
+
+	var document_wide = get_node("/root/MainScene/UI/DocumentWide")
+	document_wide.show_object(document_path)

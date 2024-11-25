@@ -17,6 +17,8 @@ extends Node2D
 @onready var dialogue_indicator: PackedScene = preload("res://ui/dialogue_indicator.tscn")
 @onready var vhs_effect: ColorRect = main_scene.get_node("%VHSEffect")
 
+@onready var game_states = main_scene.get_node("%States")
+
 var is_dragging: bool = false
 var last_time = 0
 var is_paused: bool = false

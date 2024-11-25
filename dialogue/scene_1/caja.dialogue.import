@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://c651jp23uuyx4"
+path="res://.godot/imported/caja.dialogue-5d14fbac948a40acda87ef003bfd18e9.tres"
+
+[deps]
+
+source_file="res://dialogue/scene_1/caja.dialogue"
+dest_files=["res://.godot/imported/caja.dialogue-5d14fbac948a40acda87ef003bfd18e9.tres"]
+
+[params]
+
+defaults=true

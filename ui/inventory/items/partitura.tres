@@ -15,5 +15,6 @@ name = "Partitura"
 description = "Es una partitura con la canción que mi madre escribió de joven. Solía cantarla todas las noches antes de dormir."
 texture = SubResource("AtlasTexture_urdx6")
 default = false
-pairs_with = "Piano"
+is_document = true
+document_path = "res://assets/objects/scene-1/partitura_wide.png"
 incompatible_dialogue = Array[String]([])

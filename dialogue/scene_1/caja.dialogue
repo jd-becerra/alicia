@@ -1,0 +1,32 @@
+~ Inspect
+Alicia: Esta caja contiene varios objetos de mi madre.
+Alicia: No veo nada interesante, excepto...
+Alicia: ¡La batuta favorita de mi madre!
+Alicia: Solía decir que no era muy buena. No tenía buen balance y era demasiado pesada.
+Alicia: Pero mi madre le tenía cariño por que su padre se la había regalado cuando le mencionó que iba a estudiar Dirección Orquestal.
+=> END
+
+~ No_Use
+Alicia: No tengo ninguna utilidad para una caja vieja, ya desempacaré después.
+=> END
+
+~ Testamento_Batuta_Interaction
+Alicia: No necesito poner esto en la caja.
+=> END
+
+~ Partitura_Batuta_Interaction
+Alicia: No necesito poner esto en la caja.
+=> END
+
+~ Cartas_Batuta_Interaction
+Alicia: No necesito poner esto en la caja.
+=> END
+
+~ Batuta_Batuta_Interaction
+Alicia: No necesito poner la batuta de regreso en su caja.
+Alicia: Tal vez pueda utilizarla para algo más.
+=> END
+
+~ default
+Alicia: La batuta favorita de mi madre.
+=> END
