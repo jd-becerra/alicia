@@ -28,15 +28,23 @@ func _input(_event: InputEvent) -> void:
 		is_paused = not is_paused
 
 func _on_regresar_pressed() -> void:
+	play_click_sound()
 	game_ui.show()
 	self.hide()
 	get_tree().paused = false
 
 func _on_configuracion_pressed() -> void:
+	play_click_sound()
 	game_ui.hide()
 	settings_menu.show()
 
 func _on_salir_pressed() -> void:
+	play_click_sound()
 	# Return to the main menu (remember to unpause the game so the menu is responsive again)
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+
+func play_click_sound():
+	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
+	sfx.stream = load("res://sounds/click.mp3")
+	sfx.play()

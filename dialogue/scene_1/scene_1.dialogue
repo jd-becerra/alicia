@@ -1,5 +1,6 @@
 ~ start
 do play_character_animation("Alicia_Adulta", "Sad_Sigh")
+do play_sound("deep_sigh.mp3")
 Alicia: No creí que volvería a ver esta casa nunca más.
 => END
 ~ piano
@@ -17,6 +18,7 @@ Alicia: Y otras... otras que me gustaría olvidar para siempre.
 if not game_states.piano_open:
 	do play_character_animation("Alicia_Adulta", "Surprised", true)
 	do play_object_animation("Piano", "Close")
+	do play_sound("wood_hit.mp3")
 	do play_object_animation("Piano", "Stuck")
 	do pause_dialogue(1)
 	Alicia: ...
@@ -25,11 +27,14 @@ if not game_states.piano_open:
 do play_character_animation("Alicia_Adulta", "Sad", false)
 Alicia: Si pudiera regresar en el tiempo...
 Alicia: Hay muchas cosas que habría cambiado.
+do play_sound("deep_sigh.mp3")
 do play_character_animation("Alicia_Adulta", "Sad_Sigh")
 => END
 ~ final
+do play_sound("gasp.mp3")
 do play_object_animation("Piano", "Alicia_Surprised")
 do play_character_animation("Senor_Abrazos", "Happy")
+do play_sound("bear_hi_2.wav")
 Señor Abrazos: ¡Alicia!
 Señor Abrazos: Hace años que no te escuchaba tocar esta melodía.
 Alicia: ...
@@ -43,6 +48,7 @@ Señor Abrazos: Dejaste a Julia devastada, ¿sabes?
 Señor Abrazos: Entiendo porqué lo hiciste, tal vez fue por lo mejor...
 Señor Abrazos: Sólo desearía que las cosas no hubieran terminado de esta manera.
 do play_character_animation("Senor_Abrazos", "Happy")
+do play_sound("bear_laugh.wav")
 Señor Abrazos: ¡No importa! Lo bueno es que has vuelto.
 do play_character_animation("Senor_Abrazos", "Curious")
 Señor Abrazos: Pero... ¿porqué?

@@ -8,6 +8,7 @@ extends Control
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var redo_btn: Button = %RedoBtn
 @onready var game_states: Node = get_node("/root/MainScene/States")
+@onready var sfx: AudioStreamPlayer = get_node("/root/MainScene/SFX")
 
 # Constants
 const KEYS = ["G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5"]
@@ -61,10 +62,12 @@ func _ready() -> void:
 	redo_btn.pressed.connect(clear_notes)
 
 func _on_return_pressed() -> void:
+	play_click_sound()
 	# Hide itself and show the game UI
 	game_ui.show()
 	self.hide()
 	get_tree().paused = false
+	game_states.piano_menu_open = false
 
 var rotated_left = false
 func print_note(button: Button) -> void:
@@ -93,6 +96,11 @@ func print_note(button: Button) -> void:
 
 	if player_sequence.size() == MAX_NOTES:
 		if player_sequence == CORRECT_SEQUENCE:
+			for audio_stream in get_tree().get_nodes_in_group("sfx"):
+				audio_stream.playing = false
+			var music_bg = get_node("/root/MainScene/MusicBG")
+			music_bg.playing = false
+
 			print("Congratulations! You played the correct sequence.")
 			start_dialogue("Correct_Sequence")
 			await DialogueManager.dialogue_ended
@@ -119,6 +127,7 @@ func set_note_position(note_name: String) -> Vector2:
 	return Vector2(current_x, original_y + note_y_positions[note_name])
 
 func clear_notes() -> void:
+	play_click_sound()
 	# Clear the sequence
 	player_sequence.clear()
 	current_x = original_x
@@ -151,3 +160,8 @@ func start_dialogue(starting_point: String) -> void:
 	# get_current_scene().add_child(balloon)
 	get_tree().get_root().add_child(balloon)
 	balloon.start(dialogue, starting_point, [])
+
+func play_click_sound():
+	if not sfx.is_playing():
+		sfx.stream = load("res://sounds/click.mp3")
+		sfx.play()

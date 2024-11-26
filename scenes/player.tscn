@@ -102,3 +102,6 @@ libraries = {
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2(0, 90)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." groups=["audio"]]
+volume_db = 24.0

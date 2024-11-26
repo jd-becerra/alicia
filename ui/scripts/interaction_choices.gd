@@ -104,6 +104,7 @@ func _process(_delta: float) -> void:
 		release_interaction_click()
 
 func _on_dot_pressed() -> void:
+	play_swipe_sound()
 	if not wheel_open:
 		InteractionManager.set_active_menu(self) # Set this menu as the active one
 		show_choices()
@@ -292,6 +293,7 @@ func on_use() -> void:
 				show_interaction_dialogue(dialogue, "Piano_No_Sheet_Music")
 				return
 
+		game_states.piano_menu_open = true
 		use_node.show_use_node()
 	else:
 		show_interaction_dialogue(dialogue, "No_Use")
@@ -383,3 +385,13 @@ func lock_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	await get_tree().create_timer(1.0).timeout
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func play_click_sound() -> void:
+	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
+	sfx.stream = load("res://sounds/click.mp3")
+	sfx.play()
+
+func play_swipe_sound() -> void:
+	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
+	sfx.stream = load("res://sounds/swipe.mp3")
+	sfx.play()

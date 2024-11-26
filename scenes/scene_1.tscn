@@ -1,10 +1,11 @@
-[gd_scene load_steps=63 format=3 uid="uid://c0gmbbmgb1igy"]
+[gd_scene load_steps=71 format=3 uid="uid://c0gmbbmgb1igy"]
 
 [ext_resource type="Script" path="res://src/animation_player_controller.gd" id="1_c62u0"]
 [ext_resource type="Texture2D" uid="uid://cjoub15adxvx1" path="res://assets/objects/scene-1/window_glasses_close.png" id="3_0tvtj"]
 [ext_resource type="Texture2D" uid="uid://d15hx26j84xbp" path="res://assets/backgrounds/background_scene_1.png" id="3_wgbc6"]
 [ext_resource type="Texture2D" uid="uid://c7l4asv56weg0" path="res://assets/objects/scene-1/box_empty.png" id="4_df24n"]
 [ext_resource type="Texture2D" uid="uid://6i00iimpjyra" path="res://assets/objects/scene-1/wall-left.png" id="4_vprv8"]
+[ext_resource type="AudioStream" uid="uid://bkblxpx05ybwl" path="res://sounds/window_close.mp3" id="5_5ngch"]
 [ext_resource type="PackedScene" uid="uid://c2gg6xbyb7lch" path="res://scenes/characters/alicia/adulta.tscn" id="5_fmidb"]
 [ext_resource type="Script" path="res://src/player_animation.gd" id="6_f624h"]
 [ext_resource type="AudioStream" uid="uid://bx0poe5ot2qy4" path="res://sounds/footsteps.mp3" id="7_ntmog"]
@@ -30,8 +31,8 @@
 [ext_resource type="Resource" uid="uid://csmjw1oymgd5u" path="res://ui/inventory/items/batuta.tres" id="15_psqa6"]
 [ext_resource type="PackedScene" uid="uid://cxctf0gioohef" path="res://scenes/document_wide.tscn" id="17_1cnvc"]
 [ext_resource type="Resource" uid="uid://3s6bb82rc5op" path="res://ui/inventory/items/partitura.tres" id="17_ygw7t"]
-[ext_resource type="Texture2D" uid="uid://macule0qyaw4" path="res://assets/objects/scene-1/box.png" id="18_qv5mr"]
 [ext_resource type="PackedScene" uid="uid://dcscjng8hcgxo" path="res://ui/interaction_choices.tscn" id="19_qww40"]
+[ext_resource type="Texture2D" uid="uid://macule0qyaw4" path="res://assets/objects/scene-1/box.png" id="23_2q4yl"]
 [ext_resource type="PackedScene" uid="uid://bj3cboqxul38a" path="res://scenes/piano_keyboard.tscn" id="23_g4shp"]
 [ext_resource type="Script" path="res://src/interaction_manager.gd" id="23_jdu5f"]
 [ext_resource type="Resource" uid="uid://le8gw3ext3a2" path="res://ui/inventory/inventory_scene_1.tres" id="23_ki66i"]
@@ -43,9 +44,16 @@
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="30_e1tkr"]
 [ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="31_bcrex"]
 [ext_resource type="Script" path="res://src/states.gd" id="34_m4xoq"]
-[ext_resource type="AudioStream" uid="uid://djwyae6dgx35d" path="res://music/main_theme_scene1.wav" id="37_xdk48"]
 [ext_resource type="Texture2D" uid="uid://pkpum0211ebk" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="40_61m6c"]
 [ext_resource type="Texture2D" uid="uid://bce5ymbck5x87" path="res://assets/objects/scene-1/wall-right.png" id="42_mk82o"]
+[ext_resource type="AudioStream" uid="uid://c5gwsplh3nk1s" path="res://music/bg_music.mp3" id="44_t4ccf"]
+[ext_resource type="AudioStream" uid="uid://dx445cmp1b6we" path="res://music/main_theme_scene1.mp3" id="45_clv46"]
+[ext_resource type="AudioStream" uid="uid://dtwswcxo57lln" path="res://sounds/click.mp3" id="46_sea03"]
+[ext_resource type="AudioStream" uid="uid://dc5jy00nx2aej" path="res://sounds/forest.mp3" id="47_ts214"]
+[ext_resource type="AudioStream" uid="uid://b4x7pnamgchv3" path="res://sounds/flap.mp3" id="48_emlvh"]
+[ext_resource type="AudioStream" uid="uid://b872xo2h732ct" path="res://sounds/creak.mp3" id="49_rge8r"]
+[ext_resource type="AudioStream" uid="uid://wbm0fc5tctnd" path="res://sounds/door_open_close.mp3" id="51_sg23s"]
+[ext_resource type="AudioStream" uid="uid://vd0x3klmeahs" path="res://sounds/paper_flutter.mp3" id="51_u0t8a"]
 
 [sub_resource type="Animation" id="Animation_vp3wc"]
 length = 0.001
@@ -203,7 +211,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -232,7 +240,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("MainAudio:playing")
+tracks/15/path = NodePath("MusicEnding:playing")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -324,6 +332,90 @@ tracks/22/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Closed"]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Sounds/Forest:playing")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Sounds/Curtains:playing")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Sounds/Window:playing")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Sounds/Paper:playing")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Sounds/Piano:playing")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Objects/Box:texture")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_2q4yl")]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Sounds/Door:playing")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_e3rfi"]
@@ -504,10 +596,10 @@ tracks/14/path = NodePath("Characters/Alicia_Adulta/AudioStreamPlayer2D:playing"
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(23.4333, 25.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(23.4333, 25.3, 27.1667, 27.2, 31.1667, 32.1333, 32.1667, 36.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, false, false, true, false, false, true, false]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
@@ -532,6 +624,90 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Sounds/Forest:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(-0.3, 0, 40.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Sounds/Curtains:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 3.63333, 3.66667, 40.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Sounds/Window:playing")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 40.8667, 40.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Sounds/Paper:playing")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0.0333333, 8.93333, 8.96667, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Sounds/Piano:playing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 17.7333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Objects/Box:texture")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_2q4yl")]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Sounds/Door:playing")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 21.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_sb77p"]
@@ -576,7 +752,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainAudio:playing")
+tracks/3/path = NodePath("MusicEnding:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -740,6 +916,102 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Portal"]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Sounds/Forest:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Sounds/Curtains:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Sounds/Window:playing")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Sounds/Door:playing")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Sounds/Piano:playing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Sounds/Paper:playing")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("MusicBG:playing")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("MusicBG:autoplay")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
@@ -943,7 +1215,7 @@ animation_name = "RESET"
 z_index = -1
 material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
-animation_name = "RESET"
+animation_name = "No_Leaf"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
 unique_name_in_owner = true
@@ -969,7 +1241,7 @@ unique_name_in_owner = true
 material = ExtResource("12_j5l1c")
 position = Vector2(455.996, 464)
 scale = Vector2(3, 3)
-texture = ExtResource("18_qv5mr")
+texture = ExtResource("23_2q4yl")
 
 [node name="InteractionMenus" type="Node" parent="Objects"]
 unique_name_in_owner = true
@@ -1156,10 +1428,16 @@ full_inventory = ExtResource("23_ki66i")
 unique_name_in_owner = true
 script = ExtResource("34_m4xoq")
 
-[node name="MainAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="MusicEnding" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("37_xdk48")
-volume_db = 20.0
+stream = ExtResource("45_clv46")
+volume_db = -10.0
+
+[node name="MusicBG" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("44_t4ccf")
+volume_db = -10.0
+autoplay = true
 
 [node name="Lights" type="Node" parent="."]
 
@@ -1181,5 +1459,42 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndTrigger"]
 position = Vector2(3016, 456)
 shape = SubResource("CapsuleShape2D_dwtug")
+
+[node name="SFX" type="AudioStreamPlayer" parent="." groups=["audio", "sfx"]]
+unique_name_in_owner = true
+stream = ExtResource("46_sea03")
+volume_db = -10.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Forest" type="AudioStreamPlayer2D" parent="Sounds" groups=["audio", "sfx"]]
+position = Vector2(2192, 304)
+stream = ExtResource("47_ts214")
+volume_db = -10.0
+
+[node name="Curtains" type="AudioStreamPlayer2D" parent="Sounds" groups=["audio", "sfx"]]
+position = Vector2(2192, 304)
+stream = ExtResource("48_emlvh")
+volume_db = -10.0
+
+[node name="Window" type="AudioStreamPlayer2D" parent="Sounds" groups=["audio", "sfx"]]
+position = Vector2(2192, 304)
+stream = ExtResource("5_5ngch")
+volume_db = -10.0
+
+[node name="Door" type="AudioStreamPlayer2D" parent="Sounds" groups=["audio", "sfx"]]
+position = Vector2(2192, 304)
+stream = ExtResource("51_sg23s")
+volume_db = -10.0
+
+[node name="Piano" type="AudioStreamPlayer2D" parent="Sounds" groups=["audio", "sfx"]]
+position = Vector2(1368, 400)
+stream = ExtResource("49_rge8r")
+volume_db = -10.0
+
+[node name="Paper" type="AudioStreamPlayer2D" parent="Sounds" groups=["audio", "sfx"]]
+position = Vector2(2240, 360)
+stream = ExtResource("51_u0t8a")
+volume_db = -10.0
 
 [connection signal="body_entered" from="EndTrigger" to="." method="_on_end_trigger_body_entered"]

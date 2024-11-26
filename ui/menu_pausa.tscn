@@ -24,6 +24,7 @@ color = Color(0, 0.633515, 0.656145, 1)
 
 [node name="GuardarBtn" type="Button" parent="ColorRect"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 280.0
 offset_top = 40.0
@@ -34,28 +35,28 @@ text = "GUARDAR PARTIDA"
 [node name="ConfigBtn" type="Button" parent="ColorRect"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 280.0
-offset_top = 192.0
-offset_right = 886.0
-offset_bottom = 336.0
+offset_left = 288.0
+offset_top = 136.0
+offset_right = 894.0
+offset_bottom = 280.0
 text = "CONFIGURACIÓN"
 
 [node name="SalirBtn" type="Button" parent="ColorRect"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 280.0
-offset_top = 344.0
-offset_right = 886.0
-offset_bottom = 488.0
+offset_left = 288.0
+offset_top = 288.0
+offset_right = 894.0
+offset_bottom = 432.0
 text = "MENÚ PRINCIPAL"
 
 [node name="RegresarBtn" type="Button" parent="ColorRect"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 456.0
-offset_top = 504.0
-offset_right = 714.0
-offset_bottom = 603.0
+offset_left = 464.0
+offset_top = 448.0
+offset_right = 722.0
+offset_bottom = 547.0
 theme_override_font_sizes/font_size = 35
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8dgoi")
 text = "REGRESAR"

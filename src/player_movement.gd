@@ -14,6 +14,8 @@ extends CharacterBody2D
 
 #@export_category("Inventory")
 @onready var inventory_data: Inventory = Inventory.new()
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var sfx: AudioStreamPlayer = get_node("/root/MainScene/SFX")
 
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -122,7 +124,9 @@ func _physics_process(delta):
 
 		update_sprite_direction(direction.x < 0)
 		animation.play("Walk")
-
+		if not audio.is_playing():
+			audio.stream = load("res://sounds/footsteps.mp3")
+			audio.play()
 		update_camera_position(delta)
 
 		# Check if the player is stuck
@@ -143,6 +147,7 @@ func handle_idle_state():
 	is_moving = false
 	velocity = Vector2.ZERO
 	animation.play("Idle")
+	audio.stop()
 
 func _on_game_paused(state: bool):
 	game_paused = state

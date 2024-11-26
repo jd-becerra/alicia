@@ -7,6 +7,7 @@ extends Control
 @onready var settings_menu: Control = %SettingsMenu
 
 @onready var level_1 = preload("res://scenes/scene_1.tscn")
+@onready var audio: AudioStreamPlayer = %SFX
 
 func _ready() -> void:
 	print(self.name)
@@ -16,7 +17,11 @@ func _ready() -> void:
 	configuracion_btn.connect("pressed", Callable(self, "_on_configuracion_pressed"))
 	salir_btn.connect("pressed", Callable(self, "_on_salir_pressed"))
 
-# FOR NOW
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			play_click_sound()
+
 # Continuar and Nueva Partida buttons will redirect to the game scene
 func _on_continuar_pressed() -> void:
 	# Remove current scene and load the game scene
@@ -31,3 +36,7 @@ func _on_configuracion_pressed() -> void:
 # Salir button will close the game
 func _on_salir_pressed() -> void:
 	get_tree().quit()
+
+func play_click_sound():
+	audio.stream = load("res://sounds/click.mp3")
+	audio.play()

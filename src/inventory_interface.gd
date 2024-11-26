@@ -11,6 +11,11 @@ func _ready() -> void:
 	MAX_ITEMS = item_grid.columns
 	initialize_inventory()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			play_click_sound()
+
 func initialize_inventory():
 	for i in range(0, MAX_ITEMS):
 		var item_slot = ItemSlot.instantiate()
@@ -42,3 +47,8 @@ func set_inventory_data(inventory: Inventory):
 		return
 
 	fill_grid(player_inventory_data.items)
+
+func play_click_sound():
+	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
+	sfx.stream = load("res://sounds/click.mp3")
+	sfx.play()

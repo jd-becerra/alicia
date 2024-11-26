@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxt8sattd7yki"]
+[gd_scene load_steps=13 format=3 uid="uid://dxt8sattd7yki"]
 
 [ext_resource type="Theme" uid="uid://ce6e52x7jk66v" path="res://ui/menu.tres" id="1_2c24i"]
 [ext_resource type="Script" path="res://ui/scripts/main_menu.gd" id="1_7phrt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://tmnt60nw3ofc" path="res://shaders/wobbly_effect_menu.tres" id="5_2qpgb"]
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="5_mrgwg"]
 [ext_resource type="PackedScene" uid="uid://bwpse4ub1mcet" path="res://ui/settings_menu.tscn" id="6_037la"]
+[ext_resource type="AudioStream" uid="uid://c5gwsplh3nk1s" path="res://music/bg_music.mp3" id="8_0gflg"]
 
 [sub_resource type="Gradient" id="Gradient_vts4f"]
 
@@ -121,3 +122,13 @@ visible = false
 z_index = 3
 layout_mode = 1
 main_ui = NodePath("../Main")
+
+[node name="SFX" type="AudioStreamPlayer" parent="." groups=["audio"]]
+unique_name_in_owner = true
+volume_db = -20.0
+
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["audio"]]
+unique_name_in_owner = true
+stream = ExtResource("8_0gflg")
+volume_db = -20.0
+autoplay = true

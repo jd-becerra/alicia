@@ -44,6 +44,7 @@ func _physics_process(_delta: float) -> void:
 		top.modulate.a = 0
 
 func toggle_inventory() -> void:
+	play_swipe_sound()
 	if show_inventory:
 		close_ui()
 	else:
@@ -88,6 +89,7 @@ func on_inventory_interact(inv: Inventory, item: Item, index: int, button_action
 	# 0 - MOUSE_BUTTON_LEFT released
 	# 1 - MOUSE_BUTTON_LEFT pressed
 	# 2 - MOUSE_BUTTON_RIGHT (pressed)
+	play_click_sound()
 	
 	if button_action == 1:
 		# Grab item if clicked (check that the new item is not null)
@@ -133,3 +135,13 @@ func zoom_document(document_path: String = "") -> void:
 
 	var document_wide = get_node("/root/MainScene/UI/DocumentWide")
 	document_wide.show_object(document_path)
+
+func play_click_sound():
+	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
+	sfx.stream = load("res://sounds/click.mp3")
+	sfx.play()
+
+func play_swipe_sound() -> void:
+	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
+	sfx.stream = load("res://sounds/swipe.mp3")
+	sfx.play()

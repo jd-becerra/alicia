@@ -12,6 +12,7 @@ var piano_open = false
 var skip_dialogue = false
 var puzzle_solved = false
 var piano_has_sheet_music = false
+var piano_menu_open = false
 
 func _process(_delta):
     if game_paused:

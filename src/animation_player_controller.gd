@@ -18,6 +18,8 @@ extends Node2D
 @onready var vhs_effect: ColorRect = main_scene.get_node("%VHSEffect")
 
 @onready var game_states = main_scene.get_node("%States")
+@onready var audio: AudioStreamPlayer = main_scene.get_node("%SFX")
+@onready var music: AudioStreamPlayer = main_scene.get_node("%MusicBG")
 
 var is_dragging: bool = false
 var last_time = 0
@@ -40,6 +42,11 @@ func _ready():
 	# Make animation_name the current animation
 	animation.play(animation_name)
 	last_time = animation.current_animation_position
+
+	music.stream = load("res://music/bg_music_2.mp3")
+	music.volume_db = -20
+	music.autoplay = true
+	music.play()
 
 	# Ensure signal is connected only once
 	playback_button.connect("paused", Callable(self, "_on_paused"))
@@ -157,6 +164,8 @@ func on_dialogue_triggered(is_active: bool):
 func _on_paused(state: bool):
 	is_paused = state
 	if is_paused:
+		for audiostream in get_tree().get_nodes_in_group("sfx"):
+			audiostream.playing = false
 		menu.can_show_inventory = true
 		menu.get_node("%Top").visible = true
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group
@@ -186,6 +195,8 @@ func _on_paused(state: bool):
 		# player_animation_character.visible = false	
 
 	else:
+		for audiostream in get_tree().get_nodes_in_group("sfx"):
+			audiostream.playing = true
 		menu.can_show_inventory = false
 
 		# Change uniform bool "activate" of shader material for every node in "grayscale" group

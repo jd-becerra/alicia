@@ -42,6 +42,7 @@ dialogue_trigger_area="This area wiil trigger a dialogue if game is not paused (
 character="Represents a character in-game"
 interaction_menu=""
 interaction_object=""
+audio=""
 
 [input]
 

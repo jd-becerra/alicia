@@ -55,6 +55,11 @@ func play_animation(controller_route: String, animation_name: String, play_over_
 		await(anim_player.animation_finished)
 		current_animation_player = null
 
+func play_sound(sound: String) -> void:
+	var audio: AudioStreamPlayer = get_node("/root/MainScene/SFX")
+	audio.stream = load("res://sounds/" + sound)
+	audio.play()
+
 func pause_dialogue(time: float) -> void:
 	await get_tree().create_timer(time).timeout
 
