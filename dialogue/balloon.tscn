@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=10 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://dialogue/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
 [ext_resource type="Texture2D" uid="uid://nsanuw0ngoi8" path="res://dialogue/fast_forward_icon.png" id="3_82tot"]
+[ext_resource type="AudioStream" uid="uid://ckblcrkjt8wpd" path="res://sounds/pen.wav" id="5_8tnlw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy0d5"]
 bg_color = Color(0.960387, 0.941689, 0.949251, 1)
@@ -52,7 +53,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="ExampleBalloon" type="CanvasLayer"]
+[node name="ExampleBalloon" type="CanvasLayer" groups=["dialogue"]]
 process_mode = 3
 layer = 100
 script = ExtResource("1_36de5")
@@ -150,6 +151,11 @@ response_template = NodePath("ResponseExample")
 [node name="ResponseExample" type="Button" parent="Balloon/Responses/ResponsesMenu"]
 layout_mode = 2
 text = "Response example"
+
+[node name="TalkSound" type="AudioStreamPlayer" parent="." groups=["audio"]]
+unique_name_in_owner = true
+stream = ExtResource("5_8tnlw")
+volume_db = -10.0
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

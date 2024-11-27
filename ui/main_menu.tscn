@@ -67,6 +67,7 @@ theme = ExtResource("1_2c24i")
 
 [node name="CargarPartidaBtn" type="Button" parent="Main/Background/Buttons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = -709.333
 offset_top = -335.012
@@ -130,5 +131,5 @@ volume_db = -20.0
 [node name="Music" type="AudioStreamPlayer" parent="." groups=["audio"]]
 unique_name_in_owner = true
 stream = ExtResource("8_0gflg")
-volume_db = -20.0
+volume_db = -20.9
 autoplay = true

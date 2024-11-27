@@ -9,6 +9,8 @@ extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+@export var talk_sound_gap: int = 5
+
 @onready var skip_button: Button = $Balloon/Panel/SkipButton
 @onready var panel: Panel = $Balloon/Panel
 @onready var interaction_manager: Node = get_node("/root/MainScene/InteractionManager")
@@ -26,6 +28,8 @@ var is_waiting_for_input: bool = false
 var will_hide_balloon: bool = false
 
 var _locale: String = TranslationServer.get_locale()
+
+var character_counter: int = 0
 
 # Dictionary of characters with their corresponding colors for the dialogue
 var characters = {
@@ -116,6 +120,8 @@ var dialogue_line: DialogueLine:
 
 
 func _ready() -> void:
+	%TalkSound.volume_db = interaction_manager.volume
+
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -125,6 +131,8 @@ func _ready() -> void:
 
 	# Connect skip button to be able to skip the whole dialogue (go to the last line)
 	skip_button.connect("pressed", Callable(self, "on_skip_button_pressed"))
+
+	%DialogueLabel.spoke.connect(on_spoke)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
@@ -200,4 +208,12 @@ func on_skip_button_pressed() -> void:
 		await get_tree().create_timer(time).timeout
 		next(dialogue_line.next_id)
 	
+func on_spoke(letter: String, _letter_index: int, _speed: float) -> void:
+	character_counter += 1
+	# only play sound if letter is at "talk_sound_gap" distance from the last one
+	if character_counter % talk_sound_gap == 0:
+		if not letter in [".", " ", ",", "¡", "!", "?", "¿"]:
+			%TalkSound.pitch_scale = randf_range(0.9, 1.1)
+			%TalkSound.play()
+
 #endregion

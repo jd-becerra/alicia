@@ -12,6 +12,14 @@ var dialogue_was_triggered: bool = false
 var scene: PackedScene
 var start_point = ""
 
+var no_show_gui = [
+    "",
+    "Zoom",
+    "Correct_Sequence",
+    "Incorrect_Sequence",
+    "final",
+]
+
 @warning_ignore("unused_signal")
 signal dialogue_triggered(is_active: bool)
 
@@ -34,7 +42,13 @@ func show_dialogue(starting_point: String) -> Node:
 
 func _on_dialogue_finished(_resource: DialogueResource) -> void:
     emit_signal("dialogue_triggered", false)
-    if start_point != "Zoom" and \
-            start_point != "Correct_Sequence" and \
-            start_point != "final":
-        game_gui.show()
+    if start_point not in no_show_gui and not InteractionManager.animation_playing_first_time:
+        print("Showing game gui for: ", start_point, " animation_playing_first_time: ", InteractionManager.animation_playing_first_time)
+        show_gui()
+    # Reset start point because fuck Godot (it seems to keep the start_point even if dialogue ended) 
+    start_point = ""
+
+func show_gui():
+    game_gui.get_node("%Bottom").show()
+    game_gui.get_node("%PlaybackButton").show()
+    game_gui.get_node("%ProgressBar").show()

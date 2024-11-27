@@ -104,7 +104,7 @@ func _process(_delta: float) -> void:
 		release_interaction_click()
 
 func _on_dot_pressed() -> void:
-	play_swipe_sound()
+	play_sound("swipe.mp3")
 	if not wheel_open:
 		InteractionManager.set_active_menu(self) # Set this menu as the active one
 		show_choices()
@@ -241,6 +241,8 @@ func on_pick_up() -> void:
 
 	disable_action("Pick Up")
 
+	play_pop_sound()
+
 	# If item is "Partitura", force_disable the menu and hide that object from the scene
 	if item_to_pick_up.name == "Partitura":
 		force_disable = true
@@ -355,12 +357,16 @@ func check_grabbed_slot() -> void:
 func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 	print("Released %s item on %s object" % [grabbed_item.name, object_under.name])
 	if grabbed_item.name == "Partitura" and object_under.name == "Piano_Interaction":
+		%SFX2.stream = load("res://sounds/correct.mp3")
+		%SFX2.play()
 		game_states.piano_has_sheet_music = true
 		interaction_manager.remove_item_from_inventory(grabbed_item)
 		lock_mouse()
 		if not game_states.piano_open:
 			get_node("/root/MainScene/Objects/PartituraExtraSmall").show()
-			show_interaction_dialogue(dialogue, "Partitura_Piano_Stuck")	
+			show_interaction_dialogue(dialogue, "Partitura_Piano_Stuck")
+		else:
+			show_interaction_dialogue(dialogue, "Piano_Correct")
 	elif grabbed_item.name == "Batuta" and object_under.name == "Piano_Interaction":
 		var piano_anim_player = main_scene.get_node("Objects/Piano/AnimationPlayer")
 		var flowerpot_anim_player = main_scene.get_node("Objects/FlowerPot/AnimationPlayer")
@@ -368,11 +374,18 @@ func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 				piano_anim_player.current_animation == "Almost closing" or \
 				piano_anim_player.current_animation == "Leaf falls":
 			game_states.piano_open = true
+			%Sounds/Piano.play()
+			%SFX2.stream = load("res://sounds/correct.mp3")
+			%SFX2.play()
 			piano_anim_player.play("Open")
 			flowerpot_anim_player.play("No_Leaf")
-			
 			interaction_manager.remove_item_from_inventory(grabbed_item)
 			lock_mouse()
+
+			if not game_states.piano_has_sheet_music:
+				show_interaction_dialogue(dialogue, "Batuta_Piano_Open")
+			else:
+				show_interaction_dialogue(dialogue, "Piano_Correct")
 		else:
 			# Dialogue if game_states.piano_open is false
 			show_interaction_dialogue(dialogue, "Batuta_Piano_Stuck")
@@ -386,12 +399,11 @@ func lock_mouse() -> void:
 	await get_tree().create_timer(1.0).timeout
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func play_click_sound() -> void:
+func play_sound(sound: String) -> void:
 	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
-	sfx.stream = load("res://sounds/click.mp3")
+	sfx.stream = load("res://sounds/" + sound)
 	sfx.play()
 
-func play_swipe_sound() -> void:
-	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"
-	sfx.stream = load("res://sounds/swipe.mp3")
-	sfx.play()
+func play_pop_sound():
+	%SFX2.stream = load("res://sounds/pop.mp3")
+	%SFX2.play()

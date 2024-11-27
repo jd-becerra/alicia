@@ -1,15 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwpse4ub1mcet"]
+[gd_scene load_steps=9 format=3 uid="uid://bwpse4ub1mcet"]
 
 [ext_resource type="Script" path="res://ui/scripts/settings_menu.gd" id="1_7yotc"]
 [ext_resource type="Theme" uid="uid://ce6e52x7jk66v" path="res://ui/menu.tres" id="1_y0ptm"]
-[ext_resource type="Texture2D" uid="uid://db177t5awoa40" path="res://ui/progress_bar_background.png" id="3_f3w1n"]
-[ext_resource type="Texture2D" uid="uid://dyivo7st6gh2f" path="res://ui/progress_bar_foreground.png" id="4_2up6u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbjqi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0jiy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gblrr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_psf42"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2aoo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cy0ky"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -30,28 +34,32 @@ color = Color(0, 0.633515, 0.656145, 1)
 
 [node name="CancelarBtn" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 456.0
-offset_right = 530.0
-offset_bottom = 555.0
+offset_left = 280.0
+offset_top = 416.0
+offset_right = 538.0
+offset_bottom = 515.0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qbjqi")
 text = "CANCELAR"
 
 [node name="GuardarBtn" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 622.0
-offset_top = 451.0
-offset_right = 880.0
-offset_bottom = 550.0
+offset_left = 630.0
+offset_top = 411.0
+offset_right = 888.0
+offset_bottom = 510.0
 theme_override_font_sizes/font_size = 23
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qbjqi")
 text = "GUARDAR CAMBIOS"
 
 [node name="Audio" type="Control" parent="ColorRect"]
 anchors_preset = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 16.0
+offset_bottom = 48.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Audio"]
+[node name="RichText" type="RichTextLabel" parent="ColorRect/Audio"]
 layout_mode = 2
 offset_left = 120.0
 offset_top = 128.0
@@ -66,63 +74,60 @@ shortcut_keys_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ColorRect/Audio"]
-layout_mode = 2
+[node name="PlusVol" type="Button" parent="ColorRect/Audio"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 824.0
+offset_top = 120.0
+offset_right = 888.0
+offset_bottom = 197.0
+text = "+"
+
+[node name="MinusVol" type="Button" parent="ColorRect/Audio"]
+unique_name_in_owner = true
+layout_mode = 0
 offset_left = 568.0
 offset_top = 120.0
-offset_right = 1528.0
-offset_bottom = 216.0
-scale = Vector2(0.402771, 0.686284)
-tooltip_text = "100%"
-step = 5.0
-value = 80.0
-texture_under = ExtResource("3_f3w1n")
-texture_progress = ExtResource("4_2up6u")
+offset_right = 632.0
+offset_bottom = 197.0
+text = "-"
+
+[node name="VolumePercentage" type="TextEdit" parent="ColorRect/Audio"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 656.0
+offset_top = 120.0
+offset_right = 792.0
+offset_bottom = 208.0
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_psf42")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l2aoo")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_cy0ky")
+text = "100%"
+editable = false
 
 [node name="Resolución" type="Control" parent="ColorRect"]
 anchors_preset = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Resolución"]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 237.0
-offset_right = 376.0
-offset_bottom = 301.0
-mouse_filter = 1
-theme_override_font_sizes/normal_font_size = 42
-theme_override_styles/focus = SubResource("StyleBoxEmpty_n0jiy")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_gblrr")
-text = "Resolución:"
-shortcut_keys_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-
-[node name="MenuButton" type="MenuButton" parent="ColorRect/Resolución"]
-layout_mode = 0
-offset_left = 568.0
-offset_top = 224.0
-offset_right = 1174.0
-offset_bottom = 368.0
-scale = Vector2(0.52, 0.56)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qbjqi")
-text = "720 x 400"
-flat = false
-item_count = 3
-popup/item_0/text = "720x500"
-popup/item_1/text = "1336x720"
-popup/item_1/id = 1
-popup/item_2/text = "1920x720"
-popup/item_2/id = 2
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 16.0
+offset_bottom = 48.0
 
 [node name="PantallaCompleta" type="Control" parent="ColorRect"]
 anchors_preset = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 16.0
+offset_bottom = 48.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/PantallaCompleta"]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 344.0
-offset_right = 528.0
-offset_bottom = 408.0
+offset_left = 120.0
+offset_top = 256.0
+offset_right = 520.0
+offset_bottom = 320.0
 mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 42
 theme_override_styles/focus = SubResource("StyleBoxEmpty_n0jiy")
@@ -132,11 +137,12 @@ shortcut_keys_enabled = false
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="CheckButton" type="CheckButton" parent="ColorRect/PantallaCompleta"]
+[node name="FullScrBtn" type="CheckButton" parent="ColorRect/PantallaCompleta"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 568.0
-offset_top = 344.0
-offset_right = 612.0
-offset_bottom = 368.0
+offset_top = 256.0
+offset_right = 600.0
+offset_bottom = 280.0
 scale = Vector2(2.02824, 2.5294)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qbjqi")

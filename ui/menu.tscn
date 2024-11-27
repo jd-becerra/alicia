@@ -321,6 +321,7 @@ mouse_filter = 2
 
 [node name="Bottom" type="Panel" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 1, 0.686275)
 layout_mode = 0
 offset_top = 552.0
@@ -329,6 +330,8 @@ offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 96.0
 offset_top = 576.0
@@ -339,6 +342,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_incan")
 show_percentage = false
 
 [node name="PlaybackButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 24.0
 offset_top = 568.0

@@ -8,11 +8,13 @@ var main_scene
 var player_inventory: Inventory
 var game_ui
 var game_states
+var animation_playing_first_time = true
 
 var active_menu = null
 var current_animation_player = null
 var is_initialized = false
-
+var volume = -10
+var fullscreen = false
 
 func _process(_delta: float) -> void:
 	if not get_tree().current_scene:

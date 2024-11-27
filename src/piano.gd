@@ -92,14 +92,15 @@ func print_note(button: Button) -> void:
 		audio_stream_player.stream = load("res://sounds/piano_notes/" + String(button.name) + ".mp3")
 		audio_stream_player.play()
 
-		print("Player sequence: ", player_sequence)
-
 	if player_sequence.size() == MAX_NOTES:
 		if player_sequence == CORRECT_SEQUENCE:
 			for audio_stream in get_tree().get_nodes_in_group("sfx"):
 				audio_stream.playing = false
 			var music_bg = get_node("/root/MainScene/MusicBG")
 			music_bg.playing = false
+
+			sfx.stream = load("res://sounds/correct.mp3")
+			sfx.play()
 
 			print("Congratulations! You played the correct sequence.")
 			start_dialogue("Correct_Sequence")
@@ -111,7 +112,17 @@ func print_note(button: Button) -> void:
 			game_ui.hide()
 			get_tree().paused = false
 			main_scene.enable_normal_animation("Scene1_Ending")
+
+			var portal_sound = get_node("/root/MainScene/Sounds/Portal")
+			portal_sound.autoplay = true
+			portal_sound.playing = true
+
+			var player = get_node("/root/MainScene/Player")
+			player.hide()
+
 		else:
+			sfx.stream = load("res://sounds/wrong.mp3")
+			sfx.play()
 			start_dialogue("Incorrect_Sequence")
 			
 			# Make printed notes red

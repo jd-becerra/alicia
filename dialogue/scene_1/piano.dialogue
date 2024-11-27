@@ -41,6 +41,17 @@ Alicia: Ya tengo una melodía que puedo tocar.
 Alicia: Ahora sólo necesito asegurarme de que el piano no se cierre. 
 => END
 
+~ Batuta_Piano_Open
+Alicia: ¡Bien!
+Alicia: El piano está abierto. Ahora sólo necesito una melodía que pueda tocar.
+=> END
+
+~ Piano_Correct
+Alicia: Ok, el piano está asegurado y tengo música que quiero tocar.
+Alicia: Espero hacerlo bien.
+Alicia: No he tocado en un tiempo.
+=> END
+
 ~ Testamento_Piano_Interaction
 Alicia: Esta hoja no me sirve de nada aquí... 
 Alicia: A menos que tenga música que pueda tocar.

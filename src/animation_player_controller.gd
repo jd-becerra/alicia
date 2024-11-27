@@ -41,6 +41,7 @@ signal dragging_enabled(dragging_state: bool)
 func _ready():
 	# Make animation_name the current animation
 	animation.play(animation_name)
+
 	last_time = animation.current_animation_position
 
 	music.stream = load("res://music/bg_music_2.mp3")
@@ -73,16 +74,15 @@ func _on_animation_finished(anim_name: String):
 		animation_finished = true
 		update_playback_button(true)
 
+	if anim_name == "Scene1-Beat1":
+		if animation_played_first_time and animation_finished:
+			playback_button.visible = true
+			progress_bar.visible = true
+			animation_played_first_time = false
+
 func _process(_delta):
 	if animation.current_animation != "Scene1-Beat1":
 		return
-
-	# THIS FEATURE WILL BE IMPLEMENTED IN THE FINAL BUILD
-	# Enable progress bar only after animation was played for the first time
-	# if animation_played_first_time and animation_finished:
-		# playback_button.visible = true
-		# progress_bar.visible = true
-		# animation_played_first_time = false
 
 	if is_dragging:
 		vhs_effect.visible = true
@@ -298,6 +298,8 @@ func on_ending_animation_finished(anim_name: String):
 	var new_dir = false
 	player_movement_character.initialize(new_pos, new_dir)
 	player_movement_character.z_index = 11
+	
+	%GameUI.hide()
 
 func set_shader_strength(strength: float):
 	for node in get_tree().get_nodes_in_group("grayscale"):
