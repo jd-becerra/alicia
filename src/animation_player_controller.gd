@@ -29,6 +29,7 @@ var animation_finished = false
 var is_dialogue_triggered = false
 var animation_played_first_time = true
 var reload_scene = false
+var exited_scene = false
 
 # Signals used in other scripts
 @warning_ignore("unused_signal") 
@@ -39,10 +40,14 @@ signal enable_dialogue(is_active: bool)
 signal dragging_enabled(dragging_state: bool)
 
 func _ready():
+	# Reload current scene in the tree if the scene is exited
+	if exited_scene:
+		print("Reloading scene")
+		exited_scene = false
+		get_tree().reload_current_scene()
+
 	# Make animation_name the current animation
 	animation.play(animation_name)
-	# FOR TESTING (DELETE LATER)
-	animation.seek(animation.get_current_animation_length() - 0.5, true)
 
 	last_time = animation.current_animation_position
 

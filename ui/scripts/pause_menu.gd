@@ -40,6 +40,13 @@ func _on_configuracion_pressed() -> void:
 
 func _on_salir_pressed() -> void:
 	play_click_sound()
+
+	# Return all shader values to their default values
+	for node in get_tree().get_nodes_in_group("grayscale"):
+		node.material.set_shader_parameter("activate", false)
+		node.material.set_shader_parameter("strength", 0.002)
+
+	$/root/MainScene.exited_scene = true
 	# Return to the main menu (remember to unpause the game so the menu is responsive again)
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
