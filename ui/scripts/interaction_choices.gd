@@ -225,11 +225,17 @@ func on_zoom() -> void:
 	var document_wide = get_node("/root/MainScene/UI/DocumentWide")
 	await get_tree().create_timer(0.1).timeout
 
+	var dialogue_resource = null
+	var starting_point = ""
+
 	if object_name == "Escritorio_Interaction":
-		show_interaction_dialogue(dialogue, "Zoom")
+		dialogue_resource = dialogue
+		starting_point = "Zoom"
 	if object_name == "Partitura_Interaction":
-		show_interaction_dialogue(load("res://dialogue/scene_1/partitura.dialogue"), "Zoom")
-	document_wide.show_object(zoom_object_path)
+		dialogue_resource = load("res://dialogue/scene_1/partitura.dialogue")
+		starting_point = "Zoom"
+
+	document_wide.show_object(zoom_object_path, dialogue_controller, dialogue_resource, starting_point)
 
 func on_pick_up() -> void:
 	emit_signal("clicked_interaction_button", true)
@@ -351,11 +357,9 @@ func is_grabbed_slot_over() -> bool:
 func check_grabbed_slot() -> void:
 	var grabbed_slot = game_ui.get_node("%GrabbedSlot")
 	if grabbed_slot and grabbed_slot.visible and is_grabbed_slot_over():
-		print("Grabbed item: ", game_ui.grabbed_item.name, " is over: ", object_name)
 		check_interactions(game_ui.grabbed_item, dot.item)
 
 func check_interactions(grabbed_item: Item, object_under: Item) -> void:
-	print("Released %s item on %s object" % [grabbed_item.name, object_under.name])
 	if grabbed_item.name == "Partitura" and object_under.name == "Piano_Interaction":
 		%SFX2.stream = load("res://sounds/correct.mp3")
 		%SFX2.play()

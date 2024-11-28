@@ -67,7 +67,6 @@ func pause_dialogue(time: float) -> void:
 
 func get_item_index(item_name: String) -> int:
 	for i in range(full_inventory.items.size()):
-		print("Item: ", full_inventory.items[i].name)
 		var f_item = full_inventory.items[i]
 		if f_item.name == item_name:
 			return f_item.index
@@ -82,8 +81,6 @@ func remove_item_from_inventory(item: Item) -> void:
 	# Await for the item to return to the inventory
 	await get_tree().create_timer(0.5).timeout
 	var item_index = get_item_index(item.name)
-	print("Item index: ", item_index)
 
 	if item_index != -1:
-		print("Removing: ", item.name,  " from inventory")
 		player_inventory.remove_item(item_index)

@@ -28,7 +28,6 @@ func grab_item(index: int) -> Item:
 		return null
 
 func add_item(index: int, new_item: Item) -> void:
-	print("Adding item to inventory with index %s" % index)
 
 	# Mantain the inventory sorted by index
 
@@ -37,7 +36,6 @@ func add_item(index: int, new_item: Item) -> void:
 	while insert_pos < ITEMS_SIZE and items[insert_pos].index < index:
 		insert_pos += 1
 		
-	print("Inserting at position %s" % insert_pos)
 
 	# Insert the item at the correct position
 	if insert_pos == items.size():
@@ -69,7 +67,6 @@ func remove_item(index: int) -> void:
 	ITEMS_SIZE -= 1
 
 	inventory_changed.emit(items)
-	print("We now have %s items" % items.size())
 
 func interaction_object_under(slot: PanelContainer) -> Item:
 	var scene_tree: SceneTree = Engine.get_main_loop().current_scene.get_tree()

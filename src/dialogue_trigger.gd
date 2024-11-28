@@ -62,7 +62,6 @@ func start_dialogue():
 
 	game_gui.hide()
 
-	print("Force Starting dialogue")
 	show_dialogue()
 	# Stop the animation player by sending a signal to set_speed_scale(0)
 	emit_signal("dialogue_triggered", true)

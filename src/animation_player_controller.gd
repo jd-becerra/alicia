@@ -41,6 +41,8 @@ signal dragging_enabled(dragging_state: bool)
 func _ready():
 	# Make animation_name the current animation
 	animation.play(animation_name)
+	# FOR TESTING (DELETE LATER)
+	animation.seek(animation.get_current_animation_length() - 0.5, true)
 
 	last_time = animation.current_animation_position
 
@@ -58,8 +60,6 @@ func _ready():
 	connect("enable_dialogue", Callable(self, "_on_enable_dialogue"))
 	connect("dragging_enabled", Callable(self, "_on_dragging"))
 
-	# add_dialogue_indicators()  # FEATURE TO BE DECIDED
-
 	# Connect to the dialogue trigger signal with all DialogueTrigger nodes
 	for node in get_tree().get_nodes_in_group("dialogue_trigger_area"):
 		node.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
@@ -69,16 +69,21 @@ func _ready():
 		dialogue_controller.connect("dialogue_triggered", Callable(self, "on_dialogue_triggered"))
 
 func _on_animation_finished(anim_name: String):
+	if anim_name != "Scene1-Beat1":
+		return
+
 	print("Animation finished: ", anim_name)
 	if not animation_finished and anim_name == "Scene1-Beat1":
 		animation_finished = true
 		update_playback_button(true)
 
-	if anim_name == "Scene1-Beat1":
-		if animation_played_first_time and animation_finished:
-			playback_button.visible = true
-			progress_bar.visible = true
+	# This will only happen the first time the animation is played
+	if anim_name == "Scene1-Beat1" and animation_played_first_time and animation_finished:
+			playback_button.show()
+			progress_bar.show()
+			%GameUI.get_node("%Bottom").show()
 			animation_played_first_time = false
+			InteractionManager.animation_playing_first_time = false
 
 func _process(_delta):
 	if animation.current_animation != "Scene1-Beat1":
@@ -94,14 +99,6 @@ func _process(_delta):
 	if not is_dragging and animation.is_playing() and not is_paused and not is_dialogue_triggered:
 		animation.set_speed_scale(1)
 		update_progress_bar()
-
-	# Check if animation reaches the end using tolerance for floating point precision
-	if animation.current_animation_position >= animation.get_current_animation_length() - tolerance:
-		if not animation_finished:
-			animation_finished = true
-			update_playback_button(true)
-	else:
-		animation_finished = false
 
 func update_progress_bar():
 	progress_bar.value = animation.current_animation_position / animation.get_current_animation_length() * 100

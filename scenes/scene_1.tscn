@@ -1076,6 +1076,18 @@ tracks/27/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Objects/PartituraExtraSmall:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfyl8"]
 _data = {
@@ -1278,7 +1290,7 @@ animation_name = "RESET"
 z_index = -1
 material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
-animation_name = "RESET"
+animation_name = "No_Leaf"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
 unique_name_in_owner = true
@@ -1320,11 +1332,14 @@ offset_left = -8.57202
 offset_top = -8.68802
 offset_right = 0.235962
 offset_bottom = 5.17596
+enable_on_scene = null
 object_name = "Piano_Interaction"
 dialogue = ExtResource("14_qmdee")
 inspect = true
+zoom = null
 pick_up = true
 use = true
+zoom_object_path = null
 use_node = NodePath("../../../UI/PianoUI")
 
 [node name="Choices-Papeles" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -1338,11 +1353,13 @@ offset_left = 1828.74
 offset_top = 323.392
 offset_right = 1196.16
 offset_bottom = -138.384
+enable_on_scene = null
 object_name = "Escritorio_Interaction"
 dialogue = ExtResource("15_aga7y")
 inspect = true
 zoom = true
 pick_up = true
+use = null
 zoom_object_path = "res://docs/cartas.jpg"
 item_to_pick_up = ExtResource("27_mko66")
 
@@ -1357,11 +1374,14 @@ offset_left = 172.736
 offset_top = 411.392
 offset_right = -459.848
 offset_bottom = -50.384
+enable_on_scene = null
 object_name = "Batuta_Interaction"
 dialogue = ExtResource("28_7yhqn")
 inspect = true
+zoom = null
 pick_up = true
 use = true
+zoom_object_path = null
 item_to_pick_up = ExtResource("15_psqa6")
 
 [node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -1381,6 +1401,7 @@ dialogue = ExtResource("15_obtgh")
 inspect = true
 zoom = true
 pick_up = true
+use = null
 zoom_object_path = "res://assets/objects/scene-1/partitura_wide.png"
 item_to_pick_up = ExtResource("17_ygw7t")
 
@@ -1523,11 +1544,13 @@ volume_db = -10.0
 unique_name_in_owner = true
 stream = ExtResource("47_ijnmr")
 volume_db = -10.0
+parameters/looping = true
 
 [node name="MusicBG" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("44_t4ccf")
 volume_db = -10.0
+parameters/looping = true
 
 [node name="SFX" type="AudioStreamPlayer" parent="." groups=["audio", "sfx"]]
 unique_name_in_owner = true

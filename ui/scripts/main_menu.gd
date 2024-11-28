@@ -10,8 +10,6 @@ extends Control
 @onready var audio: AudioStreamPlayer = %SFX
 
 func _ready() -> void:
-	print(self.name)
-
 	continuar_btn.connect("pressed", Callable(self, "_on_continuar_pressed"))
 	nueva_partida_btn.connect("pressed", Callable(self, "_on_nueva_partida_pressed"))
 	configuracion_btn.connect("pressed", Callable(self, "_on_configuracion_pressed"))

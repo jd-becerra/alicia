@@ -133,3 +133,4 @@ unique_name_in_owner = true
 stream = ExtResource("8_0gflg")
 volume_db = -20.9
 autoplay = true
+parameters/looping = true

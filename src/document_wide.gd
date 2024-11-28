@@ -14,10 +14,16 @@ func _on_return_pressed() -> void:
 	self.hide()
 	get_tree().paused = false
 
-func show_object(path: String) -> void:
+func show_object(path, dialogue_controller, dialogue_resource, starting_point):
 	if path != "":
 		texture_object = load(path)
 	document_sprite.texture = texture_object
 	game_ui.hide()
 	self.show()
+
+	if dialogue_resource and starting_point != "":
+		await get_tree().create_timer(0.1).timeout
+		dialogue_controller.dialogue = dialogue_resource
+		dialogue_controller.start_dialogue(starting_point)
+
 	get_tree().paused = true
