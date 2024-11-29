@@ -10,6 +10,7 @@ extends Control
 
 @onready var player: CharacterBody2D = $"/root/MainScene/Player"
 @onready var grabbed_slot: PanelContainer = %GrabbedSlot
+@onready var dialogue_controller = %DialogueController
 
 var can_show_inventory = false
 var show_inventory = false
@@ -18,6 +19,7 @@ var toggle_btn_offset = 5
 var grabbed_item: Item = null
 var inventory_data: Inventory = null
 var slot_mouse_offset: Vector2 = Vector2(-48, -48)
+
 
 # Called when the node enters the scene tree for the first time.
 # func _ready() -> void:
@@ -127,14 +129,9 @@ func zoom_document(document_path: String = "") -> void:
 		dialogue = load("res://dialogue/scene_1/partitura.dialogue")
 	if document_path == "res://docs/testamento.jpg":
 		dialogue = load("res://dialogue/scene_1/testamento.dialogue")
-	
-	var balloon = load("res://dialogue/balloon.tscn").instantiate()
-	# get_current_scene().add_child(balloon)
-	get_tree().get_root().add_child(balloon)
-	balloon.start(dialogue, "Zoom", [])
 
 	var document_wide = get_node("/root/MainScene/UI/DocumentWide")
-	document_wide.show_object(document_path)
+	document_wide.show_object(document_path, dialogue_controller, dialogue, "Zoom")
 
 func play_click_sound():
 	var sfx: AudioStreamPlayer = $"/root/MainScene/SFX"

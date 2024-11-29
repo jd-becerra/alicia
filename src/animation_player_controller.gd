@@ -49,6 +49,9 @@ func _ready():
 	# Make animation_name the current animation
 	animation.play(animation_name)
 
+	# FOR TESTING(DELETE LATER): Set the animation to the end
+	# animation.seek(animation.get_current_animation_length() - 0.5, true)
+
 	last_time = animation.current_animation_position
 
 	music.stream = load("res://music/bg_music_2.mp3")
@@ -140,13 +143,20 @@ func _input(event):
 		var progress = clamp(mouse_pos / progress_bar.get_global_rect().size.x, 0, 1)
 		progress_bar.value = progress * 100
 		
-		# Update the animation's position based on progress
-		if not animation.is_playing():
-			animation.play(animation_name)
 		var new_time = progress * animation.get_current_animation_length()
-		animation.seek(new_time, true)
 
-		# Detect if animation is being played backwards or forwards
+		# If animation is finished, seek first before playing
+		if animation_finished:
+			animation.seek(new_time, true)
+			animation.play(animation_name)
+			animation_finished = false
+		else:
+			# Normal case - play if not playing, then seek
+			if not animation.is_playing():
+				animation.play(animation_name)
+			animation.seek(new_time, true)
+
+		# Update last_time for direction detection
 		if new_time != last_time:
 			emit_signal("animation_forward", new_time > last_time)
 			last_time = new_time

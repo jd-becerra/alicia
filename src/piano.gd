@@ -9,6 +9,7 @@ extends Control
 @onready var redo_btn: Button = %RedoBtn
 @onready var game_states: Node = get_node("/root/MainScene/States")
 @onready var sfx: AudioStreamPlayer = get_node("/root/MainScene/SFX")
+@onready var dialogue_controller = %DialogueController
 
 # Constants
 const KEYS = ["G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5"]
@@ -167,10 +168,8 @@ func player_has_item(item_name: String) -> bool:
 	return false
 
 func start_dialogue(starting_point: String) -> void:
-	var balloon = load("res://dialogue/balloon.tscn").instantiate()
-	# get_current_scene().add_child(balloon)
-	get_tree().get_root().add_child(balloon)
-	balloon.start(dialogue, starting_point, [])
+	dialogue_controller.dialogue = dialogue
+	dialogue_controller.start_dialogue(starting_point)
 
 func play_click_sound():
 	if not sfx.is_playing():

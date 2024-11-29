@@ -46,7 +46,13 @@ Alicia: ¡Bien!
 Alicia: El piano está abierto. Ahora sólo necesito una melodía que pueda tocar.
 => END
 
-~ Piano_Correct
+~ Piano_Correct_Partitura
+Alicia: Ok, el piano está asegurado y tengo música que quiero tocar.
+Alicia: Espero hacerlo bien.
+Alicia: No he tocado en un tiempo.
+=> END
+
+~ Piano_Correct_Batuta
 Alicia: Ok, el piano está asegurado y tengo música que quiero tocar.
 Alicia: Espero hacerlo bien.
 Alicia: No he tocado en un tiempo.

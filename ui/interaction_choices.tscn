@@ -69,6 +69,13 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_3m5up")
 script = ExtResource("1_en0qx")
+enable_on_scene = null
+object_name = null
+inspect = null
+zoom = null
+pick_up = null
+use = null
+zoom_object_path = null
 
 [node name="AreaDetect" type="Area2D" parent="."]
 unique_name_in_owner = true

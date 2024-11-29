@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cddj0nemptmr1"]
+[gd_scene load_steps=21 format=3 uid="uid://cddj0nemptmr1"]
 
 [ext_resource type="Script" path="res://ui/scripts/game_ui.gd" id="1_keumy"]
 [ext_resource type="Texture2D" uid="uid://bk5kxsq3gh2u8" path="res://ui/icons/pause.png" id="1_rn5c8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://ui/scripts/settings_btn.gd" id="4_q0kt5"]
 [ext_resource type="PackedScene" uid="uid://cnwdgil6h7fvs" path="res://ui/inventory/inventory.tscn" id="5_6xwmn"]
 [ext_resource type="PackedScene" uid="uid://bgobnalq5bhdg" path="res://ui/inventory/item_slot.tscn" id="6_jly75"]
+[ext_resource type="Script" path="res://dialogue/dialogue.gd" id="8_5vupc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_incan"]
 bg_color = Color(0.389287, 0.389287, 0.389286, 1)
@@ -90,7 +91,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -419,6 +420,10 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_yuh1e")
 }
+
+[node name="DialogueController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_5vupc")
 
 [connection signal="pressed" from="PlaybackButton" to="PlaybackButton" method="_on_pressed"]
 [connection signal="pressed" from="Settings" to="Settings" method="_on_pressed"]

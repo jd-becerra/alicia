@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj3cboqxul38a"]
+[gd_scene load_steps=19 format=3 uid="uid://bj3cboqxul38a"]
 
 [ext_resource type="Script" path="res://src/piano.gd" id="1_y52l4"]
 [ext_resource type="Texture2D" uid="uid://n1pugvhonp4d" path="res://ui/return_icon.png" id="2_kal2l"]
 [ext_resource type="Texture2D" uid="uid://df21sdw3hn1ne" path="res://assets/objects/scene-1/piano-pentagram.png" id="2_qtc6u"]
 [ext_resource type="Texture2D" uid="uid://cruba3v0cq2or" path="res://assets/objects/scene-1/musicsheet_piano.png" id="3_2w2c1"]
 [ext_resource type="Texture2D" uid="uid://cmynp3uq0l40b" path="res://assets/objects/scene-1/restart_icon.png" id="4_g5uxj"]
+[ext_resource type="Script" path="res://dialogue/dialogue.gd" id="6_x48h1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wvanv"]
 
@@ -323,3 +324,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_6ay68")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ay68")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="DialogueController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_x48h1")

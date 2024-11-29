@@ -8,6 +8,16 @@ Alicia: Aprendí a tocarla, pero mi madre me descubrió y me arrebató la hoja.
 Alicia: No volvimos a hablar de esto nunca más. Pensé que se había desecho de ella. 
 => END
 
+~ Inspect
+Alicia: Mi madre escribió esta canción hace muchos. Después de...
+Alicia: No importa. Fueron días difíciles para la familia.
+Alicia: Mi madre solía escribir música complicada y experimental.
+Alicia: Cuando escribió esta canción, estuvo a punto de tirarla a la basura. Pensó que era demasiado simple y sentimental.
+Alicia: Mi padre rescató la hoja de la basura y me la dio.
+Alicia: Aprendí a tocarla, pero mi madre me descubrió y me arrebató la hoja.
+Alicia: No volvimos a hablar de esto nunca más. Pensé que se había desecho de ella. 
+=> END
+
 ~ Testamento_Partitura_Interaction
 Alicia: No necesito combinar|	 estas dos hojas.
 => END

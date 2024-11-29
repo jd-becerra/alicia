@@ -370,7 +370,7 @@ func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 			get_node("/root/MainScene/Objects/PartituraExtraSmall").show()
 			show_interaction_dialogue(dialogue, "Partitura_Piano_Stuck")
 		else:
-			show_interaction_dialogue(dialogue, "Piano_Correct")
+			show_interaction_dialogue(dialogue, "Piano_Correct_Partitura")
 	elif grabbed_item.name == "Batuta" and object_under.name == "Piano_Interaction":
 		var piano_anim_player = main_scene.get_node("Objects/Piano/AnimationPlayer")
 		var flowerpot_anim_player = main_scene.get_node("Objects/FlowerPot/AnimationPlayer")
@@ -389,7 +389,7 @@ func check_interactions(grabbed_item: Item, object_under: Item) -> void:
 			if not game_states.piano_has_sheet_music:
 				show_interaction_dialogue(dialogue, "Batuta_Piano_Open")
 			else:
-				show_interaction_dialogue(dialogue, "Piano_Correct")
+				show_interaction_dialogue(dialogue, "Piano_Correct_Batuta")
 		else:
 			# Dialogue if game_states.piano_open is false
 			show_interaction_dialogue(dialogue, "Batuta_Piano_Stuck")
