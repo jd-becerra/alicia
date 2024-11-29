@@ -317,7 +317,7 @@ modulate = Color(1, 1, 1, 0.686275)
 z_index = -100
 layout_mode = 0
 offset_right = 1152.0
-offset_bottom = 136.0
+offset_bottom = 24.0
 mouse_filter = 2
 
 [node name="Bottom" type="Panel" parent="."]

@@ -1290,7 +1290,7 @@ animation_name = "RESET"
 z_index = -1
 material = ExtResource("9_h460a")
 position = Vector2(1432, 384)
-animation_name = "No_Leaf"
+animation_name = "RESET"
 
 [node name="Desk" type="Sprite2D" parent="Objects"]
 unique_name_in_owner = true
@@ -1333,10 +1333,10 @@ offset_top = -8.68802
 offset_right = 0.235962
 offset_bottom = 5.17596
 object_name = "Piano_Interaction"
+dialogue = ExtResource("14_qmdee")
 inspect = true
 pick_up = true
 use = true
-dialogue = ExtResource("14_qmdee")
 use_node = NodePath("../../../UI/PianoUI")
 
 [node name="Choices-Papeles" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -1351,11 +1351,11 @@ offset_top = 323.392
 offset_right = 1196.16
 offset_bottom = -138.384
 object_name = "Escritorio_Interaction"
+dialogue = ExtResource("15_aga7y")
 inspect = true
 zoom = true
 pick_up = true
 zoom_object_path = "res://docs/cartas.jpg"
-dialogue = ExtResource("15_aga7y")
 item_to_pick_up = ExtResource("27_mko66")
 
 [node name="Choices-Batuta" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -1370,10 +1370,10 @@ offset_top = 411.392
 offset_right = -459.848
 offset_bottom = -50.384
 object_name = "Batuta_Interaction"
+dialogue = ExtResource("28_7yhqn")
 inspect = true
 pick_up = true
 use = true
-dialogue = ExtResource("28_7yhqn")
 item_to_pick_up = ExtResource("15_psqa6")
 
 [node name="Choices-Partitura" parent="Objects/InteractionMenus" instance=ExtResource("19_qww40")]
@@ -1389,11 +1389,11 @@ offset_right = 1404.16
 offset_bottom = -141.384
 enable_on_scene = false
 object_name = "Partitura_Interaction"
+dialogue = ExtResource("15_obtgh")
 inspect = true
 zoom = true
 pick_up = true
 zoom_object_path = "res://assets/objects/scene-1/partitura_wide.png"
-dialogue = ExtResource("15_obtgh")
 item_to_pick_up = ExtResource("17_ygw7t")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") groups=["player"] instance=ExtResource("9_f76i4")]
