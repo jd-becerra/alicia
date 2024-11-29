@@ -14,6 +14,8 @@ func _ready() -> void:
 	nueva_partida_btn.connect("pressed", Callable(self, "_on_nueva_partida_pressed"))
 	configuracion_btn.connect("pressed", Callable(self, "_on_configuracion_pressed"))
 	salir_btn.connect("pressed", Callable(self, "_on_salir_pressed"))
+	%TutorialBtn.pressed.connect(_on_tutorial_pressed)
+	%TutorialClose.pressed.connect(close_tutorial)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -38,3 +40,11 @@ func _on_salir_pressed() -> void:
 func play_click_sound():
 	audio.stream = load("res://sounds/click.mp3")
 	audio.play()
+
+func _on_tutorial_pressed() -> void:
+	%TutorialBtn.hide()
+	%Tutorial.show()
+
+func close_tutorial() -> void:
+	%Tutorial.hide()
+	%TutorialBtn.show()

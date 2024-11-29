@@ -1335,6 +1335,7 @@ offset_bottom = 5.17596
 object_name = "Piano_Interaction"
 dialogue = ExtResource("14_qmdee")
 inspect = true
+zoom = true
 pick_up = true
 use = true
 use_node = NodePath("../../../UI/PianoUI")
