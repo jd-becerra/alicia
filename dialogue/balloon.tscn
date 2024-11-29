@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
 [ext_resource type="Texture2D" uid="uid://nsanuw0ngoi8" path="res://dialogue/fast_forward_icon.png" id="3_82tot"]
-[ext_resource type="AudioStream" uid="uid://ckblcrkjt8wpd" path="res://sounds/pen.wav" id="5_8tnlw"]
+[ext_resource type="AudioStream" uid="uid://r20d2hkqf3ei" path="res://sounds/pen.wav" id="5_8tnlw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy0d5"]
 bg_color = Color(0.960387, 0.941689, 0.949251, 1)
