@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxt8sattd7yki"]
+[gd_scene load_steps=15 format=3 uid="uid://dxt8sattd7yki"]
 
 [ext_resource type="Theme" uid="uid://ce6e52x7jk66v" path="res://ui/menu.tres" id="1_2c24i"]
 [ext_resource type="Script" path="res://ui/scripts/main_menu.gd" id="1_7phrt"]
 [ext_resource type="Texture2D" uid="uid://cryeiau8hlw2v" path="res://ui/menu_inicio.png" id="1_o7txf"]
+[ext_resource type="PackedScene" uid="uid://d2xhgxujxk8ug" path="res://ui/loading_screen.tscn" id="2_xgk7e"]
 [ext_resource type="Texture2D" uid="uid://b8iqajvgwyt1n" path="res://ui/logo_letters.png" id="4_8dj78"]
 [ext_resource type="Material" uid="uid://tmnt60nw3ofc" path="res://shaders/wobbly_effect_menu.tres" id="5_2qpgb"]
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="5_mrgwg"]
@@ -38,7 +39,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7phrt")
 
+[node name="LoadingScreen" parent="." instance=ExtResource("2_xgk7e")]
+unique_name_in_owner = true
+visible = false
+
 [node name="Main" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,6 +159,7 @@ texture = ExtResource("8_verwd")
 
 [node name="TutorialClose" type="Button" parent="Tutorial"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 1112.0
 offset_top = 8.0
 offset_right = 1152.0

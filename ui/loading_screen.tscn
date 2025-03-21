@@ -1,0 +1,208 @@
+[gd_scene load_steps=17 format=3 uid="uid://d2xhgxujxk8ug"]
+
+[ext_resource type="Script" path="res://ui/loading_screen.gd" id="1_5ckbg"]
+[ext_resource type="Texture2D" uid="uid://d2o248is6ny7o" path="res://ui/señor_abrazos.png" id="2_kyr78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owyes"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc25w"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjqgq"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfjge"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjqry"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsa8c"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfgkq"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7w8m"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1qdh"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3oyj"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcu3r"]
+atlas = ExtResource("2_kyr78")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53ea4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owyes")
+}],
+"loop": true,
+"name": &"Curious",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc25w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjqgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc25w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjqgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc25w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjqgq")
+}, {
+"duration": 1.66667,
+"texture": SubResource("AtlasTexture_rfjge")
+}],
+"loop": true,
+"name": &"Dance",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc25w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjqgq")
+}],
+"loop": true,
+"name": &"Dance_Walk",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfjge")
+}],
+"loop": true,
+"name": &"Front",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjqry")
+}],
+"loop": true,
+"name": &"Happy",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsa8c")
+}],
+"loop": true,
+"name": &"Look_Up",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfgkq")
+}],
+"loop": true,
+"name": &"Normal",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7w8m")
+}],
+"loop": true,
+"name": &"RESET",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1qdh")
+}],
+"loop": true,
+"name": &"Sad",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3oyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcu3r")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 4.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gexb"]
+bg_color = Color(0.0211703, 0.146819, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq3jw"]
+bg_color = Color(0.871572, 0.694451, 0.491891, 1)
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5ckbg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0.633515, 0.656145, 1)
+
+[node name="Logo" type="AnimatedSprite2D" parent="ColorRect"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(576, 288)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_53ea4")
+animation = &"Dance"
+frame = 4
+frame_progress = 0.127843
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"slice": "",
+"source": "res://assets/characters/señor_abrazos.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "b8e3bc2a5d17c99245f9dbbf974e3c3b"
+
+[node name="LoadingProgress" type="ProgressBar" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 216.0
+offset_top = 416.0
+offset_right = 944.0
+offset_bottom = 443.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6gexb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rq3jw")
+show_percentage = false
