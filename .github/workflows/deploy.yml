@@ -1,20 +1,16 @@
 name: "Publish Godot Game to GitHub Pages (Windows)"
-
 env:
   GODOT_VERSION: 4.3
-
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: windows-latest
     permissions:
       contents: write
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -25,12 +21,19 @@ jobs:
           Expand-Archive -Path godot.zip -DestinationPath .
           Rename-Item -Path "Godot_v4.3-stable_win64.exe" -NewName "godot.exe"
 
+      - name: Download and Install Export Templates
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz" -OutFile templates.zip
+          New-Item -ItemType Directory -Path "$env:APPDATA\Godot\export_templates\4.3.stable" -Force
+          Expand-Archive -Path templates.zip -DestinationPath "$env:APPDATA\Godot\export_templates\4.3.stable" -Force
+        shell: pwsh
+
       - name: Create Build Directory
         run: New-Item -ItemType Directory -Path build/web -Force
 
       - name: Build for Web
         run: |
-          .\godot.exe --headless --export-release "Web" build/web/index.html project/project.godot
+          .\godot.exe --headless --export-release "Web" build/web/index.html project.godot
         shell: cmd
 
       - name: Add coi-service-worker
