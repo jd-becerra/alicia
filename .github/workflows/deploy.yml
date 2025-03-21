@@ -1,4 +1,4 @@
-name: "Publish to GitHub Pages (Windows)"
+name: "Publish Godot Game to GitHub Pages (Windows)"
 
 env:
   GODOT_VERSION: 4.3
@@ -16,21 +16,21 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download and extract Godot
+      - name: Download and Extract Godot
         run: |
-          Invoke-WebRequest -Uri "https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}_stable_win64.exe.zip" -OutFile godot.zip
-          Expand-Archive -Path godot.zip -DestinationPath ./
-          Rename-Item -Path "Godot_v${{ env.GODOT_VERSION }}_stable_win64.exe" -NewName "godot.exe"
+          Invoke-WebRequest -Uri "https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_win64.exe.zip" -OutFile godot.zip
+          Expand-Archive -Path godot.zip -DestinationPath .
+          Rename-Item -Path "Godot_v4.3-stable_win64.exe" -NewName "godot.exe"
 
-      - name: Create staging directory
+      - name: Create Build Directory
         run: New-Item -ItemType Directory -Path build/web -Force
 
       - name: Build for Web
         run: |
-          .\godot.exe --headless --export-release "Web" build/web/index.html
+          .\godot.exe --headless --export-release "Web" build/web/index.html project/project.godot
         shell: cmd
 
       - name: Add coi-service-worker
@@ -48,4 +48,4 @@ jobs:
           force_orphan: true
           user_name: "github-ci[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
-          commit_message: "Publish to gh-pages"
+          commit_message: "Publish Godot Web Game to GitHub Pages"
